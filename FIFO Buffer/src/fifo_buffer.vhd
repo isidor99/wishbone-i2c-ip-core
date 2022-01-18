@@ -3,11 +3,11 @@
 -- Widhbone I2C
 -----------------------------------------------------------------------------
 --
---    unit    name:                        clock_generator
+--    unit    name:                        fifo_buffer
 --
 --    description:
 --
---              This is top-level entity.
+--              Design for FIFO buffer.
 --
 -----------------------------------------------------------------------------
 --    Copyright    (c)    ETF BL
