@@ -22,10 +22,6 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity clock_generator is
-  generic
-  (
-    g_SYSTEM_CLOCK : integer := 50_000_000
-  );
   port
   (
     clk_i    : in  std_logic;
@@ -39,12 +35,20 @@ end clock_generator;
 
 architecture arch of clock_generator is
 
-  constant c_STANDARD_MODE  : integer := 250;
-  constant c_FAST_MODE      : integer := 63;
-  constant c_FAST_MODE_PLUS : integer := 25;
+  constant c_STANDARD_MODE  : integer := 100_000;
+  constant c_FAST_MODE      : integer := 400_000;
+  constant c_FAST_MODE_PLUS : integer := 1_000_000;
+  constant c_HZ_MULT        : integer := 1;
+  constant c_KHZ_MULT       : integer := 1000;
+  constant c_MHZ_MULT       : integer := 1_000_000;
+  constant c_GHZ_MULT       : integer := 1_000_000_000;
 
-  signal tmp   : std_logic := '0';
-  signal col   : integer := 0;
+  signal clk_val  : integer := 1;
+  signal sig_mult : integer := c_HZ_MULT;
+  signal col      : integer := 1;
+  signal freq     : integer := c_STANDARD_MODE;
+
+  signal tmp      : std_logic := '0';
 
 begin
 
@@ -66,11 +70,20 @@ begin
     end if;
   end process;
 
+  clk_val <= to_integer(unsigned(sysclk_i(29 downto 0)));
+
+  with sysclk_i(31 downto 30) select
+    sig_mult <= c_HZ_MULT when "00",
+                c_KHZ_MULT when "01",
+                c_MHZ_MULT when "10",
+                c_GHZ_MULT when others;
+
   with sel_i select
-    col <= c_STANDARD_MODE when "00",
-           c_FAST_MODE when "01",
-           c_FAST_MODE_PLUS when "10",
-           1 when others;
+    freq <= c_STANDARD_MODE when "00",
+            c_FAST_MODE when "01",
+            c_FAST_MODE_PLUS when others;
+
+  col <= (clk_val * sig_mult) / (2 * freq);
 
   clk_o <= tmp when enb_i = '1' else
            '1';

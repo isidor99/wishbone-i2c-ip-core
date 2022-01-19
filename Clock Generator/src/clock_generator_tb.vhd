@@ -27,19 +27,17 @@ end clock_generator_tb;
 architecture arch of clock_generator_tb is
 
   component clock_generator
-    generic (
-      g_SYSTEM_CLOCK : integer
-    );
     port(
       clk_i : in  std_logic;
       rst_i : in  std_logic;
       enb_i : in  std_logic;
       sel_i : in  std_logic_vector(1 downto 0);
+		sysclk_i : in std_logic_vector(31 downto 0);
       clk_o : out std_logic
     );
   end component;
 
-  constant c_T              : time    := 20 ns;
+  constant c_T              : time    := 1000 ns;
   constant c_STD_MODE       : time    := 10000 ns;
   constant c_FAST_MODE      : time    := 2500 ns;
   constant c_FAST_MODE_PLUS : time    := 1000 ns;
@@ -50,16 +48,17 @@ architecture arch of clock_generator_tb is
   signal enbl    : std_logic;
   signal sel     : std_logic_vector (1 downto 0);
   signal clk_out : std_logic;
+  signal sysclk  : std_logic_vector(31 downto 0);
 begin
 
   -- uut instantiation
   uut : clock_generator
-    generic map(g_SYSTEM_CLOCK => c_SYSTEM_CLOCK)
       port map(
         clk_i => clk,
         rst_i => rst,
         enb_i => enbl,
         sel_i => sel,
+		  sysclk_i => sysclk,
         clk_o => clk_out);
 
   -- clock generator
@@ -86,7 +85,8 @@ begin
     -- assert(clk_out = '1')
       -- report "Output should be high in the inactive state " & std_logic'image(clk_out)
         -- severity error;
-
+    sysclk <= "10000000000000000000000000000001";
+	 
     -- Enabling output
     enbl <= '1';
 
