@@ -64,9 +64,9 @@ begin
 
     elsif rising_edge(clk_i) then
 
-      if wr_en_i = '1' and rd_en_i = '0' then
+      if wr_en_i = '1' and rd_en_i = '0' and buff_full = '0' then
         data_count <= data_count + 1;
-      elsif wr_en_i = '0' and rd_en_i = '1' then
+      elsif wr_en_i = '0' and rd_en_i = '1' and buff_empty = '0' then
         data_count <= data_count - 1;
       end if;
 
@@ -86,7 +86,7 @@ begin
         end if;
       end if;
 
-      if wr_en_i = '1' then
+      if wr_en_i = '1' and buff_full = '0' then
         data_array(write_index) <= data_i;
       end if;
 
