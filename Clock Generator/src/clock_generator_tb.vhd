@@ -72,50 +72,50 @@ begin
   end process;
 
   -- stimulus generation
-  process
-  begin
-    rst <= '1';
-    wait for c_T;
-    rst <= '0';
-    wait for c_T;
+  -- process
+  -- begin
+    -- rst <= '1';
+    -- wait for c_T;
+    -- rst <= '0';
+    -- wait for c_T;
 
     -- Checking output in the inactive state
-    enbl <= '0';
-    wait for c_T;
+    -- enbl <= '0';
+    -- wait for c_T;
 
-    assert(clk_out = '1')
-      report "Output should be high in the inactive state " & std_logic'image(clk_out)
-        severity error;
+    -- assert(clk_out = '1')
+      -- report "Output should be high in the inactive state " & std_logic'image(clk_out)
+        -- severity error;
 
     -- Enabling output
     enbl <= '1';
 
     -- Standar mode testing
     sel <= "00";
-    wait until rising_edge(clk_out);
-    wait for c_STD_MODE + c_T;
-
-    assert(clk_out = '1')
-      report "Output should be high but it's " & std_logic'image(clk_out)
-        severity error;
-
-    -- Fast mode testing
-    sel <= "01";
-    wait until rising_edge(clk_out);
-    wait for c_FAST_MODE + c_T;
-
-    assert(clk_out = '1')
-      report "Output should be high but it's " & std_logic'image(clk_out)
-        severity error;
-
-    -- Fast mode plus testing
-    sel <= "10";
-    wait until rising_edge(clk_out);
-    wait for c_FAST_MODE_PLUS + c_T;
-
-    assert(clk_out = '1')
-      report "Output should be high but it's " & std_logic'image(clk_out)
-        severity error;
-    wait;
-  end process;
+--    wait until rising_edge(clk_out);
+--    wait for c_STD_MODE + c_T;
+--
+--    assert(clk_out = '1')
+--      report "Output should be high but it's " & std_logic'image(clk_out)
+--        severity error;
+--
+--    -- Fast mode testing
+--    sel <= "01";
+--    wait until rising_edge(clk_out);
+--    wait for c_FAST_MODE + c_T;
+--
+--    assert(clk_out = '1')
+--      report "Output should be high but it's " & std_logic'image(clk_out)
+--        severity error;
+--
+--    -- Fast mode plus testing
+--    sel <= "10";
+--    wait until rising_edge(clk_out);
+--    wait for c_FAST_MODE_PLUS + c_T;
+--
+--    assert(clk_out = '1')
+--      report "Output should be high but it's " & std_logic'image(clk_out)
+--        severity error;
+--    wait;
+  -- end process;
 end arch;

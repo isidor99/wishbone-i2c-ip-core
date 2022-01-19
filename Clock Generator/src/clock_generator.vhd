@@ -28,19 +28,20 @@ entity clock_generator is
   );
   port
   (
-    clk_i : in  std_logic;
-    rst_i : in  std_logic;
-    enb_i : in  std_logic;
-    sel_i : in  std_logic_vector(1 downto 0);
-    clk_o : out std_logic
+    clk_i    : in  std_logic;
+    rst_i    : in  std_logic;
+    enb_i    : in  std_logic;
+    sel_i    : in  std_logic_vector(1 downto 0);
+    sysclk_i : in  std_logic_vector(31 downto 0);
+    clk_o    : out std_logic
   );
 end clock_generator;
 
 architecture arch of clock_generator is
 
-  constant c_STANDARD_MODE  : integer := 500;
-  constant c_FAST_MODE      : integer := 125;
-  constant c_FAST_MODE_PLUS : integer := 50;
+  constant c_STANDARD_MODE  : integer := 250;
+  constant c_FAST_MODE      : integer := 63;
+  constant c_FAST_MODE_PLUS : integer := 25;
 
   signal tmp   : std_logic := '0';
   signal col   : integer := 0;
@@ -55,7 +56,7 @@ begin
       count := 0;
       tmp <= '0';
     elsif rising_edge(clk_i) then
-      if count /= col then
+      if count /= col - 1 then
         count := count + 1;
         tmp <= tmp;
       else
@@ -69,7 +70,7 @@ begin
     col <= c_STANDARD_MODE when "00",
            c_FAST_MODE when "01",
            c_FAST_MODE_PLUS when "10",
-           0 when others;
+           1 when others;
 
   clk_o <= tmp when enb_i = '1' else
            '1';
