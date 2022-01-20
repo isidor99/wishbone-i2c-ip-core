@@ -28,4 +28,4 @@ _FIFO_ (_First-In First-Out_) bafer je memorijska struktura za čuvanje podataka
 
 ## Vremenska analiza
 
-Na osnovu vremenske analize, dobija se da je maksimalna frekvencija taktnog signala oko _202 MHz_.
+Na osnovu vremenske analize, dobija se da je maksimalna frekvencija taktnog signala oko _198 MHz_.
