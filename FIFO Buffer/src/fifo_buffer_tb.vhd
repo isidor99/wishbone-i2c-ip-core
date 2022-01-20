@@ -48,6 +48,21 @@ architecture arch of fifo_buffer_tb is
   constant c_DEPTH : natural := 16;
   constant c_TIME  : time := 20 ns;
 
+  type t_test_vector is record
+    write_in : std_logic_vector((c_WIDTH - 1) downto 0);
+    read_out : std_logic_vector((c_WIDTH - 1) downto 0);
+  end record t_test_vector;
+
+  type t_test_vector_array is array (natural range <>) of t_test_vector;
+
+  constant c_TEST_VECTOR : t_test_vector_array :=
+  (
+    ("00110011", "00110011"),
+    ("11001100", "11001100"),
+    ("10000001", "10000001"),
+    ("01111110", "01111110")
+  );
+
   signal clk        : std_logic;
   signal rst        : std_logic;
   signal wr_en      : std_logic;
@@ -97,27 +112,110 @@ begin
 
     rst <= '0';
     rd_en <= '0';
-  
-    wait until clk = '1';
+    stop <= '0';
 
-    for i in 0 to 25 loop
+    for i in 1 to 20 loop
 
-      wait for 4 ns;
+      wait for 15 ns;
 
-	   if buff_full = '0' then
-		  wr_en <= '1';
+      -- do not write in full buffer
+      if buff_full = '0' then
+        wr_en <= '1';
         data_in <= std_logic_vector(to_unsigned(i, 8));
       end if;
 
       wait until rising_edge(clk);
-      wait for 12 ns;
+      wait for 5 ns;
 
-		wr_en <= '0';
+      wr_en <= '0';
+
+      wait until falling_edge(clk);
     end loop;
 
+
+    for i in 1 to 20 loop
+
+      wait for 15 ns;
+
+      -- check if buffer is not empty
+      if buff_empty = '0' then
+        rd_en <= '1';
+
+        wait until rising_edge(clk);
+        wait for 5 ns;
+
+        rd_en <= '0';
+
+        -- out should be first element in buffer
+        assert (data_out = std_logic_vector(to_unsigned(i, 8)))
+        report "Output data should be " & integer'image(to_integer(to_unsigned(i, 8))) &
+               ", but it is " & integer'image(to_integer(unsigned(data_out)))
+        severity error;
+      end if;
+
+      wait until falling_edge(clk);
+    end loop;
+
+    wr_en <= '1';
+    data_in <= c_TEST_VECTOR(0).write_in;
+
+    wait until rising_edge(clk);
+    wait for 5 ns;
+
+    wr_en <= '0';
+
+    wait until falling_edge(clk);
+
+    for i in 1 to c_TEST_VECTOR'length - 1 loop
+
+      wait for 15 ns;
+
+      data_in <= c_TEST_VECTOR(i).write_in;
+      wr_en <= '1';
+      rd_en <= '1';
+
+      wait until rising_edge(clk);
+      wait for 5 ns;
+
+      -- out should be first element in buffer
+      assert (data_out = c_TEST_VECTOR(i - 1).read_out)
+      report "Output data should be " &
+             integer'image(to_integer(unsigned(c_TEST_VECTOR(i - 1).read_out))) &
+             ", but it is " & integer'image(to_integer(unsigned(data_out)))
+      severity error;
+
+      wr_en <= '0';
+      rd_en <= '0';
+
+      wait until falling_edge(clk);
+    end loop;
+
+    wait for 15 ns;
+
+    rd_en <= '1';
+
+    wait until rising_edge(clk);
+    wait for 5 ns;
+
+    rd_en <= '0';
+
+    -- out should be last element in c_TEST_VECTOR
+    assert (data_out = c_TEST_VECTOR(c_TEST_VECTOR'length - 1).read_out)
+    report "Output data should be " &
+           integer'image(to_integer(unsigned(c_TEST_VECTOR(c_TEST_VECTOR'length - 1).read_out))) &
+           ", but it is " & integer'image(to_integer(unsigned(data_out)))
+    severity error;
+
+    wait for 5 ns;
+
     stop <= '1';
+
+    -- enable output
+    assert (1 = 2)
+    report "Test completed!";
+
     wait;
-    
+
   end process;
-  
+
 end arch;
