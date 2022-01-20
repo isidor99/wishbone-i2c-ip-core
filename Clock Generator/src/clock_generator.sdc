@@ -88,6 +88,8 @@ set_output_delay -clock clk_virt -min 0.300 [get_ports {clk_o}]
 #**************************************************************
 
 set_false_path -from [get_ports {rst_i}] -to [all_registers]
+set_false_path -from [get_ports {sysclk_i[*]}] -to [all_registers]
+set_false_path -from [get_ports {sel_i[*]}] -to [all_registers]
 
 #**************************************************************
 # Set Multicycle Path
