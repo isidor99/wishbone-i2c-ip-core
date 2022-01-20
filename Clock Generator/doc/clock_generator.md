@@ -24,7 +24,11 @@ _Clock Generator_ generiše takt signal u zavisnosti od selekcionog ulaza. Ulazn
 |**500 MHz**   | svi|
 |**1 GHz**   | svi|
 
+## Vremenska analiza
+Na osnovu rezultata vremenske analize makismalna frekvencija taktnog signala iznosi _206 MHz_
 
 ## _RTL_ prikaz
 
 ![rtl_prikaz](Images\rtl_view.png)
+
+
