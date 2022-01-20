@@ -52,26 +52,24 @@ architecture arch of clock_generator_tb is
 
   constant c_TEST_VECTOR : t_test_vector_array := (
     ("01000000000000000000000011001000", "00", 10, 100 us, 5000 ns), -- 200 khz to 100 khz
-    ("10000000000000000000000000110010", "00", 10, 100 us, 1000 ns),  -- 1 Mhz to 100 khz
-    ("10000000000000000000000000110010", "00", 10, 400 us, 1000 ns), -- 1 Mhz to 400 khz
-    ("10000000000000000000000000110010", "00", 10, 10 us,  1000 ns)  -- 1 Mhz to 1 Mhz
---    ("10000000000000000000000000110010", "00", 500,    20 ns),   -- 50 Mhz to 100 khz
---    ("10000000000000000000000000110010", "01", 125,    20 ns),   -- 50 Mhz to 400 khz
---    ("10000000000000000000000000110010", "10", 50,     20 ns),   -- 50 Mhz to 1 Mhz
---    ("10000000000000000000000011001000", "00", 2_000,  5 ns),    -- 200 Mhz to 100 khz
---    ("10000000000000000000000011001000", "01", 500,    5 ns),    -- 200 Mhz to 400 khz
---    ("10000000000000000000000011001000", "10", 200,    5 ns),    -- 200 Mhz to 1 Mhz
---    ("11000000000000000000000000000001", "00", 10_000, 1 ns),    -- 1 Ghz to 100 khz
---    ("11000000000000000000000000000001", "01", 2_500,  1 ns),    -- 1 Ghz to 400 khz
---    ("11000000000000000000000000000001", "10", 1_000,  1 ns)     -- 1 Ghz to 1 Mhz
+    ("10000000000000000000000000000001", "00", 10, 100 us, 1000 ns), -- 1 Mhz to 100 khz
+    ("10000000000000000000000000000001", "01", 10, 25  us, 1000 ns), -- 1 Mhz to 400 khz
+    ("10000000000000000000000000000001", "10", 10, 10  us, 1000 ns), -- 1 Mhz to 1 Mhz
+    ("10000000000000000000000000110010", "00", 10, 100 us, 20 ns),   -- 50 Mhz to 100 khz
+    ("10000000000000000000000000110010", "01", 10, 25  us, 20 ns),   -- 50 Mhz to 400 khz
+    ("10000000000000000000000000110010", "10", 10, 10  us, 20 ns),   -- 50 Mhz to 1 Mhz
+    ("10000000000000000000000011001000", "00", 10, 100 us, 5 ns),    -- 200 Mhz to 100 khz
+    ("10000000000000000000000011001000", "01", 10, 25  us, 5 ns),   -- 200 Mhz to 400 khz
+    ("10000000000000000000000011001000", "10", 10, 10  us, 5 ns),    -- 200 Mhz to 1 Mhz
+    ("11000000000000000000000000000001", "00", 10, 100 us, 1 ns),    -- 1 Ghz to 100 khz
+    ("11000000000000000000000000000001", "01", 10, 25  us, 1 ns),    -- 1 Ghz to 400 khz
+    ("11000000000000000000000000000001", "10", 10, 10  us, 1 ns)     -- 1 Ghz to 1 Mhz
   );
 
   signal i         : natural := 0;
   signal edge_cnt  : natural := 0;
   signal old_cnt   : natural := 0;
-  -- signal new_cnt   : natural := 0;
   signal cnt_diff  : natural := 0;
-  -- signal flag      : std_logic := '0'; -- For skipping the the first edge
   signal stop      : std_logic := '0';
 
   signal clk     : std_logic;
@@ -97,9 +95,6 @@ begin
   -- stimulus generator
   process
   begin
-    -- if i = c_TEST_VECTOR'length then
-      -- wait;
-    -- end if;
 
     clk <= '0';
     wait for (c_TEST_VECTOR(i).period) / 2;
@@ -110,28 +105,7 @@ begin
       wait;
     end if;
 
-    -- new_count <= new_count + 1;
   end process;
-
-  -- Reset and enbl
---  process
---  begin
---    rst <= '1';
---    wait for c_T;
---    rst <= '0';
---    wait for c_T;
---
---    -- Checking output in the inactive state
---    enbl <= '0';
---    wait for c_T;
---
---    assert(clk_out = '1')
---      report "Output should be high in the inactive state " & std_logic'image(clk_out)
---        severity error;
---
---    enbl <= '1';
---    wait;
---  end process;
 
   -- count output signal rising edges
   process(clk_out)
@@ -153,18 +127,27 @@ begin
 
     enbl <= '1';
 
-	 -- synchronize
+    -- synchronize
     wait until rising_edge(clk);
     wait for c_TEST_VECTOR(i).wait_for;
     wait until falling_edge(clk);
 
     enbl <= '0';
 
-    -- wait for 5 ns;
+    wait for 20 ns;
+
+    -- Checking output in the inactive state
+    assert (clk_out = '1')
+      report "Output Clock Does Not Conform to Specified Value in The Inactive State"
+        severity error;
 
     cnt_diff <= edge_cnt - old_cnt;
 
-    -- provjeriti da li je cnt_diff = c_TEST_VECTOR(i).edge_num
+    wait for 20 ns;
+
+    assert (cnt_diff = c_TEST_VECTOR(i).edge_num)
+      report "Output Clock Does Not Conform to Specified Value "
+       severity error;
 
     old_cnt <= edge_cnt;
 
@@ -172,30 +155,12 @@ begin
 
     if i  /= c_TEST_VECTOR'length - 1 then
       i <= i + 1;
+      sysclk <= c_TEST_VECTOR(i).sysclk;
+      sel <= c_TEST_VECTOR(i).sel;
     else
       stop <= '1';
       wait;
     end if;
 
---    if rising_edge(clk_out) then
---      if flag = '1' then
---
---        diff <= new_count - old_count;
---
---        assert(c_TEST_VECTOR(i).edge_num = diff)
---          report "Output clk not good " & natural'image(diff) & "  " & natural'image(c_TEST_VECTOR(i).edge_num)
---            severity error;
---
---        i <= i + 1;
---        sel <= c_TEST_VECTOR(i).sel;
---        sysclk <= c_TEST_VECTOR(i).sysclk;
---        old_count <= new_count;
---        flag   <= '0';
---
---      else
---        flag <= '1';
---        old_count <= new_count;
---      end if;
---    end if;
   end process;
 end arch;
