@@ -13,6 +13,18 @@ _Clock Generator_ generiše takt signal u zavisnosti od selekcionog ulaza. Ulazn
 | **sysclk_i**   | in  | std_logic_vector (31 downto 0)         | Vrijednost sistemskog takta (System Clock Register)|
 | **clk_o**       | out  | std_logic | Izlazni takt |
 
+
+## Sigurne vrijednosti za sysclk_i
+| Frekvencija | Mod rada|
+|-------------|---------|
+| **200 kHz** | Standard Mode|
+|**20 MHz**   | svi|
+|**50 MHz**   | svi|
+|**200 MHz**   | svi|
+|**500 MHz**   | svi|
+|**1 GHz**   | svi|
+
+
 ## _RTL_ prikaz
 
 ![rtl_prikaz](Images\rtl_view.png)
