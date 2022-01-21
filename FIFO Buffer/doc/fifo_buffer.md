@@ -24,7 +24,7 @@ _FIFO_ (_First-In First-Out_) bafer je memorijska struktura za čuvanje podataka
 
 ## _RTL_ prikaz
 
-![rtl_prikaz](Images/rtl_prikaz.png)
+![rtl_prikaz](Images/rtl_view.png)
 
 ## Vremenska analiza
 
