@@ -29,6 +29,4 @@ Na osnovu rezultata vremenske analize makismalna frekvencija taktnog signala izn
 
 ## _RTL_ prikaz
 
-![rtl_prikaz](Images\rtl_view.png)
-
-
+![rtl_prikaz](Images/rtl_view.png)
