@@ -48,6 +48,9 @@ architecture arch of clock_generator is
   signal col      : integer := 1;
   signal freq     : integer := c_STANDARD_MODE;
 
+  -- Used for test on the board
+  -- signal sysclk_i : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
+
   signal tmp      : std_logic := '0';
 
 begin
