@@ -76,7 +76,7 @@ architecture arch of register_block is
 
   subtype t_word is std_logic_vector((g_WIDTH - 1) downto 0);
   type memory_t is array((2 ** g_ADDR_WIDTH - 1) downto 0) of t_word;
-  signal ram : memory_t;
+  signal ram : memory_t := (7 => c_50_MHz, others => (others => '0'));
 
 begin
 
@@ -139,7 +139,7 @@ begin
   msl_o          <= ram(2)(0);
 
   -- general purpose register
-  gpo_o      <= ram(7)((g_GPO_W - 1) downto 0);
+  gpo_o      <= ram(6)((g_GPO_W - 1) downto 0);
 
   -- command register signals
   tx_buff_wr_en_o <= '0' when ram(3)(4) = '1' else
