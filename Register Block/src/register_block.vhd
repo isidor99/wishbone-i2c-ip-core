@@ -35,44 +35,44 @@ entity register_block is
   );
   port
   (
-    clk_i           : in    std_logic; --
-    rst_i           : in    std_logic; --
-    we_i            : in    std_logic; --
-    addr_i          : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1); --
-    dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0); --
-    tx_buff_f_i     : in    std_logic; --
-    tx_buff_e_i     : in    std_logic; --
-    rx_buff_f_i     : in    std_logic; --
-    rx_buff_e_i     : in    std_logic; --
-    arb_lost_i      : in    std_logic; --
-    ack_res_flg_i   : in    std_logic; --
-    busy_flg_i      : in    std_logic; --
-    intr_flg_i      : in    std_logic; --
-    rx_data_i       : in    std_logic_vector(7 downto 0); --
-    ack_o           : out   std_logic; --
-    arb_lost_o      : out   std_logic; --
-    int_o           : out   std_logic; --
-    mode_o          : out   std_logic_vector(1 downto 0); --
-    i2c_en_o        : out   std_logic; --
-    int_en_o        : out   std_logic; --
-    slv_addr_len_o  : out   std_logic; --
-    msl_o           : out   std_logic; --
-    tx_buff_wr_en_o : out   std_logic; --
-	 rx_buff_rd_en_o : out   std_logic; --
-    rd_slv_o        : out   std_logic; --
-    wr_slv_o        : out   std_logic; --
-    clr_intr_o      : out   std_logic; --
-    tx_data_o       : out   std_logic_vector(7 downto 0); --
-    gpo_o           : out   std_logic_vector((g_GPO_W - 1) downto 0); --
-    slv_addr_o      : out   std_logic_vector(9 downto 0); --
-    sys_clk_o       : out   std_logic_vector((g_WIDTH - 1) downto 0); --
-    dat_o           : out   std_logic_vector((g_WIDTH - 1) downto 0) --
+    clk_i           : in    std_logic;
+    rst_i           : in    std_logic;
+    we_i            : in    std_logic;
+    addr_i          : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1);
+    dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0);
+    tx_buff_f_i     : in    std_logic;
+    tx_buff_e_i     : in    std_logic;
+    rx_buff_f_i     : in    std_logic;
+    rx_buff_e_i     : in    std_logic;
+    arb_lost_i      : in    std_logic;
+    ack_res_flg_i   : in    std_logic;
+    busy_flg_i      : in    std_logic;
+    intr_flg_i      : in    std_logic;
+    rx_data_i       : in    std_logic_vector(7 downto 0);
+    ack_o           : out   std_logic;
+    arb_lost_o      : out   std_logic;
+    int_o           : out   std_logic;
+    mode_o          : out   std_logic_vector(1 downto 0);
+    i2c_en_o        : out   std_logic;
+    int_en_o        : out   std_logic;
+    slv_addr_len_o  : out   std_logic;
+    msl_o           : out   std_logic;
+    tx_buff_wr_en_o : out   std_logic;
+    rx_buff_rd_en_o : out   std_logic;
+    rd_slv_o        : out   std_logic;
+    wr_slv_o        : out   std_logic;
+    clr_intr_o      : out   std_logic;
+    tx_data_o       : out   std_logic_vector(7 downto 0);
+    gpo_o           : out   std_logic_vector((g_GPO_W - 1) downto 0);
+    slv_addr_o      : out   std_logic_vector(9 downto 0);
+    sys_clk_o       : out   std_logic_vector((g_WIDTH - 1) downto 0);
+    dat_o           : out   std_logic_vector((g_WIDTH - 1) downto 0)
   );
 end register_block;
 
 architecture arch of register_block is
 
-  constant c_50_MHz : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
+  constant c_50_MHZ : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
 
   subtype t_word is std_logic_vector((g_WIDTH - 1) downto 0);
   type memory_t is array((2 ** g_ADDR_WIDTH - 1) downto 0) of t_word;
@@ -89,10 +89,10 @@ begin
       ram(1) <= (others => '0');
       ram(2) <= (0 => '1', others => '0');
       ram(3) <= (others => '0');
-		ram(4) <= (others => '0');
-		ram(5) <= (others => '0');
-		ram(6) <= (others => '0');
-		ram(7) <= c_50_MHz;
+      ram(4) <= (others => '0');
+      ram(5) <= (others => '0');
+      ram(6) <= (others => '0');
+      ram(7) <= c_50_MHz;
 
     elsif rising_edge(clk_i) then
 
@@ -103,12 +103,12 @@ begin
       ram(3)(7 downto 4) <= (rx_buff_e_i & rx_buff_f_i & tx_buff_e_i & tx_buff_f_i);
 
       -- get interrupt data
-		ram(3)(3 downto 0) <= (intr_flg_i & busy_flg_i & ack_res_flg_i & arb_lost_i);
+      ram(3)(3 downto 0) <= (intr_flg_i & busy_flg_i & ack_res_flg_i & arb_lost_i);
 
       -- write or read data from wishbone master side
       if we_i = '1' then
         ram(addr_i) <= dat_i;
-      else 
+      else
         dat_o <= ram(addr_i);
       end if;
     end if;
