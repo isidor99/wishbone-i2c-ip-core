@@ -48,11 +48,8 @@ entity register_block is
     ack_res_flg_i   : in    std_logic; --
     busy_flg_i      : in    std_logic; --
     intr_flg_i      : in    std_logic; --
-    -- cyc_i           : in    std_logic;
     rx_data_i       : in    std_logic_vector(7 downto 0); --
     ack_o           : out   std_logic; --
-    -- err_o        : out   std_logic;
-    -- rty_o        : out   std_logic;
     arb_lost_o      : out   std_logic; --
     int_o           : out   std_logic; --
     mode_o          : out   std_logic_vector(1 downto 0); --
@@ -80,7 +77,6 @@ architecture arch of register_block is
   subtype t_word is std_logic_vector((g_WIDTH - 1) downto 0);
   type memory_t is array((2 ** g_ADDR_WIDTH - 1) downto 0) of t_word;
   signal ram : memory_t;
-  signal addr_reg : natural range 0 to (2 ** g_ADDR_WIDTH - 1);
 
 begin
 
@@ -115,13 +111,8 @@ begin
       else 
         dat_o <= ram(addr_i);
       end if;
-
-      -- addr_reg <= addr_i;
-
     end if;
   end process;
-
-  -- dat_o <= ram(addr_reg);
 
   -- write data to tx buffer
   -- write is completed if tx buffer write is enabled
@@ -132,13 +123,11 @@ begin
 
   -- select slave address
   with ram(2)(3) select
-    sl_addr_o <= ("000" & ram(6)(6 downto 0)) when '0',
-                 ram(6)(9 downto 0) when others;
+    slv_addr_o <= ("000" & ram(6)(6 downto 0)) when '0',
+                  ram(6)(9 downto 0) when others;
 
   -- get flags from status register
-  -- int_flg_b  <= ram(3)(3);
   int_o      <= ram(3)(3);
-  -- busy_flg_i <= ram(3)(2);
   ack_o      <= ram(3)(1);
   arb_lost_o <= ram(3)(0);
 
