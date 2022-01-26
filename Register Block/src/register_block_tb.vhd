@@ -370,12 +370,7 @@ begin
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
-    we_test <= '0';
-
-    wait until rising_edge(clk_test);
-    wait for 2 ns;
-
-    assert (unsigned(dat_o_test) = unsigned(c_SLV_ADDR))
+    assert (unsigned(slv_addr_test) = unsigned(c_SLV_ADDR(6 downto 0)))
       report "SLAVE ADDRESS register not ok. 7 bit address expected to be " &
              integer'image(to_integer(unsigned(c_SLV_ADDR(6 downto 0)))) &
              " but it is " &
@@ -390,19 +385,7 @@ begin
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
-    addr_test  <= 5;
-    dat_i_test             <= (others => '0');
-    dat_i_test(9 downto 0) <= c_SLV_ADDR;
-
-    wait until rising_edge(clk_test);
-    wait for 2 ns;
-
-    we_test <= '0';
-
-    wait until rising_edge(clk_test);
-    wait for 2 ns;
-
-    assert (unsigned(dat_o_test) = unsigned(c_SLV_ADDR))
+    assert (unsigned(slv_addr_test) = unsigned(c_SLV_ADDR))
       report "SLAVE ADDRESS register not ok. 10 bit address expected to be " &
              integer'image(to_integer(unsigned(c_SLV_ADDR(9 downto 0)))) &
              " but it is " &
@@ -410,7 +393,6 @@ begin
       severity error;
 
     -- test GPO register
-
     addr_test <= 6;
     we_test   <= '1';
 
