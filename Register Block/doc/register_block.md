@@ -2,6 +2,22 @@
 
 _Register Block_ sadrži sve registre koji sadrže kontrolne, komandne, statusne i bit podataka potrebne za ispravan rad sistema.
 
+U sklopu registarskog bloka postoji ukupno 8 registara, svi registri su 32 bit-ni.
+
+## Tabela registara
+
+| Naziv registra               |Adresa   |   
+|------------------------------|:-------:|
+| **Tx registar**              |0        |
+| **Rx registar**              |1        | 
+| **Kontrolni registar**       |2        |
+| **Statusni registar**        |3        |
+| **Komandni registar**        |4        |
+| **Registar adrese slave-a**  |5        |
+| **GPO registar**             |6        |
+| **Registar taktnog signala** |7        |
+
+
 ## Tabela portova
 
 | Naziv porta         | Mod | Tip                                       | Opis                                                                                                                                                                                                               |
@@ -47,21 +63,13 @@ _Register Block_ sadrži sve registre koji sadrže kontrolne, komandne, statusne
 | **g_ADDR_WIDTH** | natural | Broj bita adrese.                            |
 | **g_GPO_W**      | natural | Broj korisnih bita u registru opšte namjene. |
 
-## Sigurne vrijednosti za sysclk_i
 
-| Frekvencija | Mod rada      |
-| ----------- | ------------- |
-| **200 kHz** | Standard Mode |
-| **20 MHz**  | svi           |
-| **50 MHz**  | svi           |
-| **200 MHz** | svi           |
-| **500 MHz** | svi           |
-| **1 GHz**   | svi           |
 
 ## Vremenska analiza
 
-Na osnovu rezultata vremenske analize makismalna frekvencija taktnog signala iznosi _206 MHz_
+Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _151 MHz_.
 
 ## _RTL_ prikaz
 
-![rtl_prikaz](Images/rtl_view.png)
+![rtl_prikaz](Images\rtl_view.png)
+![rtl_zumirano](Images\rtl_zoom_view.png)
