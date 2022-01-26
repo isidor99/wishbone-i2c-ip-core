@@ -81,7 +81,7 @@ architecture arch of register_block is
 begin
 
   -- Process
-  process (clk_i)
+  process (clk_i, rst_i)
   begin
     if rst_i = '1' then
 
@@ -123,8 +123,8 @@ begin
 
   -- select slave address
   with ram(2)(3) select
-    slv_addr_o <= ("000" & ram(6)(6 downto 0)) when '0',
-                  ram(6)(9 downto 0) when others;
+    slv_addr_o <= ("000" & ram(5)(6 downto 0)) when '0',
+                  ram(5)(9 downto 0) when others;
 
   -- get flags from status register
   int_o      <= ram(3)(3);
