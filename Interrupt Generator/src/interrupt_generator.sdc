@@ -38,7 +38,6 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
-create_clock -name {clk_i} -period 20 [get_ports {clk_i}]
 create_clock -name clk_virt -period 20
 
 #**************************************************************
@@ -62,19 +61,21 @@ derive_clock_uncertainty
 #**************************************************************
 # Set Input Delay
 #**************************************************************
-set_input_delay -clock clk_virt -max 0.500 [get_ports {int_enable_i}]
-set_input_delay -clock clk_virt -min 0.300 [get_ports {int_enable_i}]
+set_input_delay -clock clk_virt -max 0.500 [get_ports {int_enbl_i}]
+set_input_delay -clock clk_virt -min 0.300 [get_ports {int_enbl_i}]
 set_input_delay -clock clk_virt -max 0.500 [get_ports {int_ack_i}]
 set_input_delay -clock clk_virt -min 0.300 [get_ports {int_ack_i}]
 set_input_delay -clock clk_virt -max 0.500 [get_ports {arlo_i}]
 set_input_delay -clock clk_virt -min 0.300 [get_ports {arlo_i}]
+set_input_delay -clock clk_virt -max 0.500 [get_ports {int_clr_i}]
+set_input_delay -clock clk_virt -min 0.300 [get_ports {int_clr_i}]
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
-set_output_delay -clock clk_virt -max 0.800 [get_ports {int_o}]
-set_output_delay -clock clk_virt -min 0.500 [get_ports {int_o}]
+set_output_delay -clock clk_virt -max 0.500 [get_ports {int_o}]
+set_output_delay -clock clk_virt -min 0.300 [get_ports {int_o}]
 
 #**************************************************************
 # Set Clock Groups
@@ -86,9 +87,7 @@ set_output_delay -clock clk_virt -min 0.500 [get_ports {int_o}]
 # Set False Path
 #**************************************************************
 
-set_false_path -from [get_ports {int_enable_i}] -to [all_registers]
-set_false_path -from [get_ports {int_ack_i}] -to [all_registers]
-set_false_path -from [get_ports {arlo_i}] -to [all_registers]
+
 
 #**************************************************************
 # Set Multicycle Path
