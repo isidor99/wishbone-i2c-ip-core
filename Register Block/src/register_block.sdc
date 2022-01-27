@@ -68,93 +68,93 @@ derive_clock_uncertainty
 #**************************************************************
 
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {we_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {we_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {we_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {we_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {tx_buff_f_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {tx_buff_f_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {tx_buff_f_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {tx_buff_f_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {tx_buff_e_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {tx_buff_e_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {tx_buff_e_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {tx_buff_e_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {rx_buff_f_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {rx_buff_f_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {rx_buff_f_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {rx_buff_f_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {rx_buff_e_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {rx_buff_e_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {rx_buff_e_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {rx_buff_e_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {arb_lost_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {arb_lost_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {arb_lost_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {arb_lost_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {ack_res_flg_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {ack_res_flg_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {ack_res_flg_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {ack_res_flg_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {busy_flg_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {busy_flg_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {busy_flg_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {busy_flg_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {intr_flg_i}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {intr_flg_i}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {intr_flg_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {intr_flg_i}]
 
-set_input_delay -clock clk_virt -max 0.550 [get_ports {addr_i[*]}]
-set_input_delay -clock clk_virt -min 0.350 [get_ports {addr_i[*]}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {addr_i[*]}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {addr_i[*]}]
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {ack_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {ack_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {ack_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {ack_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {arb_lost_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {arb_lost_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {arb_lost_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {arb_lost_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {int_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {int_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {int_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {int_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {mode_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {mode_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {mode_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {mode_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {i2c_en_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {i2c_en_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {i2c_en_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {i2c_en_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {int_en_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {int_en_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {int_en_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {int_en_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {slv_addr_len_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {slv_addr_len_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {slv_addr_len_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {slv_addr_len_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {msl_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {msl_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {msl_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {msl_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {tx_buff_wr_en_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {tx_buff_wr_en_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {tx_buff_wr_en_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {tx_buff_wr_en_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {rx_buff_rd_en_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {rx_buff_rd_en_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {rx_buff_rd_en_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {rx_buff_rd_en_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {rd_slv_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {rd_slv_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {rd_slv_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {rd_slv_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {wr_slv_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {wr_slv_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {wr_slv_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {wr_slv_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {clr_intr_o}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {clr_intr_o}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {clr_intr_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {clr_intr_o}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {tx_data_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {tx_data_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {tx_data_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {tx_data_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {gpo_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {gpo_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {gpo_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {gpo_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {slv_addr_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {slv_addr_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {slv_addr_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {slv_addr_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {sys_clk_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {sys_clk_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {sys_clk_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {sys_clk_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.550 [get_ports {dat_o[*]}]
-set_output_delay -clock clk_virt -min 0.350 [get_ports {dat_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {dat_o[*]}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {dat_o[*]}]
 
 
 #**************************************************************
