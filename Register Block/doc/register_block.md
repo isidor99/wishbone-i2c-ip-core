@@ -64,7 +64,7 @@ U sklopu registarskog bloka postoji ukupno 8 registara, svi registri su 32 bit-n
 
 ## Vremenska analiza
 
-Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _151 MHz_.
+Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _113 MHz_.
 
 ## _RTL_ prikaz
 
