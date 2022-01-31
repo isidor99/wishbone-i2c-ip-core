@@ -28,7 +28,7 @@ architecture arch of transaction_controller_tb is
       enbl_i         : in std_logic;
       wr_slv_i       : in std_logic;
       rd_slv_i       : in std_logic;
-      rep_start_i    : in std_logic;
+      rep_strt_i     : in std_logic;
       slv_addr_len_i : in std_logic;
       msl_sel_i      : in std_logic;
       scl_i          : in std_logic;
@@ -36,6 +36,7 @@ architecture arch of transaction_controller_tb is
       slv_addr_i     : in std_logic_vector(9 downto 0);
       tx_data_i      : in std_logic_vector(7 downto 0);
       mode_i         : in std_logic_vector(1 downto 0);
+      sysclk_i       : in std_logic_vector(31 downto 0);
       sda_b          : inout std_logic;
       tx_rd_enbl_o   : out std_logic;
       rx_wr_enbl_o   : out std_logic;
@@ -58,7 +59,7 @@ architecture arch of transaction_controller_tb is
   signal enbl_test         : std_logic;
   signal wr_slv_test       : std_logic;
   signal rd_slv_test       : std_logic;
-  signal rep_start_test    : std_logic;
+  signal rep_strt_test     : std_logic;
   signal slv_addr_len_test : std_logic;
   signal msl_sel_test      : std_logic;
   signal scl_test          : std_logic;
@@ -66,6 +67,7 @@ architecture arch of transaction_controller_tb is
   signal slv_addr_test     : std_logic_vector(9 downto 0);
   signal tx_data_test      : std_logic_vector(7 downto 0);
   signal mode_test         : std_logic_vector(1 downto 0);
+  signal sysclk_test       : std_logic_vector(31 downto 0);
   signal sda_test          : std_logic;
   signal tx_rd_enbl_test   : std_logic;
   signal rx_wr_enbl_test   : std_logic;
@@ -85,7 +87,7 @@ begin
       enbl_i         => enbl_test,
       wr_slv_i       => wr_slv_test,
       rd_slv_i       => rd_slv_test,
-      rep_start_i    => rep_start_test,
+      rep_strt_i     => rep_strt_test,
       slv_addr_len_i => slv_addr_len_test,
       msl_sel_i      => msl_sel_test,
       scl_i          => scl_test,
@@ -93,6 +95,7 @@ begin
       slv_addr_i     => slv_addr_test,
       tx_data_i      => tx_data_test,
       mode_i         => mode_test,
+      sysclk_i       => sysclk_test,
       sda_b          => sda_test,
       tx_rd_enbl_o   => tx_rd_enbl_test,
 		rx_wr_enbl_o   => rx_wr_enbl_test,
@@ -102,6 +105,8 @@ begin
 		clk_enbl_o     => clk_enbl_test,
 		arb_lost_flg_o => arb_lost_flg_test
     );
+
+  sysclk_test <= c_SYS_CLK;
 
   -- stimulus generator
   process
@@ -129,6 +134,7 @@ begin
       wait for c_TIME_SCL / 2;
     else
       scl_test <= '1';
+      wait for c_TIME_SCL / 2;
     end if;
 
     if stop = '1' then
@@ -141,14 +147,30 @@ begin
   process
   begin
 
-    enbl_test   <= '0';
-    rst_test    <= '0';
-    wr_slv_test <= '0';
-	 rd_slv_test <= '0';
+    rst_test       <= '0';
+    wr_slv_test    <= '0';
+	 rd_slv_test    <= '0';
+    enbl_test      <= '1';
+    tx_buff_e_test <= '1';
+
+    wait until rising_edge(clk_test);
+
+    wr_slv_test <= '1';
+
+    wait until rising_edge(clk_test);
+
+    tx_buff_e_test <= '0';
+
+    wait until rising_edge(tx_rd_enbl_test);
+    wait until rising_edge(clk_test);
+
+    tx_data_test <= "00110011";
+
+    wait until rising_edge(clk_test);
 
 
-    wait for 10000 us;
     stop <= '1';
+    wait;
 
   end process;
 
