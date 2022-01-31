@@ -58,8 +58,8 @@ architecture arch of transaction_controller is
                    scl_high_rep, write_op, wait_ack, read_op, send_ack, enbl_rx, store, wait_data);
   signal state_reg, state_next : t_state;
   
-  signal data_clk      : std_logic;                      --data clock for sda
-  signal data_clk_prev : std_logic;                      --data clock during previous system clock
+  signal data_clk      : std_logic;
+  signal data_clk_prev : std_logic;
   signal shift_reg_e   : std_logic;
   signal low_delay     : std_logic;
   signal bit_count     : natural := 7;
@@ -132,7 +132,6 @@ architecture arch of transaction_controller is
         if busy = '0' then
           state_next <= sda_low;
         elsif rep_strt_i = '1' then
-		    count <= 0;
 		    state_next <= sda_high_rep;
 		  elsif busy = '1' and rep_strt_i = '0' then
 		    state_next <= write_op;
@@ -184,7 +183,6 @@ architecture arch of transaction_controller is
 		  elsif ack = '0' and (wr_slv_i = '1' or rep_strt_i = '1') and tx_buff_e_i = '0' then
 		    state_next <= enbl_tx;
 		  elsif wr_slv_i = '0' and rd_slv_i = '0' and rep_strt_i = '0' then
-		    count <= 0;
 		    state_next <= scl_high_stop;
 		  elsif ack = '0' and rd_slv_i = '1' then
 		    state_next <= read_op;

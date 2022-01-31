@@ -80,27 +80,27 @@ begin
   uut : transaction_controller
     port map
     (
-      clk_i          <= clk_test,
-      rst_i          <= rst_test,
-      enbl_i         <= enbl_test,
-      wr_slv_i       <= wr_slv_test,
-      rd_slv_i       <= rd_slv_test,
-      rep_start_i    <= rep_start_test,
-      slv_addr_len_i <= slv_addr_len_test,
-      msl_sel_i      <= msl_sel_test,
-      scl_i          <= scl_test,
-      tx_buff_e_i    <= tx_buff_e_test,
-      slv_addr_i     <= slv_addr_test,
-      tx_data_i      <= tx_data_test,
-      mode_i         <= mode_test,
-      sda_b          <= sda_test,
-      tx_rd_enbl_o   <= tx_rd_enbl_test,
-		rx_wr_enbl_o   <= rx_rd_enbl_test,
-      rx_data_o      <= rx_data_test,
-		busy_flg_o     <= busy_flg_test,
-		ack_flg_o      <= ack_flg_test,
-		clk_enbl_o     <= clk_enbl_test,
-		arb_lost_o     <= arb_lost_test
+      clk_i          => clk_test,
+      rst_i          => rst_test,
+      enbl_i         => enbl_test,
+      wr_slv_i       => wr_slv_test,
+      rd_slv_i       => rd_slv_test,
+      rep_start_i    => rep_start_test,
+      slv_addr_len_i => slv_addr_len_test,
+      msl_sel_i      => msl_sel_test,
+      scl_i          => scl_test,
+      tx_buff_e_i    => tx_buff_e_test,
+      slv_addr_i     => slv_addr_test,
+      tx_data_i      => tx_data_test,
+      mode_i         => mode_test,
+      sda_b          => sda_test,
+      tx_rd_enbl_o   => tx_rd_enbl_test,
+		rx_wr_enbl_o   => rx_wr_enbl_test,
+      rx_data_o      => rx_data_test,
+		busy_flg_o     => busy_flg_test,
+		ack_flg_o      => ack_flg_test,
+		clk_enbl_o     => clk_enbl_test,
+		arb_lost_flg_o => arb_lost_flg_test
     );
 
   -- stimulus generator
