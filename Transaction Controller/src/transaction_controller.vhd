@@ -54,7 +54,8 @@ architecture arch of transaction_controller is
   constant c_MHZ_MULT       : integer := 1_000_000;
   constant c_GHZ_MULT       : integer := 1_000_000_000;
 
-  type t_state is (off_state, idle, enbl_tx, load, sda_low, scl_low, sda_high, scl_high, write_op, wait_ack);
+  type t_state is (off_state, idle, enbl_tx, load, sda_low, scl_low, sda_high_stop, scl_high_stop, sda_high_rep, 
+                   scl_high_rep, write_op, wait_ack, read_op, send_ack, enbl_rx, store, wait_data);
   signal state_reg, state_next : t_state;
   
   signal data_clk      : std_logic;                      --data clock for sda
@@ -66,30 +67,36 @@ architecture arch of transaction_controller is
   signal sysclk_val    : integer := 1;
   signal sig_mult      : integer :=c_HZ_MULT;
   signal freq          : integer := c_STANDARD_MODE;
+
   signal busy          : std_logic := '0';
+  signal ack           : std_logic := '0';
   
   signal clk_val       : integer := 1;
   signal divider       : integer := 1;
   
+  signal count : integer range 0 to 125;
+  signal rst_count     : std_logic := '0';
   begin
 
   -- control path: state register
   process(clk_i, rst_i, scl_i, enbl_i)
-  variable count  :  integer range 0 to 125;
   begin
     if enbl_i = '0' then
 	   state_reg <= off_state;
     elsif rst_i = '1' then
       state_reg <= idle;
-		count := 0;
+		count <= 0;
     elsif rising_edge(clk_i) then
       data_clk_prev <= data_clk;
 		data_clk <= scl_i;
-		if(count = divider - 1) THEN        
-        count := 0;
+		if rst_count = '1' then
+		  count <= 0;
+		end if;
+		if(count = divider - 1) then        
+        count <= 0;
 		  low_delay <= '1';
       else         
-        count := count + 1;
+        count <= count + 1;
         low_delay <= '0';		  
       end if;
       state_reg <= state_next;
@@ -105,7 +112,7 @@ architecture arch of transaction_controller is
 		  if enbl_i = '1' then
 		    state_next <= idle;
 		  else
-		    state_next <= state_reg;
+		    state_next <= off_state;
 		  end if;
 	 
       when idle =>
@@ -116,21 +123,45 @@ architecture arch of transaction_controller is
         end if;
 		  
       when enbl_tx =>
-        state_next <= load;
+        state_next <= wait_data;
+		  
+		when wait_data =>
+		  state_next <= load;
 		
       when load =>
-        if shift_reg_e = '0' and busy = '0' then
+        if busy = '0' then
           state_next <= sda_low;
         elsif rep_strt_i = '1' then
-		    state_next <= sda_high;
-		  elsif busy = '1' and shift_reg_e = '0' then
+		    count <= 0;
+		    state_next <= sda_high_rep;
+		  elsif busy = '1' and rep_strt_i = '0' then
 		    state_next <= write_op;
 		  else 
 		    state_next <= load;  
         end if;
+		
+		when sda_high_rep =>
+		  rst_count <= '0';
+		  if low_delay = '1' then
+		    rst_count <= '1';
+		    state_next <= scl_high_rep;
+		  else
+		    state_next <= sda_high_rep;
+		  end if;
+		
+		when scl_high_rep =>
+		 rst_count <= '0';
+		 if low_delay = '1' then
+		   rst_count <= '1';
+			state_next <= sda_low;
+		 else
+		   state_next <= sda_high_rep;
+		 end if;
 		  
 		when sda_low =>
+		  rst_count <= '0';
 		  if low_delay = '1' then
+		    rst_count <= '1';
 		    state_next <= scl_low;
 		  else 
 		    state_next <= sda_low;
@@ -145,6 +176,32 @@ architecture arch of transaction_controller is
 		  else
 		     state_next <= wait_ack;
 		  end if;
+		  
+		when wait_ack =>
+		  if ack = '1' then
+		    ack_flg_o <= '1';
+			 state_next <= idle;
+		  elsif ack = '0' and (wr_slv_i = '1' or rep_strt_i = '1') and tx_buff_e_i = '0' then
+		    state_next <= enbl_tx;
+		  elsif wr_slv_i = '0' and rd_slv_i = '0' and rep_strt_i = '0' then
+		    count <= 0;
+		    state_next <= scl_high_stop;
+		  elsif ack = '0' and rd_slv_i = '1' then
+		    state_next <= read_op;
+		  else
+		    state_next <= wait_ack;
+		  end if;
+		
+		when scl_high_stop =>
+		  if low_delay = '1' then
+		     state_next <= sda_high_stop;
+		  else
+		     state_next <= scl_high_stop;
+		  end if;
+		
+		when sda_high_stop =>
+		  state_next <= idle;
+		  
 		when others =>
 		  
     end case;
