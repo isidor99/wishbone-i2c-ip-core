@@ -23,28 +23,29 @@ architecture arch of transaction_controller_tb is
   component transaction_controller is
     port
     (
-      clk_i          : in std_logic;
-      rst_i          : in std_logic;
-      enbl_i         : in std_logic;
-      wr_slv_i       : in std_logic;
-      rd_slv_i       : in std_logic;
-      rep_strt_i     : in std_logic;
-      slv_addr_len_i : in std_logic;
-      msl_sel_i      : in std_logic;
-      scl_i          : in std_logic;
-      tx_buff_e_i    : in std_logic;
-      slv_addr_i     : in std_logic_vector(9 downto 0);
-      tx_data_i      : in std_logic_vector(7 downto 0);
-      mode_i         : in std_logic_vector(1 downto 0);
-      sysclk_i       : in std_logic_vector(31 downto 0);
+      clk_i          : in    std_logic;
+      rst_i          : in    std_logic;
+      enbl_i         : in    std_logic;
+      wr_slv_i       : in    std_logic;
+      rd_slv_i       : in    std_logic;
+      rep_strt_i     : in    std_logic;
+      slv_addr_len_i : in    std_logic;
+      msl_sel_i      : in    std_logic;
+      scl_i          : in    std_logic;
+      tx_buff_e_i    : in    std_logic;
+      rx_buff_f_i    : in    std_logic;
+      slv_addr_i     : in    std_logic_vector(9 downto 0);
+      tx_data_i      : in    std_logic_vector(7 downto 0);
+      mode_i         : in    std_logic_vector(1 downto 0);
+      sysclk_i       : in    std_logic_vector(31 downto 0);
       sda_b          : inout std_logic;
-      tx_rd_enbl_o   : out std_logic;
-      rx_wr_enbl_o   : out std_logic;
-      rx_data_o      : out std_logic;
-      busy_flg_o     : out std_logic;
-      ack_flg_o      : out std_logic;
-      clk_enbl_o     : out std_logic;
-      arb_lost_flg_o : out std_logic
+      tx_rd_enbl_o   : out   std_logic;
+      rx_wr_enbl_o   : out   std_logic;
+      rx_data_o      : out   std_logic;
+      busy_flg_o     : out   std_logic;
+      ack_flg_o      : out   std_logic;
+      clk_enbl_o     : out   std_logic;
+      arb_lost_flg_o : out   std_logic
     );
   end component transaction_controller;
 
@@ -64,6 +65,7 @@ architecture arch of transaction_controller_tb is
   signal msl_sel_test      : std_logic;
   signal scl_test          : std_logic;
   signal tx_buff_e_test    : std_logic;
+  signal rx_buff_f_test    : std_logic;
   signal slv_addr_test     : std_logic_vector(9 downto 0);
   signal tx_data_test      : std_logic_vector(7 downto 0);
   signal mode_test         : std_logic_vector(1 downto 0);
@@ -92,18 +94,19 @@ begin
       msl_sel_i      => msl_sel_test,
       scl_i          => scl_test,
       tx_buff_e_i    => tx_buff_e_test,
+      rx_buff_f_i    => rx_buff_f_test,
       slv_addr_i     => slv_addr_test,
       tx_data_i      => tx_data_test,
       mode_i         => mode_test,
       sysclk_i       => sysclk_test,
       sda_b          => sda_test,
       tx_rd_enbl_o   => tx_rd_enbl_test,
-		rx_wr_enbl_o   => rx_wr_enbl_test,
+      rx_wr_enbl_o   => rx_wr_enbl_test,
       rx_data_o      => rx_data_test,
-		busy_flg_o     => busy_flg_test,
-		ack_flg_o      => ack_flg_test,
-		clk_enbl_o     => clk_enbl_test,
-		arb_lost_flg_o => arb_lost_flg_test
+      busy_flg_o     => busy_flg_test,
+      ack_flg_o      => ack_flg_test,
+      clk_enbl_o     => clk_enbl_test,
+      arb_lost_flg_o => arb_lost_flg_test
     );
 
   sysclk_test <= c_SYS_CLK;
@@ -134,7 +137,7 @@ begin
       wait for c_TIME_SCL / 2;
     else
       scl_test <= '1';
-      wait for c_TIME_SCL / 2;
+      wait for c_TIME / 2;
     end if;
 
     if stop = '1' then
@@ -149,7 +152,7 @@ begin
 
     rst_test       <= '0';
     wr_slv_test    <= '0';
-	 rd_slv_test    <= '0';
+    rd_slv_test    <= '0';
     enbl_test      <= '1';
     tx_buff_e_test <= '1';
 
@@ -166,8 +169,7 @@ begin
 
     tx_data_test <= "00110011";
 
-    wait until rising_edge(clk_test);
-
+    wait for 5 us;
 
     stop <= '1';
     wait;
