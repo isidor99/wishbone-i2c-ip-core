@@ -55,8 +55,9 @@ architecture arch of transaction_controller is
   constant c_MHZ_MULT       : integer := 1_000_000;
   constant c_GHZ_MULT       : integer := 1_000_000_000;
 
-  type t_state is (off_state, idle, enbl_tx, load, sda_low, scl_low, sda_high_stop, scl_high_stop, sda_high_rep,
-                   scl_high_rep, write_op, wait_ack, read_op, send_ack, enbl_rx, store, wait_data);
+  type t_state is (off_state, idle, enbl_tx, load, sda_low, scl_low,
+                   sda_high_stop, scl_high_stop, sda_high_rep, scl_high_rep,
+                   write_op, wait_ack, read_op, send_ack, enbl_rx, store, wait_data);
   signal state_reg, state_next : t_state;
 
   signal data_clk      : std_logic;
@@ -93,6 +94,7 @@ begin
       if rst_count = '1' then
         count <= 0;
       end if;
+      -- HINT: Mozda ovde da ide elsif
       if count = divider - 1 then
         count <= 0;
         low_delay <= '1';
@@ -104,9 +106,11 @@ begin
     end if;
   end process;
 
-  -- control path: next-state/ output logic
+  -- control path: next-state / output logic
   process(state_reg, data_clk, data_clk_prev, enbl_i, wr_slv_i, rd_slv_i, rep_strt_i, msl_sel_i)
   begin
+    -- HINT: Nismo definisali sta se desava ako je tx_buffer prazan
+    --       mozda se vratiti u idle stanje uz generisanje interrupt-a
     case state_reg is
       when off_state =>
         if enbl_i = '1' then
@@ -114,6 +118,7 @@ begin
         else
           state_next <= off_state;
         end if;
+
       when idle =>
         if wr_slv_i = '1' and tx_buff_e_i = '0' then
           state_next <= enbl_tx;
@@ -123,10 +128,13 @@ begin
 
       when enbl_tx =>
         state_next <= wait_data;
+
       when wait_data =>
         state_next <= load;
 
       when load =>
+        -- HINT: Mozda prvo dodati uslog da li je rep_strt_i = 1
+        --       a ispod dodati uslove za busy flag
         if busy = '0' then
           state_next <= sda_low;
         elsif rep_strt_i = '1' then
@@ -138,6 +146,7 @@ begin
         end if;
 
       when sda_high_rep =>
+        -- HINT: Mozda postavljanje res_count staviti u output logic process
         rst_count <= '0';
         if low_delay = '1' then
           rst_count <= '1';
@@ -145,7 +154,9 @@ begin
         else
           state_next <= sda_high_rep;
         end if;
+
       when scl_high_rep =>
+        -- HINT: Mozda postavljanje res_count staviti u output logic process
         rst_count <= '0';
         if low_delay = '1' then
           rst_count <= '1';
@@ -155,6 +166,7 @@ begin
         end if;
 
       when sda_low =>
+        -- HINT: Mozda postavljanje res_count staviti u output logic process
         rst_count <= '0';
         if low_delay = '1' then
           rst_count <= '1';
@@ -162,17 +174,22 @@ begin
         else
           state_next <= sda_low;
         end if;
+
       when scl_low =>
         state_next <= write_op;
+
       when write_op =>
         if bit_count /= 0 then
           state_next <= write_op;
         else
           state_next <= wait_ack;
         end if;
+
       when wait_ack =>
+        -- HINT: Mozda postavljanje bit_count ( = 8 ) staviti u output logic process
         bit_count <= 7;
         if ack = '1' then
+          -- HINT: Postavljanje ack flega prebaciti u output state logic
           ack_flg_o <= '1';
           state_next <= idle;
         elsif ack = '0' and (wr_slv_i = '1' or rep_strt_i = '1') and tx_buff_e_i = '0' then
@@ -184,12 +201,14 @@ begin
         else
           state_next <= wait_ack;
         end if;
+
       when scl_high_stop =>
         if low_delay = '1' then
           state_next <= sda_high_stop;
         else
           state_next <= scl_high_stop;
         end if;
+
       when sda_high_stop =>
         state_next <= idle;
 
@@ -199,16 +218,21 @@ begin
         else
           state_next <= send_ack;
         end if;
+
       when send_ack =>
+        -- HINT: Mozda postavljanje bit_count ( = 8 ) staviti u output logic process
         bit_count <= 7;
         if rx_buff_f_i = '0' then
           state_next <= enbl_rx;
         else
           state_next <= send_ack;
         end if;
+
       when enbl_rx =>
         state_next <= store;
+
       when store =>
+        -- HINT: Ispitati uslov za wr_slv (mozda ici u idle state)
         if rd_slv_i = '0' and rep_strt_i = '0' then
           state_next <= scl_high_stop;
         elsif rd_slv_i = '1' then
@@ -218,6 +242,45 @@ begin
         else
           state_next <= store;
         end if;
+
+      when others =>
+        state_next <= idle;
+
+    end case;
+  end process;
+
+  -- output logic
+  process(state_reg)
+  begin
+
+    clk_enbl_o <= '0';
+    sda_b <= '1';
+    tx_rd_enbl_o <= '0';
+
+    case state_reg is
+
+      when off_state =>
+        clk_enbl_o <= '0';
+        sda_b  <= '1';
+
+      when idle =>
+        clk_enbl_o <= '0';
+        sda_b  <= '1';
+
+      when enbl_tx =>
+        tx_rd_enbl_o <= '1';
+
+      when load =>
+        -- HINT: Ukloniti shift_reg_e
+        shift_reg <= tx_data_i;
+        shift_reg_e <= '0';
+
+      when sda_low =>
+        sda_b <= '0';
+
+      when scl_low =>
+        clk_enbl_o <= '1';
+
       when others =>
 
     end case;
@@ -226,7 +289,7 @@ begin
   sysclk_val <= to_integer(unsigned(sysclk_i(29 downto 0)));
 
   with sysclk_i(31 downto 30) select
-    sig_mult <= c_HZ_MULT when "00",
+    sig_mult <= c_HZ_MULT  when "00",
                 c_KHZ_MULT when "01",
                 c_MHZ_MULT when "10",
                 c_GHZ_MULT when others;
@@ -239,31 +302,4 @@ begin
   clk_val <= (sysclk_val * sig_mult);
 
   divider <= (clk_val / freq) / 4;
-
-  -- Proces
-  process(state_reg)
-  begin
-    clk_enbl_o <= '0';
-    sda_b <= '1';
-    tx_rd_enbl_o <= '0';
-    case state_reg is
-      when off_state =>
-        clk_enbl_o <= '0';
-        sda_b  <= '1';
-      when idle =>
-        clk_enbl_o <= '0';
-        sda_b  <= '1';
-      when enbl_tx =>
-        tx_rd_enbl_o <= '1';
-      when load =>
-        shift_reg <= tx_data_i;
-        shift_reg_e <= '0';
-      when sda_low =>
-        sda_b <= '0';
-      when scl_low =>
-        clk_enbl_o <= '1';
-      when others =>
-    end case;
-  end process;
-
 end arch;
