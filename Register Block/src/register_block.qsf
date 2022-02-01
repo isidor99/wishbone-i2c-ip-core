@@ -63,4 +63,5 @@ set_global_assignment -name EDA_TEST_BENCH_NAME register_block_tb -section_id ed
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id register_block_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME register_block_tb -section_id register_block_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE register_block_tb.vhd -section_id register_block_tb
+set_global_assignment -name VHDL_FILE register_package.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
