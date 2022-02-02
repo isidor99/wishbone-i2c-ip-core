@@ -14,6 +14,7 @@
 -----------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity transaction_controller_tb is
 end transaction_controller_tb;
@@ -76,6 +77,9 @@ architecture arch of transaction_controller_tb is
   signal ack_flg_test      : std_logic;
   signal clk_enbl_test     : std_logic;
   signal arb_lost_flg_test : std_logic;
+  
+  signal tmp        : std_logic := '0';
+  signal slave_data : std_logic_vector(7 downto 0);
 
 begin
 
@@ -124,24 +128,26 @@ begin
   end process;
 
   -- stimulus generator for scl
-  process
+  -- Count process
+  process(clk_test, clk_enbl_test)
+    variable count : integer := 0;
   begin
-
-    if clk_enbl_test = '1' then
-      scl_test <= '0';
-      wait for c_TIME_SCL / 2;
-      scl_test <= '1';
-      wait for c_TIME_SCL / 2;
-    else
-      scl_test <= '1';
-      wait for c_TIME / 2;
+    if clk_enbl_test = '0' then
+	   count := 0;
     end if;
 
-    if stop = '1' then
-      wait;
+    if rising_edge(clk_test) then
+      if count /= 125 then
+        count := count + 1;
+        tmp <= tmp;
+      else
+        count := 0;
+        tmp <= not tmp;
+      end if;
     end if;
-
   end process;
+  
+  scl_test <= '1' when clk_enbl_test = '0' else tmp;
 
   -- main process
   process
@@ -161,12 +167,10 @@ begin
     sda_test          <= 'Z';
 
     wait until rising_edge(clk_test);
-
-    enbl_test    <= '1';
-
     wait for 50 * c_TIME;
 
-    byte_count_test <= "0001";
+    enbl_test <= '1';
+    byte_count_test <= "0010";
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
@@ -174,6 +178,7 @@ begin
     wait until falling_edge(tx_rd_enbl_test);
 
     tx_data_test <= "10110010";
+    byte_count_test <= "0000";
 
     wait until rising_edge(clk_test);
 
@@ -181,7 +186,81 @@ begin
       wait until rising_edge(scl_test);
 
       assert (sda_test = tx_data_test(i))
-        report "Transaction controller not ok. Error transmitting address."
+        report "Transaction controller not ok. Error transmitting address on bit" &
+               integer'image(i)
+        severity error;
+    end loop;
+
+    -- wait until falling_edge(scl_test);
+    wait until sda_test = 'Z';
+
+    -- set ACK 
+    sda_test <= '0';
+
+    wait until rising_edge(scl_test);
+
+    assert (ack_flg_test = '0')
+      report "ACK not ok"
+      severity error;
+
+    sda_test <= 'Z';
+
+    wait until falling_edge(tx_rd_enbl_test);
+
+    tx_data_test <= "01101011";
+
+    wait until rising_edge(clk_test);
+
+    rep_strt_test <= '1';
+
+    for j in 0 to 1 loop
+
+      for i in 7 downto 0 loop
+        wait until rising_edge(scl_test);
+
+        assert (sda_test = tx_data_test(i))
+          report "Transaction controller not ok. Error transmitting data on bit" &
+                 integer'image(i)
+          severity error;
+      end loop;
+
+      wait until falling_edge(scl_test);
+
+      -- set ACK 
+      sda_test <= '0';
+
+      wait until rising_edge(scl_test);
+
+      sda_test <= 'Z';
+
+      assert (ack_flg_test = '0')
+        report "ACK not ok"
+        severity error;
+
+    end loop;
+
+	 wait until falling_edge(clk_enbl_test);
+    tx_data_test <= "10110011";
+
+	 -- Read for slave 
+	 wait until rising_edge(clk_test);
+
+	 rep_strt_test <= '0';
+	 byte_count_test <= "0001";
+	 sda_test <= '0';
+	 
+	 wait until falling_edge(tx_rd_enbl_test);
+
+    byte_count_test <= "0000";
+
+    wait until rising_edge(clk_test);
+	 
+	 for i in 7 downto 0 loop
+      wait until rising_edge(scl_test);
+
+      assert (sda_test = tx_data_test(i))
+        report "Transaction controller not ok. Error transmitting address on bit" &
+               integer'image(i)
         severity error;
     end loop;
 
@@ -195,6 +274,24 @@ begin
     assert (ack_flg_test = '0')
       report "ACK not ok"
       severity error;
+
+    slave_data <= "01011011";
+
+	 for i in 7 downto 0 loop
+	   wait until falling_edge(scl_test);
+		
+		sda_test <= slave_data(i);
+	 end loop;
+    
+	 wait until rising_edge(scl_test);
+
+    assert (ack_flg_test = '0')
+      report "ACK not ok"
+      severity error;
+
+	 assert(rx_data_test = slave_data)
+	   report "Transaction controller not ok."
+	   severity error;
 
     stop <= '1';
     wait;
