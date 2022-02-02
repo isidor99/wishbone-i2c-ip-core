@@ -26,14 +26,13 @@ architecture arch of transaction_controller_tb is
       clk_i          : in    std_logic;
       rst_i          : in    std_logic;
       enbl_i         : in    std_logic;
-      wr_slv_i       : in    std_logic;
-      rd_slv_i       : in    std_logic;
       rep_strt_i     : in    std_logic;
       slv_addr_len_i : in    std_logic;
       msl_sel_i      : in    std_logic;
       scl_i          : in    std_logic;
       tx_buff_e_i    : in    std_logic;
       rx_buff_f_i    : in    std_logic;
+      byte_count_i   : in    std_logic_vector(3 downto 0);
       slv_addr_i     : in    std_logic_vector(9 downto 0);
       tx_data_i      : in    std_logic_vector(7 downto 0);
       mode_i         : in    std_logic_vector(1 downto 0);
@@ -41,7 +40,7 @@ architecture arch of transaction_controller_tb is
       sda_b          : inout std_logic;
       tx_rd_enbl_o   : out   std_logic;
       rx_wr_enbl_o   : out   std_logic;
-      rx_data_o      : out   std_logic;
+      rx_data_o      : out   std_logic_vector(7 downto 0);
       busy_flg_o     : out   std_logic;
       ack_flg_o      : out   std_logic;
       clk_enbl_o     : out   std_logic;
@@ -58,14 +57,13 @@ architecture arch of transaction_controller_tb is
   signal clk_test          : std_logic;
   signal rst_test          : std_logic;
   signal enbl_test         : std_logic;
-  signal wr_slv_test       : std_logic;
-  signal rd_slv_test       : std_logic;
   signal rep_strt_test     : std_logic;
   signal slv_addr_len_test : std_logic;
   signal msl_sel_test      : std_logic;
   signal scl_test          : std_logic;
   signal tx_buff_e_test    : std_logic;
   signal rx_buff_f_test    : std_logic;
+  signal byte_count_test   : std_logic_vector(3 downto 0);
   signal slv_addr_test     : std_logic_vector(9 downto 0);
   signal tx_data_test      : std_logic_vector(7 downto 0);
   signal mode_test         : std_logic_vector(1 downto 0);
@@ -73,7 +71,7 @@ architecture arch of transaction_controller_tb is
   signal sda_test          : std_logic;
   signal tx_rd_enbl_test   : std_logic;
   signal rx_wr_enbl_test   : std_logic;
-  signal rx_data_test      : std_logic;
+  signal rx_data_test      : std_logic_vector(7 downto 0);
   signal busy_flg_test     : std_logic;
   signal ack_flg_test      : std_logic;
   signal clk_enbl_test     : std_logic;
@@ -87,14 +85,13 @@ begin
       clk_i          => clk_test,
       rst_i          => rst_test,
       enbl_i         => enbl_test,
-      wr_slv_i       => wr_slv_test,
-      rd_slv_i       => rd_slv_test,
       rep_strt_i     => rep_strt_test,
       slv_addr_len_i => slv_addr_len_test,
       msl_sel_i      => msl_sel_test,
       scl_i          => scl_test,
       tx_buff_e_i    => tx_buff_e_test,
       rx_buff_f_i    => rx_buff_f_test,
+      byte_count_i   => byte_count_test,
       slv_addr_i     => slv_addr_test,
       tx_data_i      => tx_data_test,
       mode_i         => mode_test,
@@ -150,26 +147,54 @@ begin
   process
   begin
 
-    rst_test       <= '0';
-    wr_slv_test    <= '0';
-    rd_slv_test    <= '0';
-    enbl_test      <= '1';
-    tx_buff_e_test <= '1';
+    rst_test          <= '0';
+    enbl_test         <= '0';
+    rep_strt_test     <= '0';
+    slv_addr_len_test <= '0';
+    msl_sel_test      <= '0';
+    tx_buff_e_test    <= '0';
+    rx_buff_f_test    <= '0';
+    byte_count_test   <= "0000";
+    slv_addr_test     <= "0000101010";
+    tx_data_test      <= "00000000";
+    mode_test         <= "00";
+    sda_test          <= 'Z';
 
     wait until rising_edge(clk_test);
 
-    wr_slv_test <= '1';
+    enbl_test    <= '1';
+
+    wait for 50 * c_TIME;
+
+    byte_count_test <= "0001";
+
+    wait until rising_edge(clk_test);
+    wait for 2 ns;
+
+    wait until falling_edge(tx_rd_enbl_test);
+
+    tx_data_test <= "10110010";
 
     wait until rising_edge(clk_test);
 
-    tx_buff_e_test <= '0';
+    for i in 7 downto 0 loop
+      wait until rising_edge(scl_test);
 
-    wait until rising_edge(tx_rd_enbl_test);
-    wait until rising_edge(clk_test);
+      assert (sda_test = tx_data_test(i))
+        report "Transaction controller not ok. Error transmitting address."
+        severity error;
+    end loop;
 
-    tx_data_test <= "00110011";
+    wait until falling_edge(scl_test);
 
-    wait for 5 us;
+    -- set ACK 
+    sda_test <= '0';
+
+    wait until rising_edge(scl_test);
+
+    assert (ack_flg_test = '0')
+      report "ACK not ok"
+      severity error;
 
     stop <= '1';
     wait;
