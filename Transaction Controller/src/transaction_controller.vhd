@@ -54,59 +54,65 @@ architecture arch of transaction_controller is
   constant c_MHZ_MULT       : integer := 1_000_000;
   constant c_GHZ_MULT       : integer := 1_000_000_000;
 
-  type t_state is (off_state, idle, enbl_tx, load_addr, sda_low, scl_low,
-                   sda_high_stop, scl_high_stop, sda_high_rep, scl_high_rep,
-                   write_op, wait_ack_data, wait_ack_addr, read_op, send_ack,
-                   enbl_rx, store, wait_addr, addr_op, enbl_tx_data, wait_data,
-                   load_data, int_state);
+  type t_state is
+  (
+    off_state, idle, enbl_tx, wait_addr, load_addr,
+    sda_low, scl_low, sda_high_stop, scl_high_stop,
+    sda_high_rep, scl_high_rep, addr_op, wait_ack_addr,
+    enbl_tx_data, wait_data, load_data, write_op,
+    wait_ack_data, read_op, send_ack, enbl_rx, store, int_state
+  );
   signal state_reg, state_next : t_state;
 
   signal data_clk      : std_logic;
   signal data_clk_prev : std_logic;
   signal low_delay     : std_logic;
-  signal bit_count     : natural := 7;
-  --signal shift_reg     : std_logic_vector(7 downto 0);
+  signal busy          : std_logic;
+  signal ack           : std_logic := '0';
+  signal rst_count     : std_logic := '0';
+  signal arb_lost      : std_logic := '0';
+  signal read_or_write : std_logic := '0';
+  signal wait_done     : std_logic := '0';
+  signal write_done    : std_logic := '0';
+
+
   signal sysclk_val    : integer := 1;
   signal sig_mult      : integer := c_HZ_MULT;
   signal freq          : integer := c_STANDARD_MODE;
-
-  signal busy          : std_logic := '0';
-  signal ack           : std_logic := '0';
-
   signal clk_val       : integer := 1;
   signal divider       : integer := 1;
+  signal byte_count    : integer := 0;
+  signal bit_count     : integer := 0;
 
   signal count         : integer range 0 to 125;
-  signal rst_count     : std_logic := '0';
-  signal byte_count    : integer := 0;
-  signal arb_lost      : std_logic := '0';
-  signal read_or_write : std_logic := '0';
-  
-  signal sda_reg, sda_next : std_logic;
-  signal byte_count_reg, byte_count_next : integer;
+
+  signal addr_loaded : std_logic := '0';
+
+  -- registers
+  signal sda_reg, sda_next             : std_logic;
   signal rst_count_reg, rst_count_next : std_logic;
-  signal bit_count_reg, bit_count_next : integer;
-  signal clk_enbl_reg, clk_enbl_next : std_logic;
+  signal busy_reg, busy_next           : std_logic;
+  signal byte_count_reg, byte_count_next : integer;
+  signal bit_count_reg, bit_count_next   : integer;
   signal shift_reg, shift_next : std_logic_vector(7 downto 0);
-  signal rx_reg, rx_next : std_logic_vector(7 downto 0);
-  
-  
-  
-  
-  
+  signal rx_reg, rx_next       : std_logic_vector(7 downto 0);
+
 begin
 
   -- control path: state register
-  process(clk_i, rst_i, scl_i, enbl_i)
+  process(clk_i, rst_i, enbl_i)
   begin
+
     if enbl_i = '0' then
       state_reg <= off_state;
     elsif rst_i = '1' then
       state_reg <= idle;
       count <= 0;
     elsif rising_edge(clk_i) then
+
       data_clk_prev <= data_clk;
       data_clk <= scl_i;
+
       if rst_count = '1' then
         count <= 0;
         low_delay <= '0';
@@ -117,12 +123,15 @@ begin
         count <= count + 1;
         low_delay <= '0';
       end if;
+
       state_reg <= state_next;
+
     end if;
   end process;
 
   -- control path: next-state
-  process(state_reg, data_clk, data_clk_prev, enbl_i, rep_strt_i, msl_sel_i, byte_count, arb_lost, low_delay, bit_count, ack, read_or_write)
+  process(state_reg, data_clk, data_clk_prev, enbl_i, rep_strt_i,
+          msl_sel_i, byte_count, arb_lost, low_delay, bit_count, ack, read_or_write)
   begin
     case state_reg is
       when off_state =>
@@ -140,9 +149,9 @@ begin
         end if;
 
       when enbl_tx =>
-        state_next <= wait_data;
+        state_next <= wait_addr;
 
-      when wait_data =>
+      when wait_addr =>
         state_next <= load_addr;
 
       when load_addr =>
@@ -177,25 +186,29 @@ begin
         state_next <= addr_op;
 
       when addr_op =>
-        -- if data_clk_prev = '1' and data_clk = '0' then
-          if arb_lost = '1' then
-            state_next <= int_state;
-          elsif bit_count /= -1 then
-            state_next <= addr_op;
-          else
-            state_next <= wait_ack_addr;
-          end if;
-        -- else
+        if arb_lost = '1' then
+          state_next <= int_state;
+        elsif write_done = '1' then
+          state_next <= wait_ack_addr;
+        -- elsif bit_count /= 0 then
           -- state_next <= addr_op;
-        -- end if;
+        -- else
+          -- state_next <= wait_ack_addr;
+        else
+          state_next <= addr_op;
+        end if;
 
       when wait_ack_addr =>
+        -- wait one period
+        -- if data_clk_prev = '1' and data_clk = '0' then
+          -- wait_done <= '1';
+        -- end if;
         if data_clk_prev = '0' and data_clk = '1' then
           if ack = '1' then
             state_next <= int_state;
-          elsif read_or_write = '0' then -- Write
+          elsif read_or_write = '0' then
             state_next <= enbl_tx_data;
-          else                           -- Read
+          else
             state_next <= read_op;
           end if;
         else
@@ -204,6 +217,9 @@ begin
 
       when enbl_tx_data =>
         state_next <= wait_data;
+
+      when wait_data =>
+        state_next <= load_data;
 
       when load_data =>
         state_next <= write_op;
@@ -284,65 +300,101 @@ begin
 
     end case;
   end process;
-  
-  -- data path: data register
+
+  -- control path: output logic
+  with state_reg select
+    tx_rd_enbl_o <= '1' when enbl_tx | enbl_tx_data,
+                    '0' when others;
+  with state_reg select
+    clk_enbl_o <= '0' when off_state | idle | enbl_tx | wait_addr | load_addr | sda_low |
+                           sda_high_rep | scl_high_rep | scl_high_stop | sda_high_stop |
+                           int_state,
+                  '1' when others;
+  busy_flg_o <= busy_reg;
+  ack_flg_o  <= ack;
+
+  -- datapath: data register
   process(clk_i, rst_i)
   begin
+  
     if rst_i = '1' then
-      sda_reg <= '1';
+
+      sda_reg        <= '1';
+      busy_reg       <= '0';
       byte_count_reg <= to_integer(unsigned(byte_count_i));
-      bit_count_reg <= 7;
-      rst_count_reg <= '1';
-		shift_reg <= (others => '0');
-      rx_reg <= (others => '0');
+      bit_count_reg  <= 8;
+      rst_count_reg  <= '1';
+		shift_reg      <= (others => '0');
+      rx_reg         <= (others => '0');
+
     elsif rising_edge(clk_i) then
-      sda_reg <= sda_next;
+
+      sda_reg        <= sda_next;
+      busy_reg       <= busy_next;
       byte_count_reg <= byte_count_next;
-      bit_count_reg <= bit_count_next;
-      rst_count_reg <= rst_count_next;
-		shift_reg <= shift_next;
-      rx_reg <= rx_next;
+      bit_count_reg  <= bit_count_next;
+      rst_count_reg  <= rst_count_next;
+      shift_reg      <= shift_next;
+      rx_reg         <= rx_next;
+
     end if;
   end process;
   
-  -- data path: routing multipexer
+  -- datapath: routing multipexer
   process(state_reg, sda_reg, byte_count_reg, bit_count_reg,
-          rst_count_reg)
+          rst_count_reg, byte_count_i, data_clk)
   begin
 
-    sda_next <= '1';
-	 byte_count_next <= to_integer(unsigned(byte_count_i));
-	 bit_count_next <= 7;
-	 rst_count_next <= '1';
-	 shift_next <= shift_reg;
-	 rx_next <= rx_reg;
-	 
-	 
+    sda_next        <= '1';
+    busy_next       <= busy_reg;
+    byte_count_next <= to_integer(unsigned(byte_count_i));
+    bit_count_next  <= 8;
+    rst_count_next  <= '1';
+    shift_next      <= shift_reg;
+    rx_next         <= rx_reg;
+
     case state_reg is
-	   when off_state =>
-		when idle =>
-		when enbl_tx =>
-		when wait_addr =>
+	   -- when off_state =>
+		-- when idle =>
+		-- when enbl_tx =>
+		-- when wait_addr =>
+
+      when off_state =>
+        busy_next <= '0';
 		
 		when load_addr =>
-		  shift_next <= tx_data_i;
+		  shift_next     <= tx_data_i;
+        bit_count_next <= 8;
 		  rst_count_next <= '0';
 		
 		when sda_low =>
+        sda_next <= '0';
+
 		when scl_low =>
-		
+        sda_next <= '0';
+        busy_next <= '1';
+  
 		when addr_op =>
+
         read_or_write <= shift_reg(0);
+
 		  if data_clk_prev = '1' and data_clk = '0' then
-		    bit_count_next <= bit_count_reg - 1;
-			 sda_next <= shift_reg(bit_count_reg);
+
+          if bit_count_reg = 0 then
+            write_done <= '1';
+          else
+		      bit_count_next <= bit_count_reg - 1;
+			   sda_next <= shift_reg(bit_count_reg - 1);
+          end if;
+
 		  else
 		    bit_count_next <= bit_count_reg;
 			 sda_next <= sda_reg;
 		  end if;
 		
 		when wait_ack_addr =>
-		  sda_next <= sda_b;
+		  sda_next <= 'Z';
+        write_done <= '0';
 		  
 		when enbl_tx_data =>
 		  sda_next <= sda_b;
@@ -351,13 +403,14 @@ begin
 		  sda_next <= sda_b;
 		  
 		when load_data =>
-		  shift_next <= tx_data_i;
+		  shift_next     <= tx_data_i;
+        bit_count_next <= 7;
 		  
 		when write_op =>
 		  if data_clk_prev = '1' and data_clk = '0' then
 		    bit_count_next <= bit_count_reg - 1;
-			 sda_next <= shift_reg(bit_count_reg);
-			 if bit_count_reg = 0 then
+			 sda_next <= shift_reg(bit_count_reg - 1);
+			 if bit_count_reg - 1 = 0 then
 			   byte_count_next <= byte_count_reg - 1;
 		    end if;
 		  else
@@ -372,30 +425,31 @@ begin
 		
 		when scl_high_stop =>
 		  rst_count_next <= '0';
+        busy_next      <= '0';
 		
 		when sda_high_stop =>
 		
 		when read_op =>
 		  if data_clk_prev = '0' and data_clk = '1' then
 		    bit_count_next <= bit_count_reg - 1;
-			 shift_next(bit_count_reg) <= sda_b;
-			 if bit_count_reg = 0 then
+			 shift_next(bit_count_reg - 1) <= sda_b;
+			 if bit_count_reg - 1 = 0 then
 			   byte_count_next <= byte_count_reg - 1;
           end if;
 		  end if;
 		  sda_next <= sda_b;
 		  
 		when send_ack =>
-		  if bit_count_reg = -1 then
+		  if bit_count_reg = 0 then
 		    sda_next <= '0';
 		  end if;
 			 
-		when enbl_rx =>
+		-- when enbl_rx =>
 		
 		when store =>
 		  rx_next <= shift_reg;
 		
-		when sda_high_rep =>
+		-- when sda_high_rep =>
 		
 		when scl_high_rep =>
 		  rst_count_next <= '0';
@@ -403,46 +457,16 @@ begin
 		when others =>
 	  end case;
   end process;
-		
-		
-		
-		
---
---      when idle =>
---        w_next <= w_reg;
---        c_next <= c_reg;
---        g_next <= g_reg;
---        pwm_next <= '0';
---      when load =>
---        w_next <= w_i;
---        c_next <= (others => '0');
---        g_next <= (others => '0');
---        pwm_next <= '0';
---      when one =>
---        w_next <= w_reg;
---        c_next <= std_logic_vector(counter);
---        g_next <= std_logic_vector(global_counter);
---        pwm_next <= '1';
---      when zero =>
---        w_next <= w_reg;
---        c_next <= (others => '0');
---        g_next <= std_logic_vector(global_counter);
---        pwm_next <= '0';
---    end case;
---  end process;
---  -- data path: functional units
---  counter <= unsigned(c_reg) + 1;
---  global_counter <= unsigned(g_reg) + 1;
---  -- data path: status
---  count_is_0 <= '1' when c_next = w_i else '0';
---  global_count_is_0 <= '1' when g_next = "1111" else '0';
---  w_is_0 <= '1' when w_i = "0000" else '0';
---  -- data path: output
---  pwm_o <= pwm_reg;
---end arch;
 
-  -- datapath: status
+  -- data path: status
   byte_count <= byte_count_reg;
+  bit_count  <= bit_count_reg;
+
+  -- data path: functional unit
+  ack <= sda_b;
+
+  -- data path: output
+  sda_b <= sda_reg;
 
   sysclk_val <= to_integer(unsigned(sysclk_i(29 downto 0)));
 
