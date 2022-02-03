@@ -77,7 +77,7 @@ architecture arch of transaction_controller_tb is
   signal ack_flg_test      : std_logic;
   signal clk_enbl_test     : std_logic;
   signal arb_lost_flg_test : std_logic;
-  
+
   signal tmp        : std_logic := '0';
   signal slave_data : std_logic_vector(7 downto 0);
 
@@ -133,11 +133,11 @@ begin
     variable count : integer := 0;
   begin
     if clk_enbl_test = '0' then
-	   count := 0;
+      count := 0;
     end if;
 
     if rising_edge(clk_test) then
-      if count /= 125 then
+      if count /= 250 then
         count := count + 1;
         tmp <= tmp;
       else
@@ -146,7 +146,7 @@ begin
       end if;
     end if;
   end process;
-  
+
   scl_test <= '1' when clk_enbl_test = '0' else tmp;
 
   -- main process
@@ -243,14 +243,14 @@ begin
       check_ack;
     end loop;
 
-	 wait until falling_edge(clk_enbl_test);
+    wait until falling_edge(clk_enbl_test);
 
     -- set new address
     tx_data_test    <= "10110011";
-	 rep_strt_test   <= '0';
-	 byte_count_test <= "0010";
+    rep_strt_test   <= '0';
+    byte_count_test <= "0010";
 
-	 wait until sda_test = 'Z';
+    wait until sda_test = 'Z';
     wait until falling_edge(scl_test);
 
     -- check address
@@ -263,7 +263,7 @@ begin
     byte_count_test <= "0000";
 
     for j in 0 to 1 loop
-	 
+
       wait until sda_test = 'Z';
       sda_test <= '0';
 
