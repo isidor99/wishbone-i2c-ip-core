@@ -151,6 +151,49 @@ begin
 
   -- main process
   process
+
+    procedure check_transmit (
+      constant tx_data_test : in std_logic_vector(7 downto 0)
+    ) is
+    begin
+
+      for i in 7 downto 0 loop
+        wait until rising_edge(scl_test);
+
+        assert (sda_test = tx_data_test(i))
+          report "Transaction controller not ok. Error transmitting on bit" &
+                 integer'image(i)
+          severity error;
+      end loop;
+
+    end check_transmit;
+
+    procedure write_on_sda (
+      constant data : in std_logic_vector(7 downto 0)
+    ) is
+    begin
+
+      for i in 7 downto 0 loop
+        wait until falling_edge(scl_test);
+        sda_test <= slave_data(i);
+      end loop;
+
+    end write_on_sda;
+
+    procedure check_ack is
+    begin
+
+      wait until sda_test = 'Z';
+      sda_test <= '0';
+      wait until rising_edge(scl_test);
+      sda_test <= 'Z';
+
+      assert (ack_flg_test = '0')
+        report "ACK not ok"
+        severity error;
+
+    end check_ack;
+
   begin
 
     rst_test          <= '0';
@@ -165,6 +208,7 @@ begin
     tx_data_test      <= "00000000";
     mode_test         <= "00";
     sda_test          <= 'Z';
+    slave_data        <= "10011001";
 
     wait until rising_edge(clk_test);
     wait for 50 * c_TIME;
@@ -182,117 +226,62 @@ begin
 
     wait until rising_edge(clk_test);
 
-    for i in 7 downto 0 loop
-      wait until rising_edge(scl_test);
-
-      assert (sda_test = tx_data_test(i))
-        report "Transaction controller not ok. Error transmitting address on bit" &
-               integer'image(i)
-        severity error;
-    end loop;
-
-    -- wait until falling_edge(scl_test);
-    wait until sda_test = 'Z';
-
-    -- set ACK 
-    sda_test <= '0';
-
-    wait until rising_edge(scl_test);
-
-    assert (ack_flg_test = '0')
-      report "ACK not ok"
-      severity error;
-
-    sda_test <= 'Z';
+    -- check address
+    check_transmit(tx_data_test);
+    check_ack;
 
     wait until falling_edge(tx_rd_enbl_test);
 
     tx_data_test <= "01101011";
-
     wait until rising_edge(clk_test);
 
     rep_strt_test <= '1';
 
+    -- transmit two bytes and check
     for j in 0 to 1 loop
-
-      for i in 7 downto 0 loop
-        wait until rising_edge(scl_test);
-
-        assert (sda_test = tx_data_test(i))
-          report "Transaction controller not ok. Error transmitting data on bit" &
-                 integer'image(i)
-          severity error;
-      end loop;
-
-      wait until falling_edge(scl_test);
-
-      -- set ACK 
-      sda_test <= '0';
-
-      wait until rising_edge(scl_test);
-
-      sda_test <= 'Z';
-
-      assert (ack_flg_test = '0')
-        report "ACK not ok"
-        severity error;
-
+      check_transmit(tx_data_test);
+      check_ack;
     end loop;
 
 	 wait until falling_edge(clk_enbl_test);
-    tx_data_test <= "10110011";
 
-	 -- Read for slave 
-	 wait until rising_edge(clk_test);
+    -- set new address
+    tx_data_test    <= "10110011";
+	 rep_strt_test   <= '0';
+	 byte_count_test <= "0010";
 
-	 rep_strt_test <= '0';
-	 byte_count_test <= "0001";
-	 sda_test <= '0';
-	 
-	 wait until falling_edge(tx_rd_enbl_test);
+	 wait until sda_test = 'Z';
+    wait until falling_edge(scl_test);
 
+    -- check address
+    check_transmit(tx_data_test);
+    check_ack;
+
+    -- read from slave
+    -- this test simulates slave
+    -- send some data on falling edge of scl
     byte_count_test <= "0000";
 
-    wait until rising_edge(clk_test);
+    for j in 0 to 1 loop
 	 
-	 for i in 7 downto 0 loop
-      wait until rising_edge(scl_test);
+      wait until sda_test = 'Z';
+      sda_test <= '0';
 
-      assert (sda_test = tx_data_test(i))
-        report "Transaction controller not ok. Error transmitting address on bit" &
-               integer'image(i)
+      write_on_sda(slave_data);
+
+      wait until falling_edge(scl_test);
+      sda_test <= 'Z';
+
+      wait until rising_edge(rx_wr_enbl_test);
+      wait for 2 ns;
+
+      -- check RX buffer
+      assert (rx_data_test = slave_data)
+        report "Reading from slave not ok. Data not read correctly."
         severity error;
     end loop;
 
-    wait until falling_edge(scl_test);
-
-    -- set ACK 
-    sda_test <= '0';
-
-    wait until rising_edge(scl_test);
-
-    assert (ack_flg_test = '0')
-      report "ACK not ok"
-      severity error;
-
-    slave_data <= "01011011";
-
-	 for i in 7 downto 0 loop
-	   wait until falling_edge(scl_test);
-		
-		sda_test <= slave_data(i);
-	 end loop;
-    
-	 wait until rising_edge(scl_test);
-
-    assert (ack_flg_test = '0')
-      report "ACK not ok"
-      severity error;
-
-	 assert(rx_data_test = slave_data)
-	   report "Transaction controller not ok."
-	   severity error;
-
+    wait for 50 us;
     stop <= '1';
     wait;
 
