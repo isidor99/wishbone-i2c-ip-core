@@ -84,24 +84,23 @@ architecture arch of transaction_controller is
   signal byte_count    : integer := 0;
   signal count         : integer range 0 to 125;
 
-
   -- registers
-  signal sda_reg, sda_next             : std_logic;
-  signal rst_count_reg, rst_count_next : std_logic;
-  signal busy_reg, busy_next           : std_logic;
+  signal sda_reg, sda_next               : std_logic;
+  signal rst_count_reg, rst_count_next   : std_logic;
+  signal busy_reg, busy_next             : std_logic;
   signal byte_count_reg, byte_count_next : integer := 0;
   signal bit_count_reg, bit_count_next   : integer := 8;
-  signal shift_reg, shift_next : std_logic_vector(7 downto 0) := (others => '0');
+  signal shift_reg, shift_next           : std_logic_vector(7 downto 0) := (others => '0');
 
 begin
 
   -- control path: state register
-  process(clk_i, rst_i, enbl_i)
+  process(clk_i, rst_i)
   begin
 
-    if enbl_i = '0' then
-      state_reg <= off_state;
-    elsif rst_i = '1' then
+    -- if enbl_i = '0' then
+      -- state_reg <= off_state;
+    if rst_i = '1' then
       state_reg <= idle;
       count <= 0;
     elsif rising_edge(clk_i) then
@@ -139,7 +138,9 @@ begin
         end if;
 
       when idle =>
-        if byte_count /= 0 then
+        if enbl_i = '0' then
+          state_next <= off_state;
+        elsif byte_count /= 0 then
           state_next <= enbl_tx;
         else
           state_next <= idle;
@@ -152,7 +153,7 @@ begin
         state_next <= load_addr;
 
       when load_addr =>
-          state_next <= sda_low;
+        state_next <= sda_low;
 
       when sda_high_rep =>
         if low_delay = '1' then
@@ -180,7 +181,7 @@ begin
 
       when addr_op =>
         if arb_lost = '1' then
-          state_next <= ack_intr;
+          state_next <= arb_intr;
         elsif write_done = '1' then
           state_next <= wait_ack_addr;
         else
@@ -224,8 +225,8 @@ begin
             state_next <= ack_intr;
           elsif byte_count /= 0 then
             state_next <= enbl_tx_data;
-			 elsif rep_strt_i = '1' then
-			   state_next <= wait_rep;
+          elsif rep_strt_i = '1' then
+            state_next <= wait_rep;
           else
             state_next <= wait_stop;
           end if;
@@ -234,11 +235,11 @@ begin
         end if;
 
       when wait_rep =>
-		  if data_clk_prev = '1' and data_clk = '0' then
-		    state_next <= sda_high_rep;
-		  else
-		    state_next <= wait_rep;
-		  end if;
+        if data_clk_prev = '1' and data_clk = '0' then
+          state_next <= sda_high_rep;
+        else
+          state_next <= wait_rep;
+        end if;
 
       when wait_stop =>
         if data_clk_prev = '0' and data_clk = '1' then
@@ -258,15 +259,11 @@ begin
         state_next <= idle;
 
       when read_op =>
-        -- if data_clk_prev = '1' and data_clk = '0' then
         if read_done = '1' then
           state_next <= send_ack;
         else
           state_next <= read_op;
         end if;
-        -- else
-          -- state_next <= read_op;
-        -- end if;
 
       when send_ack =>
         if data_clk_prev = '0' and data_clk = '1' then
@@ -274,9 +271,6 @@ begin
         else
           state_next <= send_ack;
         end if;
-
-      -- when enbl_rx =>
-        -- state_next <= store;
 
       when store =>
         if byte_count /= 0 then
@@ -286,9 +280,6 @@ begin
         else
           state_next <= wait_stop;
         end if;
-
-      when ack_intr =>
-        state_next <= idle;
 
       when others =>
         state_next <= idle;
@@ -308,15 +299,15 @@ begin
                            scl_high_rep | scl_high_stop | sda_high_stop |
                            ack_intr,
                   '1' when others;
-						
+
   rx_wr_enbl_o   <= '1'      when state_reg = store    else '0';
   ack_flg_o      <= ack      when state_reg = ack_intr else '0';
   arb_lost_flg_o <= arb_lost when state_reg = arb_intr else '0';
-  
+
   -- datapath: data register
   process(clk_i, rst_i, byte_count_i)
   begin
-  
+
     if rst_i = '1' then
 
       sda_reg        <= '1';
@@ -324,7 +315,7 @@ begin
       byte_count_reg <= to_integer(unsigned(byte_count_i));
       bit_count_reg  <= 8;
       rst_count_reg  <= '1';
-		shift_reg      <= (others => '0');
+      shift_reg      <= (others => '0');
 
     elsif rising_edge(clk_i) then
 
@@ -337,7 +328,7 @@ begin
 
     end if;
   end process;
-  
+
   -- datapath: routing multipexer
   process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg,
           rst_count_reg, byte_count_i, data_clk_prev, data_clk, tx_data_i, sda_b)
@@ -352,6 +343,7 @@ begin
     read_done       <= '0';
     read_or_write   <= shift_reg(0);
     write_done      <= '0';
+    arb_lost        <= '0';
 
     case state_reg is
 
@@ -360,82 +352,85 @@ begin
 
       when idle =>
         byte_count_next <= to_integer(unsigned(byte_count_i));
-		
-		when load_addr =>
-		  shift_next     <= tx_data_i;
+
+      when load_addr =>
+        shift_next     <= tx_data_i;
         bit_count_next <= 8;
-		  rst_count_next <= '0';
-        
-		when sda_low =>
+        rst_count_next <= '0';
+
+      when sda_low =>
         sda_next <= '0';
 
-		when scl_low =>
+      when scl_low =>
         sda_next <= '0';
         busy_next <= '1';
-  
-		when addr_op =>
-		  if data_clk_prev = '1' and data_clk = '0' then
+
+      when addr_op =>
+        bit_count_next <= bit_count_reg;
+        sda_next <= sda_reg;
+        if data_clk_prev = '1' and data_clk = '0' then
           if bit_count_reg = 0 then
             write_done <= '1';
           else
-		      bit_count_next <= bit_count_reg - 1;
-			   sda_next <= shift_reg(bit_count_reg - 1);
+            bit_count_next <= bit_count_reg - 1;
+            sda_next <= shift_reg(bit_count_reg - 1);
           end if;
-		  else
-		    bit_count_next <= bit_count_reg;
-			 sda_next <= sda_reg;
-		  end if;
-		
-		when wait_ack_addr =>
-		  sda_next <= 'Z';
+        elsif data_clk_prev = '0' and data_clk = '1' then
+          if sda_b /= shift_reg(bit_count_reg) then
+            arb_lost <= '1';
+          end if;
+        end if;
+
+      when wait_ack_addr =>
+        sda_next <= 'Z';
         write_done <= '0';
-		  
-		when enbl_tx_data =>
-		  sda_next <= '0';
-		  
-		when wait_data =>
-		  sda_next <= '0';
-		  
-		when load_data =>
+
+      when enbl_tx_data =>
+        sda_next <= '0';
+
+      when wait_data =>
+        sda_next <= '0';
+
+      when load_data =>
         sda_next       <= '0';
-		  shift_next     <= tx_data_i;
+        shift_next     <= tx_data_i;
         bit_count_next <= 8;
-		  
-		when write_op =>
-		  if data_clk_prev = '1' and data_clk = '0' then
+
+      when write_op =>
+        if data_clk_prev = '1' and data_clk = '0' then
           if bit_count_reg = 0 then
             write_done <= '1';
             byte_count_next <= byte_count_reg - 1;
             sda_next <= 'Z';
           else
-		      bit_count_next <= bit_count_reg - 1;
-			   sda_next <= shift_reg(bit_count_reg - 1);
+            bit_count_next <= bit_count_reg - 1;
+            sda_next <= shift_reg(bit_count_reg - 1);
           end if;
-		  else
-		    bit_count_next <= bit_count_reg;
-			 sda_next       <= sda_reg;
-		  end if;
-		  
-		when wait_ack_data =>
-		  sda_next   <= 'Z';
+        else
+          bit_count_next <= bit_count_reg;
+          sda_next       <= sda_reg;
+        end if;
+
+      when wait_ack_data =>
+        sda_next   <= 'Z';
         write_done <= '0';
 
-		when wait_rep =>
-		  sda_next <= '0';
-		  
+      when wait_rep =>
+        sda_next <= '0';
+
       when wait_stop =>
         sda_next <= '0';
 
-		when scl_high_stop =>
-		  rst_count_next <= '0';
+      when scl_high_stop =>
+        rst_count_next <= '0';
         busy_next      <= '0';
         sda_next       <= '0';
-		
-		when sda_high_stop =>
+
+      when sda_high_stop =>
         sda_next <= '1';
-		
-		when read_op =>
-		  if data_clk_prev = '0' and data_clk = '1' then
+
+      when read_op =>
+        if data_clk_prev = '0' and data_clk = '1' then
           bit_count_next <= bit_count_reg - 1;
           shift_next(bit_count_reg - 1) <= sda_b;
         elsif data_clk_prev = '1' and data_clk = '0' then
@@ -447,22 +442,22 @@ begin
           end if;
         else
           bit_count_next <= bit_count_reg;
-		  end if;
+        end if;
 
-		when send_ack =>
+      when send_ack =>
         sda_next <= '0';
 
       when sda_high_rep =>
         sda_next       <= '1';
-		  rst_count_next <= '0';
+        rst_count_next <= '0';
 
-		when scl_high_rep =>
+      when scl_high_rep =>
         sda_next       <= '1';
-		  rst_count_next <= '0';
+        rst_count_next <= '0';
         byte_count_next <= to_integer(unsigned(byte_count_i));
 
-		when others =>
-	  end case;
+      when others =>
+    end case;
   end process;
 
   -- data path: status
