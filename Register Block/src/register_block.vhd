@@ -24,8 +24,7 @@ use ieee.numeric_std.all;
 library altera;
 use altera.altera_syn_attributes.all;
 
-library work;
-use work.register_package.all;
+use work.register_pkg.all;
 
 entity register_block is
   generic
@@ -96,7 +95,7 @@ begin
     elsif rising_edge(clk_i) then
 
       -- get data from rx buffer
-      ram(c_REG_RX)(DATA) <= rx_data_i;
+      ram(c_REG_RX)(t_DATA) <= rx_data_i;
 
       -- get status data from rx and tx buffer
       -- ram(c_REG_STAT)(7 downto 4) <= (rx_buff_e_i & rx_buff_f_i & tx_buff_e_i & tx_buff_f_i);
@@ -123,7 +122,7 @@ begin
 
   -- write data to tx buffer
   -- write is completed if tx buffer write is enabled
-  tx_data_o <= ram(c_REG_TX)(DATA);
+  tx_data_o <= ram(c_REG_TX)(t_DATA);
 
   -- sys clock register
   sys_clk_o <= ram(c_REG_SYSC);
@@ -131,7 +130,7 @@ begin
   -- select slave address
   with ram(c_REG_CTRL)(c_ALEN) select
     slv_addr_o <= ("000" & ram(c_REG_SLVA)(6 downto 0)) when '0',
-                  ram(c_REG_SLVA)(SLAVE_ADDR) when others;
+                  ram(c_REG_SLVA)(t_SLAVE_ADDR) when others;
 
   -- get flags from status register
   int_o      <= ram(c_REG_STAT)(c_IF);
@@ -142,14 +141,14 @@ begin
   i2c_en_o       <= ram(c_REG_CTRL)(c_I2CEN);
   int_en_o       <= ram(c_REG_CTRL)(c_IEN);
   slv_addr_len_o <= ram(c_REG_CTRL)(c_ALEN);
-  mode_o         <= ram(c_REG_CTRL)(MODE);
+  mode_o         <= ram(c_REG_CTRL)(t_MODE);
   msl_o          <= ram(c_REG_CTRL)(c_MSL);
 
   -- general purpose register
   gpo_o      <= ram(c_REG_GPO)((g_GPO_W - 1) downto 0);
 
   -- command register signals
-  bytes_to_tran_o <= ram(c_REG_CMD)(BYTE_TO_TRAN);
+  bytes_to_tran_o <= ram(c_REG_CMD)(t_BYTE_TO_TRAN);
   tx_buff_wr_en_o <= '0' when ram(c_REG_STAT)(c_TXB_F) = '1' else
                      ram(c_REG_CMD)(c_TXB_WEN);
   rx_buff_rd_en_o <= '0' when ram(c_REG_STAT)(c_RXB_E) = '1' else

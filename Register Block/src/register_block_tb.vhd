@@ -21,8 +21,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library work;
-use work.register_package.all;
+use work.register_pkg.all;
 
 entity register_block_tb is
 end register_block_tb;
@@ -352,7 +351,7 @@ begin
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
-    assert (bytes_to_tran_test = c_CMD_BTT(BYTE_TO_TRAN))
+    assert (bytes_to_tran_test = c_CMD_BTT(t_BYTE_TO_TRAN))
       report "COMMAND register not ok. Error with bytes to transfer"
       severity error;
 

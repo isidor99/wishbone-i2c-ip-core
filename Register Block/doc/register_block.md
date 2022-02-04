@@ -66,7 +66,7 @@ Svi biti u registrima, koji se upisuju preko posebnih ulaznih portova, se osvje≈
 
 ## Vremenska analiza
 
-Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _113 MHz_.
+Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _153 MHz_.
 
 ## _RTL_ prikaz
 
