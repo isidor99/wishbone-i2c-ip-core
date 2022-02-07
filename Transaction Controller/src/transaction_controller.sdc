@@ -87,8 +87,8 @@ set_input_delay -clock clk_virt -min 0.450 [get_ports {tx_buff_e_i}]
 set_input_delay -clock clk_virt -max 0.650 [get_ports {rx_buff_f_i}]
 set_input_delay -clock clk_virt -min 0.450 [get_ports {rx_buff_f_i}]
 
-#set_input_delay -clock clk_virt -max 0.650 [get_ports {byte_count_i[*]}]
-#set_input_delay -clock clk_virt -min 0.450 [get_ports {byte_count_i[*]}]
+set_input_delay -clock clk_virt -max 0.650 [get_ports {i2c_start_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {i2c_start_i}]
 #
 #set_input_delay -clock clk_virt -max 0.650 [get_ports {slv_addr_i[*]}]
 #set_input_delay -clock clk_virt -min 0.450 [get_ports {slv_addr_i[*]}]

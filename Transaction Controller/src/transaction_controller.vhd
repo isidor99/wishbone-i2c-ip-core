@@ -61,12 +61,20 @@ architecture arch of transaction_controller is
     sda_low, scl_low, sda_high_stop, scl_high_stop,
     sda_high_rep, scl_high_rep, addr_op, wait_ack_addr,
     enbl_tx_data, wait_tx_data, load_tx_data, write_op, wait_stop, wait_rep,
-    wait_ack_data, read_op, send_ack, store, ack_intr, arb_intr
+    wait_ack_data, read_op, send_ack, store, ack_intr, arb_intr,
+    --------------------------------------------------------------------
+    sda_low_slave, scl_low_slave, shift_addr_slave, check_addr_slave,
+    generate_ack_slave, write_slave, send_ack_slave, store_slave,
+    enbl_tx_slave, wait_tx_slave, load_tx_slave, read_op_slave, wait_ack_slave,
+    wait_stop_slave, sda_high_slave
+
   );
   signal state_reg, state_next : t_state;
 
   signal data_clk      : std_logic;
   signal data_clk_prev : std_logic;
+  signal data_sda      : std_logic;
+  signal data_sda_prev : std_logic;
   signal low_delay     : std_logic;
   signal busy          : std_logic;
   signal ack           : std_logic := '0';
@@ -76,6 +84,7 @@ architecture arch of transaction_controller is
   signal wait_done     : std_logic := '0';
   signal write_done    : std_logic := '0';
   signal read_done     : std_logic := '0';
+  signal addr_check    : std_logic := '0';
 
   signal sysclk_val    : integer := 1;
   signal sig_mult      : integer := c_HZ_MULT;
@@ -106,6 +115,8 @@ begin
 
       data_clk_prev <= data_clk;
       data_clk <= scl_i;
+      data_sda_prev <= data_sda;
+      data_sda <= sda_b;
 
       if rst_count = '1' then
         count <= 0;
@@ -127,7 +138,8 @@ begin
   process(state_reg, data_clk, data_clk_prev, enbl_i,
           rep_strt_i, read_done, i2c_start_i, tx_buff_e_i,
           msl_sel_i, byte_count, arb_lost, low_delay,
-          ack, read_or_write, write_done)
+          ack, read_or_write, write_done, addr_check,
+          data_sda_prev, data_sda)
   begin
     case state_reg is
 
@@ -164,7 +176,7 @@ begin
         if msl_sel_i = '0' then
           state_next <= enbl_tx_addr;
         else
-          state_next <= ready;
+          state_next <= sda_low_slave;
         end if;
 
       when enbl_tx_addr =>
@@ -185,7 +197,7 @@ begin
 
       when scl_high_rep =>
         if low_delay = '1' then
-          state_next <= enbl_tx_size; -- enbl_tx_addr;
+          state_next <= enbl_tx_size;
         else
           state_next <= scl_high_rep;
         end if;
@@ -302,6 +314,114 @@ begin
           state_next <= wait_stop;
         end if;
 
+      -- Slave part
+      when sda_low_slave =>
+        if data_sda_prev = '1' and data_sda = '0' then
+          state_next <= scl_low_slave;
+        else
+          state_next <= sda_low_slave;
+        end if;
+
+      when scl_low_slave =>
+        if data_clk_prev = '1' and data_clk = '0' then
+          state_next <= shift_addr_slave;
+        else
+          state_next <= scl_low_slave;
+        end if;
+
+      when shift_addr_slave =>
+        if read_done = '1' then
+          state_next <= check_addr_slave;
+        else
+          state_next <= shift_addr_slave;
+        end if;
+
+      when check_addr_slave =>
+        if addr_check = '1' then
+          state_next <= generate_ack_slave;
+        else
+          state_next <= ready;
+        end if;
+
+      when generate_ack_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          if slv_addr_len_i = '0' then
+            if read_or_write = '0' then
+              state_next <= write_slave;
+            else
+              state_next <= enbl_tx_slave;
+            end if;
+          else
+            state_next <= shift_addr_slave; -- 10bit addr
+          end if;
+        else
+          state_next <= generate_ack_slave;
+        end if;
+
+      when write_slave =>
+        if read_done = '1' then -- Naziv promjenjive?
+          state_next <= send_ack_slave;
+        else
+          state_next <= write_slave;
+        end if;
+
+      when send_ack_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          state_next <= store_slave;
+        else
+          state_next <= send_ack_slave;
+        end if;
+
+      when store_slave =>
+        if byte_count /= 0 then
+          state_next <= write_slave;
+        else
+          state_next <= wait_stop_slave;
+        end if;
+
+      when wait_stop_slave =>
+        if data_sda_prev = '0' and data_sda = '1' then -- Check SDA line
+          state_next <= sda_high_slave;
+        else
+          state_next <= wait_stop_slave;
+        end if;
+
+      when sda_high_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then -- Check CLK line and detect STOP condition
+          state_next <= idle;
+        else
+          state_next <= sda_high_slave;
+        end if;
+
+      when enbl_tx_slave =>
+        state_next <= wait_tx_slave;
+
+      when wait_tx_slave =>
+        state_next <= load_tx_slave;
+
+      when load_tx_slave =>
+        state_next <= read_op_slave;
+
+      when read_op_slave =>
+        if write_done = '1' then -- Naziv signala?
+          state_next <= wait_ack_slave;
+        else
+          state_next <= read_op_slave;
+        end if;
+
+      when wait_ack_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          if ack = '1' then
+            state_next <= ack_intr;
+          elsif byte_count /= 0 then
+            state_next <= enbl_tx_slave;
+          else
+            state_next <= wait_stop_slave;
+          end if;
+        else
+          state_next <= wait_ack_slave;
+        end if;
+
       when others =>
         state_next <= idle;
 
@@ -310,7 +430,7 @@ begin
 
   -- control path: output logic
   with state_reg select
-    tx_rd_enbl_o <= '1' when enbl_tx_addr | enbl_tx_data | enbl_tx_size,
+    tx_rd_enbl_o <= '1' when enbl_tx_addr | enbl_tx_data | enbl_tx_size | enbl_tx_slave,
                     '0' when others;
 
 
@@ -322,7 +442,7 @@ begin
                            ack_intr,
                   '1' when others;
 
-  rx_wr_enbl_o   <= '1'      when state_reg = store    else '0';
+  rx_wr_enbl_o   <= '1'      when state_reg = store or state_reg = store_slave else '0';
   ack_flg_o      <= ack      when state_reg = ack_intr else '0';
   arb_lost_flg_o <= arb_lost when state_reg = arb_intr else '0';
 
@@ -366,6 +486,7 @@ begin
     read_or_write   <= shift_reg(0);
     write_done      <= '0';
     arb_lost        <= '0';
+    addr_check      <= '0';
 
     case state_reg is
 
@@ -477,6 +598,74 @@ begin
         sda_next       <= '1';
         rst_count_next <= '0';
 
+      -- Slave part
+      when shift_addr_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          bit_count_next <= bit_count_reg - 1;
+          shift_next(bit_count_reg - 1) <= sda_b;
+        elsif data_clk_prev = '1' and data_clk = '0' then
+          if bit_count_reg = 0 then
+            read_done <= '1';
+            -- byte_count_next <= byte_count_reg - 1;
+          else
+            bit_count_next <= bit_count_reg;
+          end if;
+        else
+          bit_count_next <= bit_count_reg;
+        end if;
+
+      when check_addr_slave =>
+        if shift_reg(7 downto 1) = slv_addr_i(6 downto 0) then
+          addr_check <= '1';
+        end if;
+
+      when generate_ack_slave =>
+        sda_next <= '0';
+
+      when write_slave =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          bit_count_next <= bit_count_reg - 1;
+          shift_next(bit_count_reg - 1) <= sda_b;
+        elsif data_clk_prev = '1' and data_clk = '0' then
+          if bit_count_reg = 0 then
+            read_done <= '1';
+            byte_count_next <= byte_count_reg - 1;
+          else
+            bit_count_next <= bit_count_reg;
+          end if;
+        else
+          bit_count_next <= bit_count_reg;
+        end if;
+
+      when send_ack_slave =>
+        sda_next <= '0';
+
+      when enbl_tx_slave =>
+        sda_next <= '0';
+
+      when wait_tx_slave =>
+        sda_next <= '0';
+
+      when load_tx_slave =>
+        sda_next       <= '0';
+        shift_next     <= tx_data_i;
+        bit_count_next <= 8;
+
+      when read_op_slave =>
+        if data_clk_prev = '1' and data_clk = '0' then
+          if bit_count_reg = 0 then
+            write_done <= '1';
+            byte_count_next <= byte_count_reg - 1;
+            sda_next <= 'Z';
+          else
+            bit_count_next <= bit_count_reg - 1;
+            sda_next <= shift_reg(bit_count_reg - 1);
+          end if;
+        else
+          bit_count_next <= bit_count_reg;
+          sda_next       <= sda_reg;
+        end if;
+
       when others =>
     end case;
   end process;
@@ -490,7 +679,7 @@ begin
 
   -- data path: output
   sda_b      <= sda_reg;
-  rx_data_o  <= shift_reg when state_reg = store else (others => '0');
+  rx_data_o  <= shift_reg when state_reg = store or state_reg = store_slave else (others => '0');
   busy_flg_o <= busy_reg;
 
   sysclk_val <= to_integer(unsigned(sysclk_i(29 downto 0)));
