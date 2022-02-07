@@ -124,8 +124,10 @@ begin
   end process;
 
   -- control path: next-state
-  process(state_reg, data_clk, data_clk_prev, enbl_i, rep_strt_i, read_done,
-          msl_sel_i, byte_count, arb_lost, low_delay, ack, read_or_write, write_done)
+  process(state_reg, data_clk, data_clk_prev, enbl_i,
+          rep_strt_i, read_done, i2c_start_i, tx_buff_e_i,
+          msl_sel_i, byte_count, arb_lost, low_delay,
+          ack, read_or_write, write_done)
   begin
     case state_reg is
 
@@ -153,7 +155,7 @@ begin
 
       when load_tx_size =>
         if rep_strt_i = '1' then
-          state_next <= sda_high_rep;
+          state_next <= enbl_tx_addr;
         else
           state_next <= ready;
         end if;
@@ -183,7 +185,7 @@ begin
 
       when scl_high_rep =>
         if low_delay = '1' then
-          state_next <= enbl_tx_addr;
+          state_next <= enbl_tx_size; -- enbl_tx_addr;
         else
           state_next <= scl_high_rep;
         end if;
@@ -255,7 +257,7 @@ begin
 
       when wait_rep =>
         if data_clk_prev = '1' and data_clk = '0' then
-          state_next <= enbl_tx_size;
+          state_next <= sda_high_rep;
         else
           state_next <= wait_rep;
         end if;
@@ -314,8 +316,9 @@ begin
 
 
   with state_reg select
-    clk_enbl_o <= '0' when off_state | idle | enbl_tx_addr | wait_tx_addr | load_tx_addr | sda_low |
-                           scl_high_rep | scl_high_stop | sda_high_stop |
+    clk_enbl_o <= '0' when off_state | idle | enbl_tx_size | wait_tx_size | load_tx_size |
+                           enbl_tx_addr | wait_tx_addr | load_tx_addr | sda_low |
+                           scl_high_rep | scl_high_stop | sda_high_stop | ready |
                            ack_intr,
                   '1' when others;
 

@@ -33,7 +33,7 @@ architecture arch of transaction_controller_tb is
       scl_i          : in    std_logic;
       tx_buff_e_i    : in    std_logic;
       rx_buff_f_i    : in    std_logic;
-      byte_count_i   : in    std_logic_vector(3 downto 0);
+      i2c_start_i    : in    std_logic;
       slv_addr_i     : in    std_logic_vector(9 downto 0);
       tx_data_i      : in    std_logic_vector(7 downto 0);
       mode_i         : in    std_logic_vector(1 downto 0);
@@ -64,7 +64,7 @@ architecture arch of transaction_controller_tb is
   signal scl_test          : std_logic;
   signal tx_buff_e_test    : std_logic;
   signal rx_buff_f_test    : std_logic;
-  signal byte_count_test   : std_logic_vector(3 downto 0);
+  signal i2c_start_test    : std_logic;
   signal slv_addr_test     : std_logic_vector(9 downto 0);
   signal tx_data_test      : std_logic_vector(7 downto 0);
   signal mode_test         : std_logic_vector(1 downto 0);
@@ -95,7 +95,7 @@ begin
       scl_i          => scl_test,
       tx_buff_e_i    => tx_buff_e_test,
       rx_buff_f_i    => rx_buff_f_test,
-      byte_count_i   => byte_count_test,
+      i2c_start_i    => i2c_start_test,
       slv_addr_i     => slv_addr_test,
       tx_data_i      => tx_data_test,
       mode_i         => mode_test,
@@ -203,7 +203,6 @@ begin
     msl_sel_test      <= '0';
     tx_buff_e_test    <= '0';
     rx_buff_f_test    <= '0';
-    byte_count_test   <= "0000";
     slv_addr_test     <= "0000101010";
     tx_data_test      <= "00000000";
     mode_test         <= "00";
@@ -214,15 +213,19 @@ begin
     wait for 50 * c_TIME;
 
     enbl_test <= '1';
-    byte_count_test <= "0010";
+    i2c_start_test <= '1';
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
     wait until falling_edge(tx_rd_enbl_test);
 
+    tx_data_test <= "00000010";
+    i2c_start_test <= '0';
+
+    wait until falling_edge(tx_rd_enbl_test);
+
     tx_data_test <= "10110010";
-    byte_count_test <= "0000";
 
     wait until rising_edge(clk_test);
 
@@ -233,6 +236,7 @@ begin
     wait until falling_edge(tx_rd_enbl_test);
 
     tx_data_test <= "01101011";
+
     wait until rising_edge(clk_test);
 
     rep_strt_test <= '1';
@@ -243,14 +247,20 @@ begin
       check_ack;
     end loop;
 
-    wait until falling_edge(clk_enbl_test);
+    -- set new number of bytes
+    wait until falling_edge(tx_rd_enbl_test);
+
+    tx_data_test <= "00000010";
+
+    -- wait until falling_edge(clk_enbl_test);
 
     -- set new address
+    wait until falling_edge(tx_rd_enbl_test);
+
     tx_data_test    <= "10110011";
     rep_strt_test   <= '0';
-    byte_count_test <= "0010";
 
-    wait until sda_test = 'Z';
+    -- wait until sda_test = 'Z';
     wait until falling_edge(scl_test);
 
     -- check address
@@ -260,8 +270,6 @@ begin
     -- read from slave
     -- this test simulates slave
     -- send some data on falling edge of scl
-    byte_count_test <= "0000";
-
     for j in 0 to 1 loop
 
       wait until sda_test = 'Z';
