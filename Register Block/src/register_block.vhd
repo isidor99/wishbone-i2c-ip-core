@@ -53,7 +53,7 @@ entity register_block is
     arb_lost_o      : out   std_logic;
     int_o           : out   std_logic;
     mode_o          : out   std_logic_vector(1 downto 0);
-    bytes_to_tran_o : out   std_logic_vector(3 downto 0);
+    strt_o          : out   std_logic;
     i2c_en_o        : out   std_logic;
     int_en_o        : out   std_logic;
     slv_addr_len_o  : out   std_logic;
@@ -148,7 +148,7 @@ begin
   gpo_o      <= ram(c_REG_GPO)((g_GPO_W - 1) downto 0);
 
   -- command register signals
-  bytes_to_tran_o <= ram(c_REG_CMD)(t_BYTE_TO_TRAN);
+  strt_o <= ram(c_REG_CMD)(c_STRT);
   tx_buff_wr_en_o <= '0' when ram(c_REG_STAT)(c_TXB_F) = '1' else
                      ram(c_REG_CMD)(c_TXB_WEN);
   rx_buff_rd_en_o <= '0' when ram(c_REG_STAT)(c_RXB_E) = '1' else

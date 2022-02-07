@@ -114,8 +114,8 @@ set_output_delay -clock clk_virt -min 0.450 [get_ports {int_o}]
 set_output_delay -clock clk_virt -max 0.650 [get_ports {mode_o[*]}]
 set_output_delay -clock clk_virt -min 0.450 [get_ports {mode_o[*]}]
 
-set_output_delay -clock clk_virt -max 0.650 [get_ports {bytes_to_tran_o[*]}]
-set_output_delay -clock clk_virt -min 0.450 [get_ports {bytes_to_tran_o[*]}]
+set_output_delay -clock clk_virt -max 0.650 [get_ports {strt_o}]
+set_output_delay -clock clk_virt -min 0.450 [get_ports {strt_o}]
 
 set_output_delay -clock clk_virt -max 0.650 [get_ports {rep_strt_o}]
 set_output_delay -clock clk_virt -min 0.450 [get_ports {rep_strt_o}]

@@ -34,7 +34,6 @@ package register_pkg is
 
   -- range
   subtype t_MODE         is natural range 2 downto 1;
-  subtype t_BYTE_TO_TRAN is natural range 7 downto 4;
   subtype t_DATA         is natural range 7 downto 0;
   subtype t_SLAVE_ADDR   is natural range 9 downto 0;
 
@@ -59,6 +58,7 @@ package register_pkg is
   constant c_IACK    : natural := 1;
   constant c_TXB_WEN : natural := 2;
   constant c_RXB_REN : natural := 3;
+  constant c_STRT    : natural := 4;
 
   -- test data
   constant c_WIDTH        : natural := 32;
@@ -73,7 +73,7 @@ package register_pkg is
   constant c_CMD_REP_STRT : std_logic_vector(31 downto 0) := (0 => '1', others => '0');
   constant c_CMD_CLR_INT  : std_logic_vector(31 downto 0) := (1 => '1', others => '0');
   constant c_CMD_BUFF_OP  : std_logic_vector(31 downto 0) := (2 | 3 => '1', others => '0');
-  constant c_CMD_BTT      : std_logic_vector(31 downto 0) := (4 | 6 | 7 => '1', others => '0');
+  constant c_CMD_STRT     : std_logic_vector(31 downto 0) := (4 => '1', others => '0');
   constant c_SLV_ADDR     : std_logic_vector(9 downto 0)  := "1101100111";
   constant c_GPO_VAL      : std_logic_vector((c_GPO_W - 1) downto 0) := (0 | 1 | 2 => '1', others => '0');
 

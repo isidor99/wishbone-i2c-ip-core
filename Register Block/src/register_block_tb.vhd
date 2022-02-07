@@ -55,7 +55,7 @@ architecture arch of register_block_tb is
       arb_lost_o      : out   std_logic;
       int_o           : out   std_logic;
       mode_o          : out   std_logic_vector(1 downto 0);
-      bytes_to_tran_o : out   std_logic_vector(3 downto 0);
+      strt_o          : out   std_logic;
       i2c_en_o        : out   std_logic;
       int_en_o        : out   std_logic;
       slv_addr_len_o  : out   std_logic;
@@ -93,7 +93,7 @@ architecture arch of register_block_tb is
   signal arb_lost_o_test    : std_logic;
   signal int_test           : std_logic;
   signal mode_test          : std_logic_vector(1 downto 0);
-  signal bytes_to_tran_test : std_logic_vector(3 downto 0);
+  signal strt_test          : std_logic;
   signal i2c_en_test        : std_logic;
   signal int_en_test        : std_logic;
   signal slv_addr_len_test  : std_logic;
@@ -137,7 +137,7 @@ begin
       arb_lost_o      => arb_lost_o_test,
       int_o           => int_test,
       mode_o          => mode_test,
-      bytes_to_tran_o => bytes_to_tran_test,
+      strt_o          => strt_test,
       i2c_en_o        => i2c_en_test,
       int_en_o        => int_en_test,
       slv_addr_len_o  => slv_addr_len_test,
@@ -346,13 +346,13 @@ begin
       report "COMMAND register not ok. Expected bit3 value to be 1, but it is 0"
       severity error;
 
-    dat_i_test <= c_CMD_BTT;
+    dat_i_test <= c_CMD_STRT;
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
-    assert (bytes_to_tran_test = c_CMD_BTT(t_BYTE_TO_TRAN))
-      report "COMMAND register not ok. Error with bytes to transfer"
+    assert (strt_test = '1')
+      report "COMMAND register not ok. Expected bit4 value to be 1, but it is 0"
       severity error;
 
     -- test SLAVE ADDRESS register

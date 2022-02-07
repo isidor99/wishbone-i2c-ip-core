@@ -41,7 +41,7 @@ Svi biti u registrima, koji se upisuju preko posebnih ulaznih portova, se osvje�
 | **arb_lost_o**      | out | std_logic                                       | Izlazni signal kojim se govori da je arbitracija izgubljena. Ovaj bit se smješta u statusni registar. <br/> &emsp; 0 = Arbitracija nije izgubljena <br/> &emsp; 1 = Arbitracija je izgubljena                      |
 | **int_o**           | out | std_logic                                       | Izlazni signal koji indicira da je prekid generisan.                                                                                                                                                               |
 | **mode_o**          | out | std_logic_vector (1 downto 0)                   | Izlazni signal koji označava izabrani mod rada. Ovaj signal se izvodi iz kontrolnog registra.                                                                                                                      |
-| **bytes_to_tran_o** | out | std_logic_vector (3 downto 0)                   | Izlazni signal koji označava broj bajtova koji se prenosi ili čita. Ovaj broj ne uračunava bajt adrese uređaja.                                                                                                    |
+| **strt_o** | out | std_logic                  | Izlazni signal kojim se započinje _I2C_ transakcija.|
 | **i2c_en_o**        | out | std_logic                                       | Izlazni signal omogućenja _I2C_ generatora transakcija.                                                                                                                                                            |
 | **int_en_o**        | out | std_logic                                       | Izlazni signal omogućenja prekida.                                                                                                                                                                                 |
 | **slv_addr_len_o**  | out | std_logic                                       | Izlazni signal koji označava dužinu _slave_ adrese uređaja, ukoliko uređaj radi u _slave_ modu. <br/> &emsp; 1 = _10-bitna slave_ adresa <br/> &emsp; 0 = _7-bitna slave_ adresa                                   |
@@ -66,7 +66,7 @@ Svi biti u registrima, koji se upisuju preko posebnih ulaznih portova, se osvje�
 
 ## Vremenska analiza
 
-Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _153 MHz_.
+Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _133 MHz_.
 
 ## _RTL_ prikaz
 
