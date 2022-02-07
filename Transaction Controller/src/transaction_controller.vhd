@@ -28,7 +28,7 @@ entity transaction_controller is
     scl_i          : in    std_logic;
     tx_buff_e_i    : in    std_logic;
     rx_buff_f_i    : in    std_logic;
-    byte_count_i   : in    std_logic_vector(3 downto 0);
+    i2c_start_i    : in    std_logic;
     slv_addr_i     : in    std_logic_vector(9 downto 0);
     tx_data_i      : in    std_logic_vector(7 downto 0);
     mode_i         : in    std_logic_vector(1 downto 0);
@@ -56,11 +56,12 @@ architecture arch of transaction_controller is
 
   type t_state is
   (
-    off_state, idle, enbl_tx, wait_addr, load_addr,
+    off_state, idle, enbl_tx_size, wait_tx_size, load_tx_size, ready,
+    enbl_tx_addr, wait_tx_addr, load_tx_addr,
     sda_low, scl_low, sda_high_stop, scl_high_stop,
     sda_high_rep, scl_high_rep, addr_op, wait_ack_addr,
-    enbl_tx_data, wait_data, load_data, write_op, wait_stop, wait_rep,
-    wait_ack_data, read_op, send_ack, enbl_rx, store, ack_intr, arb_intr
+    enbl_tx_data, wait_tx_data, load_tx_data, write_op, wait_stop, wait_rep,
+    wait_ack_data, read_op, send_ack, store, ack_intr, arb_intr
   );
   signal state_reg, state_next : t_state;
 
@@ -98,8 +99,6 @@ begin
   process(clk_i, rst_i)
   begin
 
-    -- if enbl_i = '0' then
-      -- state_reg <= off_state;
     if rst_i = '1' then
       state_reg <= idle;
       count <= 0;
@@ -140,19 +139,39 @@ begin
       when idle =>
         if enbl_i = '0' then
           state_next <= off_state;
-        elsif byte_count /= 0 then
-          state_next <= enbl_tx;
+        elsif i2c_start_i = '1' and tx_buff_e_i = '0' then
+          state_next <= enbl_tx_size;
         else
           state_next <= idle;
         end if;
 
-      when enbl_tx =>
-        state_next <= wait_addr;
+      when enbl_tx_size =>
+        state_next <= wait_tx_size;
 
-      when wait_addr =>
-        state_next <= load_addr;
+      when wait_tx_size =>
+        state_next <= load_tx_size;
 
-      when load_addr =>
+      when load_tx_size =>
+        if rep_strt_i = '1' then
+          state_next <= sda_high_rep;
+        else
+          state_next <= ready;
+        end if;
+
+      when ready =>
+        if msl_sel_i = '0' then
+          state_next <= enbl_tx_addr;
+        else
+          state_next <= ready;
+        end if;
+
+      when enbl_tx_addr =>
+        state_next <= wait_tx_addr;
+
+      when wait_tx_addr =>
+        state_next <= load_tx_addr;
+
+      when load_tx_addr =>
         state_next <= sda_low;
 
       when sda_high_rep =>
@@ -164,7 +183,7 @@ begin
 
       when scl_high_rep =>
         if low_delay = '1' then
-          state_next <= enbl_tx;
+          state_next <= enbl_tx_addr;
         else
           state_next <= scl_high_rep;
         end if;
@@ -202,12 +221,12 @@ begin
         end if;
 
       when enbl_tx_data =>
-        state_next <= wait_data;
+        state_next <= wait_tx_data;
 
-      when wait_data =>
-        state_next <= load_data;
+      when wait_tx_data =>
+        state_next <= load_tx_data;
 
-      when load_data =>
+      when load_tx_data =>
         state_next <= write_op;
 
       when write_op =>
@@ -236,7 +255,7 @@ begin
 
       when wait_rep =>
         if data_clk_prev = '1' and data_clk = '0' then
-          state_next <= sda_high_rep;
+          state_next <= enbl_tx_size;
         else
           state_next <= wait_rep;
         end if;
@@ -289,13 +308,13 @@ begin
 
   -- control path: output logic
   with state_reg select
-    tx_rd_enbl_o <= '1' when enbl_tx | enbl_tx_data,
+    tx_rd_enbl_o <= '1' when enbl_tx_addr | enbl_tx_data | enbl_tx_size,
                     '0' when others;
 
 
 
   with state_reg select
-    clk_enbl_o <= '0' when off_state | idle | enbl_tx | wait_addr | load_addr | sda_low |
+    clk_enbl_o <= '0' when off_state | idle | enbl_tx_addr | wait_tx_addr | load_tx_addr | sda_low |
                            scl_high_rep | scl_high_stop | sda_high_stop |
                            ack_intr,
                   '1' when others;
@@ -305,14 +324,14 @@ begin
   arb_lost_flg_o <= arb_lost when state_reg = arb_intr else '0';
 
   -- datapath: data register
-  process(clk_i, rst_i, byte_count_i)
+  process(clk_i, rst_i)
   begin
 
     if rst_i = '1' then
 
       sda_reg        <= '1';
       busy_reg       <= '0';
-      byte_count_reg <= to_integer(unsigned(byte_count_i));
+      byte_count_reg <= 0;
       bit_count_reg  <= 8;
       rst_count_reg  <= '1';
       shift_reg      <= (others => '0');
@@ -331,7 +350,7 @@ begin
 
   -- datapath: routing multipexer
   process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg,
-          rst_count_reg, byte_count_i, data_clk_prev, data_clk, tx_data_i, sda_b)
+          rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b)
   begin
 
     sda_next        <= 'Z';
@@ -350,10 +369,10 @@ begin
       when off_state =>
         busy_next <= '0';
 
-      when idle =>
-        byte_count_next <= to_integer(unsigned(byte_count_i));
+      when load_tx_size =>
+        byte_count_next <= to_integer(unsigned(tx_data_i));
 
-      when load_addr =>
+      when load_tx_addr =>
         shift_next     <= tx_data_i;
         bit_count_next <= 8;
         rst_count_next <= '0';
@@ -388,10 +407,10 @@ begin
       when enbl_tx_data =>
         sda_next <= '0';
 
-      when wait_data =>
+      when wait_tx_data =>
         sda_next <= '0';
 
-      when load_data =>
+      when load_tx_data =>
         sda_next       <= '0';
         shift_next     <= tx_data_i;
         bit_count_next <= 8;
@@ -454,7 +473,6 @@ begin
       when scl_high_rep =>
         sda_next       <= '1';
         rst_count_next <= '0';
-        byte_count_next <= to_integer(unsigned(byte_count_i));
 
       when others =>
     end case;
