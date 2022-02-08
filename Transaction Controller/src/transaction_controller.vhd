@@ -80,7 +80,7 @@ architecture arch of transaction_controller is
   signal ack           : std_logic := '0';
   signal rst_count     : std_logic := '0';
   signal arb_lost      : std_logic := '0';
-  signal read_or_write : std_logic := '0';
+  -- signal read_or_write : std_logic := '0';
   signal wait_done     : std_logic := '0';
   signal write_done    : std_logic := '0';
   signal read_done     : std_logic := '0';
@@ -101,6 +101,8 @@ architecture arch of transaction_controller is
   signal byte_count_reg, byte_count_next : integer := 0;
   signal bit_count_reg, bit_count_next   : integer := 8;
   signal shift_reg, shift_next           : std_logic_vector(7 downto 0) := (others => '0');
+  signal ten_bit_reg, ten_bit_next       : std_logic := '0';
+  signal rw_reg, rw_next                 : std_logic := '0';
 
 begin
 
@@ -138,8 +140,8 @@ begin
   process(state_reg, data_clk, data_clk_prev, enbl_i,
           rep_strt_i, read_done, i2c_start_i, tx_buff_e_i,
           msl_sel_i, byte_count, arb_lost, low_delay,
-          ack, read_or_write, write_done, addr_check,
-          data_sda_prev, data_sda, slv_addr_len_i)
+          ack, rw_reg, write_done, addr_check,
+          data_sda_prev, data_sda, slv_addr_len_i, ten_bit_reg)
   begin
     case state_reg is
 
@@ -225,7 +227,7 @@ begin
         if data_clk_prev = '0' and data_clk = '1' then
           if ack = '1' then
             state_next <= ack_intr;
-          elsif read_or_write = '0' then
+          elsif rw_reg = '0' then
             state_next <= enbl_tx_data;
           else
             state_next <= read_op;
@@ -348,13 +350,21 @@ begin
       when generate_ack_slave_ok =>
         if data_clk_prev = '0' and data_clk = '1' then
           if slv_addr_len_i = '0' then
-            if read_or_write = '0' then
+            if rw_reg = '0' then
               state_next <= write_slave;
             else
               state_next <= enbl_tx_slave;
             end if;
           else
-            state_next <= shift_addr_slave; -- 10bit addr
+            if ten_bit_reg = '0' then
+              state_next <= shift_addr_slave; -- 10bit addr
+            else
+              if rw_reg = '0' then
+                state_next <= write_slave;
+              else
+                state_next <= enbl_tx_slave;
+              end if;
+            end if;
           end if;
         else
           state_next <= generate_ack_slave_ok;
@@ -467,6 +477,8 @@ begin
       bit_count_reg  <= 8;
       rst_count_reg  <= '1';
       shift_reg      <= (others => '0');
+      ten_bit_reg    <= '0';
+      rw_reg         <= '0';
 
     elsif rising_edge(clk_i) then
 
@@ -476,13 +488,16 @@ begin
       bit_count_reg  <= bit_count_next;
       rst_count_reg  <= rst_count_next;
       shift_reg      <= shift_next;
+      ten_bit_reg    <= ten_bit_next;
+      rw_reg         <= rw_next;
 
     end if;
   end process;
 
   -- datapath: routing multipexer
   process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg,
-          rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b, slv_addr_i)
+          rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b, slv_addr_i, ten_bit_reg,
+          slv_addr_len_i, rw_reg)
   begin
 
     sda_next        <= 'Z';
@@ -492,10 +507,12 @@ begin
     rst_count_next  <= '0';
     shift_next      <= shift_reg;
     read_done       <= '0';
-    read_or_write   <= shift_reg(0);
+    -- read_or_write   <= shift_reg(0);
     write_done      <= '0';
     arb_lost        <= '0';
     addr_check      <= '0';
+    ten_bit_next    <= ten_bit_reg;
+    rw_next         <= rw_reg;
 
     case state_reg is
 
@@ -509,6 +526,7 @@ begin
         shift_next     <= tx_data_i;
         bit_count_next <= 8;
         rst_count_next <= '0';
+        rw_next        <= tx_data_i(0);
 
       when sda_low =>
         sda_next <= '0';
@@ -623,8 +641,24 @@ begin
         end if;
 
       when check_addr_slave =>
-        if shift_reg(7 downto 1) = slv_addr_i(6 downto 0) then
-          addr_check <= '1';
+        if slv_addr_len_i = '0' then
+          if shift_reg(7 downto 1) = slv_addr_i(6 downto 0) then
+            addr_check <= '1';
+            rw_next    <= shift_reg(0);
+          end if;
+        else
+          if ten_bit_reg = '0' then
+            if shift_reg(7 downto 1) = ("11110" & slv_addr_i(9 downto 8)) then
+              ten_bit_next <= '1';
+              addr_check   <= '1';
+              rw_next      <= shift_reg(0);
+            end if;
+          else
+            if shift_reg = slv_addr_i(7 downto 0) then
+              addr_check <= '1';
+              ten_bit_next <= '0';
+            end if;
+          end if;
         end if;
 
       when generate_ack_slave_ok =>
