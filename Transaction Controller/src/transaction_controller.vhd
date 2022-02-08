@@ -64,7 +64,7 @@ architecture arch of transaction_controller is
     wait_ack_data, read_op, send_ack, store, ack_intr, arb_intr,
     --------------------------------------------------------------------
     sda_low_slave, scl_low_slave, shift_addr_slave, check_addr_slave,
-    generate_ack_slave, write_slave, send_ack_slave, store_slave,
+    generate_ack_slave_ok, generate_ack_slave_nok, write_slave, send_ack_slave, store_slave,
     enbl_tx_slave, wait_tx_slave, load_tx_slave, read_op_slave, wait_ack_slave,
     wait_stop_slave, sda_high_slave
 
@@ -139,7 +139,7 @@ begin
           rep_strt_i, read_done, i2c_start_i, tx_buff_e_i,
           msl_sel_i, byte_count, arb_lost, low_delay,
           ack, read_or_write, write_done, addr_check,
-          data_sda_prev, data_sda)
+          data_sda_prev, data_sda, slv_addr_len_i)
   begin
     case state_reg is
 
@@ -316,7 +316,7 @@ begin
 
       -- Slave part
       when sda_low_slave =>
-        if data_sda_prev = '1' and data_sda = '0' then
+        if (data_sda_prev = 'Z' or data_sda_prev = '1') and data_sda = '0' then
           state_next <= scl_low_slave;
         else
           state_next <= sda_low_slave;
@@ -338,12 +338,14 @@ begin
 
       when check_addr_slave =>
         if addr_check = '1' then
-          state_next <= generate_ack_slave;
+          state_next <= generate_ack_slave_ok;
+        elsif addr_check = '0' then
+          state_next <= generate_ack_slave_nok;
         else
           state_next <= ready;
         end if;
 
-      when generate_ack_slave =>
+      when generate_ack_slave_ok =>
         if data_clk_prev = '0' and data_clk = '1' then
           if slv_addr_len_i = '0' then
             if read_or_write = '0' then
@@ -355,11 +357,18 @@ begin
             state_next <= shift_addr_slave; -- 10bit addr
           end if;
         else
-          state_next <= generate_ack_slave;
+          state_next <= generate_ack_slave_ok;
+        end if;
+
+      when generate_ack_slave_nok =>
+        if data_clk_prev = '0' and data_clk = '1' then
+          state_next <= ready;
+        else
+          state_next <= generate_ack_slave_nok;
         end if;
 
       when write_slave =>
-        if read_done = '1' then -- Naziv promjenjive?
+        if read_done = '1' then
           state_next <= send_ack_slave;
         else
           state_next <= write_slave;
@@ -380,14 +389,14 @@ begin
         end if;
 
       when wait_stop_slave =>
-        if data_sda_prev = '0' and data_sda = '1' then -- Check SDA line
+        if data_clk_prev = '0' and data_clk = '1' then
           state_next <= sda_high_slave;
         else
           state_next <= wait_stop_slave;
         end if;
 
       when sda_high_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then -- Check CLK line and detect STOP condition
+        if data_sda_prev = '0' and data_sda = '1' then
           state_next <= idle;
         else
           state_next <= sda_high_slave;
@@ -403,7 +412,7 @@ begin
         state_next <= read_op_slave;
 
       when read_op_slave =>
-        if write_done = '1' then -- Naziv signala?
+        if write_done = '1' then
           state_next <= wait_ack_slave;
         else
           state_next <= read_op_slave;
@@ -473,7 +482,7 @@ begin
 
   -- datapath: routing multipexer
   process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg,
-          rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b)
+          rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b, slv_addr_i)
   begin
 
     sda_next        <= 'Z';
@@ -606,7 +615,6 @@ begin
         elsif data_clk_prev = '1' and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
-            -- byte_count_next <= byte_count_reg - 1;
           else
             bit_count_next <= bit_count_reg;
           end if;
@@ -619,8 +627,11 @@ begin
           addr_check <= '1';
         end if;
 
-      when generate_ack_slave =>
+      when generate_ack_slave_ok =>
         sda_next <= '0';
+
+      when generate_ack_slave_nok =>
+        sda_next <= '1';
 
       when write_slave =>
         if data_clk_prev = '0' and data_clk = '1' then
@@ -679,7 +690,7 @@ begin
 
   -- data path: output
   sda_b      <= sda_reg;
-  rx_data_o  <= shift_reg when state_reg = store or state_reg = store_slave else (others => '0');
+  rx_data_o  <= shift_reg when state_reg = store or state_reg = store_slave or state_reg = check_addr_slave else (others => '0');
   busy_flg_o <= busy_reg;
 
   sysclk_val <= to_integer(unsigned(sysclk_i(29 downto 0)));
