@@ -233,6 +233,7 @@ begin
       wait until sda_test = 'Z';
       sda_test <= '0';
       wait until rising_edge(scl_test);
+      wait for 2 * c_TIME;
       sda_test <= 'Z';
 
       assert (ack_flg_test = '0')
@@ -579,12 +580,10 @@ begin
 
     -- set number of bytes
     tx_data_test <= "00000001";
-
-    -- set address
     i2c_start_test <= '0';
 
     -- set address
-    set_tx("10110011");
+    set_tx("10110010");
 
     -- check address
     check_transmit(tx_data_test);
@@ -592,6 +591,7 @@ begin
     wait until sda_test = 'Z';
     sda_test <= '1';
     wait until rising_edge(scl_test);
+    wait for 2 * c_TIME;
     sda_test <= 'Z';
 
     assert (ack_flg_test = '0')

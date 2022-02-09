@@ -225,12 +225,14 @@ begin
 
       when wait_ack_addr =>
         if data_clk_prev = '0' and data_clk = '1' then
-          if sda_b = '1' then
+          if data_sda = '1' then
             state_next <= ack_intr;
-          elsif rw_reg = '0' then
-            state_next <= enbl_tx_data;
           else
-            state_next <= read_op;
+            if rw_reg = '0' then
+              state_next <= enbl_tx_data;
+            else
+              state_next <= read_op;
+            end if;
           end if;
         else
           state_next <= wait_ack_addr;
@@ -262,7 +264,7 @@ begin
 
       when wait_ack_data =>
         if data_clk_prev = '0' and data_clk = '1' then
-          if ack = '1' then
+          if data_sda = '1' then
             state_next <= ack_intr;
           elsif byte_count /= 0 then
             state_next <= enbl_tx_data;
@@ -436,7 +438,7 @@ begin
 
       when wait_ack_slave =>
         if data_clk_prev = '0' and data_clk = '1' then
-          if ack = '1' then
+          if data_sda = '1' then
             state_next <= ack_intr;
           elsif byte_count /= 0 then
             state_next <= enbl_tx_slave;
@@ -518,9 +520,9 @@ begin
     addr_check      <= '0';
     ten_bit_next    <= ten_bit_reg;
     rw_next         <= rw_reg;
-    ack             <= '0';
     arb_lost        <= '0';
 
+    -- logic
     case state_reg is
 
       when off_state =>
@@ -561,12 +563,7 @@ begin
       when wait_ack_addr =>
         sda_next <= 'Z';
         write_done <= '0';
-        if data_clk_prev = '0' and data_clk = '1' then
-          if sda_b = '1' then
-            ack <= '1';
-          end if;
-        end if;
-
+        
       when enbl_tx_data =>
         sda_next <= '0';
 
@@ -596,11 +593,6 @@ begin
       when wait_ack_data =>
         sda_next   <= 'Z';
         write_done <= '0';
-        if data_clk_prev = '0' and data_clk = '1' then
-          if sda_b = '1' then
-            ack <= '1';
-          end if;
-        end if;
 
       when wait_rep =>
         sda_next <= '0';
