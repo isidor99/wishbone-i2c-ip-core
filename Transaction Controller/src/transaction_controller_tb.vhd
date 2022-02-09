@@ -51,8 +51,9 @@ architecture arch of transaction_controller_tb is
 
   type t_vector is array (natural range <>) of std_logic_vector(7 downto 0);
 
-  constant c_TIME     : time := 20 ns;
-  constant c_TIME_SCL : time := 10 us;
+  constant c_TIME     : time := 20  ns;
+  constant c_TIME_SCL : time := 10  us;
+  constant c_ST_WAIT  : time := 950 ns;
   constant c_SYS_CLK  : std_logic_vector := "10000000000000000000000000110010";
 
   constant c_SLV_DATA : t_vector :=
@@ -86,8 +87,8 @@ architecture arch of transaction_controller_tb is
   signal clk_enbl_test     : std_logic;
   signal arb_lost_flg_test : std_logic;
 
-  signal tmp_1       : std_logic := '0';
-  signal tmp_2       : std_logic := '0';
+  signal tmp_1      : std_logic := '0';
+  signal tmp_2      : std_logic := '0';
   signal slave_data : std_logic_vector(7 downto 0);
   signal gen_clk    : std_logic := '0';
 
@@ -179,8 +180,8 @@ begin
     end if;
   end process;
 
-  -- scl_test <= '1' when clk_enbl_test = '0' else tmp;
   scl_test <= tmp_2 when msl_sel_test = '1' else tmp_1;
+
 
   -- main process
   process
@@ -202,6 +203,18 @@ begin
     end check_transmit;
 
     -- PROCEDURE
+    procedure set_tx (
+      constant data : std_logic_vector (7 downto 0)
+    ) is
+    begin
+
+      wait until falling_edge(tx_rd_enbl_test);
+      tx_data_test <= data;
+      wait until rising_edge(clk_test);
+
+    end set_tx;
+
+    -- PROCEDURE
     procedure write_on_sda (
       constant data : in std_logic_vector(7 downto 0)
     ) is
@@ -214,7 +227,7 @@ begin
     end write_on_sda;
 
     -- PROCEDURE
-    procedure check_ack is
+    procedure check_ack_flg is
     begin
 
       wait until sda_test = 'Z';
@@ -225,12 +238,31 @@ begin
       assert (ack_flg_test = '0')
         report "ACK not ok"
         severity error;
-    end check_ack;
+    end check_ack_flg;
 
     -- PROCEDURE
-    procedure init_slave_comm (
-      constant slv_addr : in std_logic_vector(6 downto 0);
-      constant rw_bit   : in std_logic
+    procedure wait_on_ack (
+      constant to_wait : in std_logic
+    ) is
+    begin
+
+      if to_wait = '1' then
+        -- wait for ACK
+        wait until falling_edge(scl_test);
+      end if;
+
+		sda_test <= 'Z';
+      wait until rising_edge(scl_test);
+
+      -- check ACK
+      assert (sda_test = '0')
+        report "ACK not OK. Address not confirmed."
+        severity error;
+    end wait_on_ack;
+
+    -- PROCEDURE
+    procedure generate_start (
+      constant bytes_to_transfer : in std_logic_vector (7 downto 0)
     ) is
     begin
 
@@ -241,11 +273,10 @@ begin
 
       wait until rising_edge(clk_test);
       wait for 2 ns;
-
       wait until falling_edge(tx_rd_enbl_test);
 
       -- set number of bytes to transfer
-      tx_data_test <= "00000010";
+      tx_data_test <= bytes_to_transfer;
       i2c_start_test <= '0';
 
       -- drive down SDA
@@ -261,6 +292,14 @@ begin
 
       -- synchronize
       wait until falling_edge(scl_test);
+    end generate_start;
+
+    -- PROCEDURE
+    procedure init_slave_comm_7_bit_addr (
+      constant slv_addr : in std_logic_vector(6 downto 0);
+      constant rw_bit   : in std_logic
+    ) is
+    begin
 
       -- transmit address
       for i in 6 downto 0 loop
@@ -272,15 +311,42 @@ begin
       sda_test <= rw_bit;
       wait until falling_edge(scl_test);
 
-      -- wait for ACK
-      sda_test <= 'Z';
-      wait until rising_edge(scl_test);
+      wait_on_ack('0');
+    end init_slave_comm_7_bit_addr;
 
-      -- check ACK
-      assert (sda_test = '0')
-        report "ACK not OK. Address not confirmed."
-        severity error;
-    end init_slave_comm;
+    -- PROCEDURE
+    procedure init_slave_comm_10_bit_addr (
+      constant slv_addr  : in std_logic_vector(9 downto 0);
+      constant rw_bit    : in std_logic
+    ) is
+
+      variable addr_part : std_logic_vector (7 downto 0);
+
+    begin
+
+      -- form first part of address
+      addr_part := "11110" & slv_addr(9 downto 8) & rw_bit;
+
+      -- transmit address 1st part
+      for i in 7 downto 0 loop
+        sda_test <= addr_part(i);
+        wait until falling_edge(scl_test);
+      end loop;
+
+      wait_on_ack('0');
+
+      -- drive sda low until next falling edge of SCL
+      sda_test <= '0';
+      wait until falling_edge(scl_test);
+
+      -- transmit address 2nd part
+      for i in 7 downto 0 loop
+        sda_test <= slv_addr(i);
+        wait until falling_edge(scl_test);
+      end loop;
+
+      wait_on_ack('0');
+    end init_slave_comm_10_bit_addr;
 
     -- PROCEDURE
     procedure generate_stop is
@@ -318,34 +384,27 @@ begin
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
-
     wait until falling_edge(tx_rd_enbl_test);
 
     tx_data_test <= "00000010";
     i2c_start_test <= '0';
 
-    wait until falling_edge(tx_rd_enbl_test);
-
-    tx_data_test <= "10110010";
-
-    wait until rising_edge(clk_test);
+    -- set address
+    set_tx("10110010");
 
     -- check address
     check_transmit(tx_data_test);
-    check_ack;
+    check_ack_flg;
 
-    wait until falling_edge(tx_rd_enbl_test);
-
-    tx_data_test <= "01101011";
-
-    wait until rising_edge(clk_test);
+    -- set tx data to transmit
+    set_tx("01101011");
 
     rep_strt_test <= '1';
 
     -- transmit two bytes and check
     for j in 0 to 1 loop
       check_transmit(tx_data_test);
-      check_ack;
+      check_ack_flg;
     end loop;
 
     -- set new number of bytes
@@ -353,20 +412,14 @@ begin
 
     tx_data_test <= "00000010";
 
-    -- wait until falling_edge(clk_enbl_test);
-
     -- set new address
-    wait until falling_edge(tx_rd_enbl_test);
+    set_tx("10110011");
 
-    tx_data_test    <= "10110011";
     rep_strt_test   <= '0';
-
-    -- wait until sda_test = 'Z';
-    wait until falling_edge(scl_test);
 
     -- check address
     check_transmit(tx_data_test);
-    check_ack;
+    check_ack_flg;
 
     -- read from slave
     -- this test simulates slave
@@ -380,7 +433,6 @@ begin
 
       wait until falling_edge(scl_test);
       sda_test <= 'Z';
-
       wait until rising_edge(rx_wr_enbl_test);
       wait for 2 ns;
 
@@ -393,8 +445,10 @@ begin
     -- time delay between two tests
     wait for 200 us;
 
+    -- SLAVE DATA
     -- init communication with slave
-    init_slave_comm("0101010", '0');
+    generate_start("00000010");
+    init_slave_comm_7_bit_addr("0101010", '0');
 
     for i in 0 to 1 loop
 
@@ -412,18 +466,8 @@ begin
       wait until falling_edge(scl_test);
       sda_test <= slave_data(0);
 
-      -- wait for ACK
-      wait until falling_edge(scl_test);
-      sda_test <= 'Z';
-      wait until rising_edge(scl_test);
-
-      -- check ACK
-      assert (sda_test = '0')
-        report "ACK not OK. Address not confirmed."
-        severity error;
-
-      -- drive sda low until next falling edge of SCL
-      sda_test <= '0';
+      -- wait ACK bit
+      wait_on_ack('1');
 
       -- check rx data
       wait until rising_edge(rx_wr_enbl_test);
@@ -437,9 +481,11 @@ begin
 
     -- wait tx
     wait until falling_edge(rx_wr_enbl_test);
+    sda_test <= '0';
     wait until falling_edge(scl_test);
-    wait for 500 ns;
+    wait for 950 ns;
 
+    -- stop condition
     generate_stop;
 
     -- time delay between two tests
@@ -447,7 +493,8 @@ begin
 
     -- start new transmission
     -- init communication with slave
-    init_slave_comm("0101010", '1');
+    generate_start("00000010");
+    init_slave_comm_7_bit_addr("0101010", '1');
 
     for i in 0 to 1 loop
 
@@ -465,9 +512,93 @@ begin
 
     end loop;
 
+    sda_test <= '0';
+    wait until falling_edge(scl_test);
+    wait for 950 ns;
+
+    -- generate stop
     generate_stop;
 
-    wait for 500 us;
+    -- time delay between two tests
+    wait for 200 us;
+
+    -- test 10-bit address
+    slv_addr_len_test <= '1';
+    generate_start("00000010");
+    init_slave_comm_10_bit_addr("0000101010", '0');
+
+    -- write two bytes to slave
+    for i in 0 to 1 loop
+
+      -- drive sda low until next falling edge of SCL
+      sda_test <= '0';
+      slave_data <= c_SLV_DATA(i);
+
+      -- shift first seven bits
+      for i in 7 downto 1 loop
+        wait until falling_edge(scl_test);
+        sda_test <= slave_data(i);
+      end loop;
+
+      -- shift last bit
+      wait until falling_edge(scl_test);
+      sda_test <= slave_data(0);
+
+      -- wait ACK bit
+      wait_on_ack('1');
+
+      -- check rx data
+      wait until rising_edge(rx_wr_enbl_test);
+      wait for 2 ns;
+
+      assert (rx_data_test = slave_data)
+        report "Writting to slave not ok. Data not write correctly."
+        severity error;
+
+    end loop;
+
+    sda_test <= '0';
+    wait until falling_edge(scl_test);
+    wait for 950 ns;
+
+    -- generate stop
+    generate_stop;
+
+    -- time delay
+    wait for 300 us;
+
+    msl_sel_test <= '0';
+    wait for 2 ns;
+
+    -- test NACK
+    i2c_start_test <= '1';
+
+    wait until rising_edge(clk_test);
+    wait for 2 ns;
+    wait until falling_edge(tx_rd_enbl_test);
+
+    -- set number of bytes
+    tx_data_test <= "00000001";
+
+    -- set address
+    i2c_start_test <= '0';
+
+    -- set address
+    set_tx("10110011");
+
+    -- check address
+    check_transmit(tx_data_test);
+
+    wait until sda_test = 'Z';
+    sda_test <= '1';
+    wait until rising_edge(scl_test);
+    sda_test <= 'Z';
+
+    assert (ack_flg_test = '0')
+      report "ACK not ok"
+      severity error;
+
+    wait for 250 us;
     stop <= '1';
     wait;
 

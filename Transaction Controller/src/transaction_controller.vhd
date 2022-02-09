@@ -225,7 +225,7 @@ begin
 
       when wait_ack_addr =>
         if data_clk_prev = '0' and data_clk = '1' then
-          if ack = '1' then
+          if sda_b = '1' then
             state_next <= ack_intr;
           elsif rw_reg = '0' then
             state_next <= enbl_tx_data;
@@ -235,6 +235,12 @@ begin
         else
           state_next <= wait_ack_addr;
         end if;
+
+      when ack_intr =>
+        state_next <= idle;
+
+      when arb_intr =>
+        state_next <= idle;
 
       when enbl_tx_data =>
         state_next <= wait_tx_data;
@@ -247,7 +253,7 @@ begin
 
       when write_op =>
         if arb_lost = '1' then
-          state_next <= ack_intr;
+          state_next <= arb_intr;
         elsif write_done = '1' then
           state_next <= wait_ack_data;
         else
@@ -316,7 +322,7 @@ begin
           state_next <= wait_stop;
         end if;
 
-      -- Slave part
+      -- slave part
       when sda_low_slave =>
         if (data_sda_prev = 'Z' or data_sda_prev = '1') and data_sda = '0' then
           state_next <= scl_low_slave;
@@ -357,7 +363,7 @@ begin
             end if;
           else
             if ten_bit_reg = '0' then
-              state_next <= shift_addr_slave; -- 10bit addr
+              state_next <= shift_addr_slave;
             else
               if rw_reg = '0' then
                 state_next <= write_slave;
@@ -461,9 +467,9 @@ begin
                            ack_intr,
                   '1' when others;
 
-  rx_wr_enbl_o   <= '1'      when state_reg = store or state_reg = store_slave else '0';
-  ack_flg_o      <= ack      when state_reg = ack_intr else '0';
-  arb_lost_flg_o <= arb_lost when state_reg = arb_intr else '0';
+  rx_wr_enbl_o   <= '1' when state_reg = store or state_reg = store_slave else '0';
+  ack_flg_o      <= '1' when state_reg = ack_intr else '0';
+  arb_lost_flg_o <= '1' when state_reg = arb_intr else '0';
 
   -- datapath: data register
   process(clk_i, rst_i)
@@ -507,12 +513,13 @@ begin
     rst_count_next  <= '0';
     shift_next      <= shift_reg;
     read_done       <= '0';
-    -- read_or_write   <= shift_reg(0);
     write_done      <= '0';
     arb_lost        <= '0';
     addr_check      <= '0';
     ten_bit_next    <= ten_bit_reg;
     rw_next         <= rw_reg;
+    ack             <= '0';
+    arb_lost        <= '0';
 
     case state_reg is
 
@@ -554,6 +561,11 @@ begin
       when wait_ack_addr =>
         sda_next <= 'Z';
         write_done <= '0';
+        if data_clk_prev = '0' and data_clk = '1' then
+          if sda_b = '1' then
+            ack <= '1';
+          end if;
+        end if;
 
       when enbl_tx_data =>
         sda_next <= '0';
@@ -584,6 +596,11 @@ begin
       when wait_ack_data =>
         sda_next   <= 'Z';
         write_done <= '0';
+        if data_clk_prev = '0' and data_clk = '1' then
+          if sda_b = '1' then
+            ack <= '1';
+          end if;
+        end if;
 
       when wait_rep =>
         sda_next <= '0';
@@ -625,7 +642,12 @@ begin
         sda_next       <= '1';
         rst_count_next <= '0';
 
-      -- Slave part
+      -- slave part
+      when scl_low_slave =>
+        if data_clk_prev = '1' and data_clk = '0' then
+          busy_next <= '1';
+        end if;
+
       when shift_addr_slave =>
         if data_clk_prev = '0' and data_clk = '1' then
           bit_count_next <= bit_count_reg - 1;
@@ -649,20 +671,27 @@ begin
         else
           if ten_bit_reg = '0' then
             if shift_reg(7 downto 1) = ("11110" & slv_addr_i(9 downto 8)) then
-              ten_bit_next <= '1';
               addr_check   <= '1';
               rw_next      <= shift_reg(0);
             end if;
           else
             if shift_reg = slv_addr_i(7 downto 0) then
               addr_check <= '1';
-              ten_bit_next <= '0';
             end if;
           end if;
         end if;
 
       when generate_ack_slave_ok =>
         sda_next <= '0';
+        if data_clk_prev = '0' and data_clk = '1' then
+          if slv_addr_len_i = '1' then
+            if ten_bit_reg = '0' then
+              ten_bit_next <= '1';
+            else
+              ten_bit_next <= '0';
+            end if;
+          end if;
+        end if;
 
       when generate_ack_slave_nok =>
         sda_next <= '1';
@@ -711,6 +740,9 @@ begin
           sda_next       <= sda_reg;
         end if;
 
+      when sda_high_slave =>
+        busy_next <= '0';
+
       when others =>
     end case;
   end process;
@@ -720,7 +752,7 @@ begin
   rst_count  <= rst_count_reg;
 
   -- data path: functional unit
-  ack <= sda_b;
+  -- ack <= sda_b;
 
   -- data path: output
   sda_b      <= sda_reg;
