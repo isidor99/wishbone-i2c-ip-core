@@ -593,8 +593,9 @@ begin
     wait until rising_edge(scl_test);
     wait for 2 * c_TIME;
     sda_test <= 'Z';
+    wait for 2 ns;
 
-    assert (ack_flg_test = '0')
+    assert (ack_flg_test = '1')
       report "ACK not ok"
       severity error;
 
