@@ -329,7 +329,7 @@ begin
              scl_b;
   scl_b  <= clk_out;
 
-
+  ack_o  <= ack_int;
 
 
 end arch;
