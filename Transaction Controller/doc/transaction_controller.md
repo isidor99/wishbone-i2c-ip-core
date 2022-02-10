@@ -1,8 +1,8 @@
 ## Uvod
 
 _Transaction Controller_ je modul za I2C komunikaciju. Na izlazu ovog modula je SDA linija, odnosno linija podataka.  
-Prije omogićenja modula potrebno je odabrati željeni režim rada modula. To obavlja postavljanjem odgovarajučih vrijednosti unutar registarskog bloka, usuprotnom korističe se podrazumjevani ražim rada.  
-Prije započinjanja komunikacije potrebo smjestiti podatke u odgovarajuče bafere, u foramtu *| BROJ BAJTOVA | DATA | DATA | ... | DATA |*. Gdje Broj bajtova predstavlja željeni broj podataka koji se žele pisati/čitati sa datog modula, DATA predstavlja same podatke koje se žele pisati/čitati. Za pokretanje same komunikacije između modula i ostalih urađaja potrebno je dovesti start signal na odgovarajući port.
+Prije omogućenja modula potrebno je odabrati željeni režim rada modula. To obavlja postavljanjem odgovarajučih vrijednosti unutar registarskog bloka, u suprotnom koristiće se podrazumjevani ražim rada.  
+Prije započinjanja komunikacije potrebno je smjestiti podatke u odgovarajuče bafere, u foramtu *| BYTE_COUNT | DATA | DATA | ... | DATA |*, gdje *BYTE_COUNT* predstavlja željeni broj podataka koji se žele pisati/čitati sa datog modula, *DATA* predstavlja same podatke koje se žele pisati/čitati. Za pokretanje same komunikacije između modula i ostalih urađaja potrebno je dovesti start signal na odgovarajući port.
 
 Za dodatne informacije pogledati [Wishbone I2C IP Core: User manual](https://gitlab.com/mladen.knezic/wishbone-i2c/-/wikis/Wishbone-I2C-IP-Core:-User-manual)
 
