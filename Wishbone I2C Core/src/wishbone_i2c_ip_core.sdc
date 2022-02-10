@@ -114,23 +114,28 @@ set_output_delay -clock clk_virt -min 0.500 [get_ports {gpo_o[*]}]
 #**************************************************************
 
 set_false_path -from [get_ports {rst_i}] -to [all_registers]
+set_false_path -from [get_registers {register_block:reg_block|ram[2][*]}] -to [all_registers]
+set_false_path -from [get_registers {register_block:reg_block|ram[7][*]}] -to [all_registers]
 
 #**************************************************************
 # Set Multicycle Path
 #**************************************************************
 
-
+#set_multicycle_path -from [get_registers {register_block:reg_block|ram[7][30]}] -to [get_registers {transaction_controller:tran_contr|count[3]}] -setup -end  2
+#set_multicycle_path -from [get_registers {register_block:reg_block|ram[7][30]}] -to [get_registers {transaction_controller:tran_contr|count[3]}] -hold -end  2
 
 #**************************************************************
 # Set Maximum Delay
 #**************************************************************
 
-
+#set_max_delay -from [get_registers {register_block:reg_block|ram[7][30]}] -to [get_registers {transaction_controller:tran_contr|count[*]}] 30
+#set_max_delay -from [get_registers {register_block:reg_block|ram[7][31]}] -to [get_registers {transaction_controller:tran_contr|count[*]}] 30
 
 #**************************************************************
 # Set Minimum Delay
 #**************************************************************
 
+#set_min_delay -from [get_registers {register_block:reg_block|ram[7][30]}] -to [get_registers {transaction_controller:tran_contr|count[4]}] 10
 
 
 #**************************************************************
