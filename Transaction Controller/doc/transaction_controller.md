@@ -1,6 +1,10 @@
 ## Uvod
 
-_Transaction Controller_ je modul za I2C komunikaciju. Na izlazu ovog modula je SDA linija, odnosno linija podataka.
+_Transaction Controller_ je modul za I2C komunikaciju. Na izlazu ovog modula je SDA linija, odnosno linija podataka.  
+Prije omogićenja modula potrebno je odabrati željeni režim rada modula. To obavlja postavljanjem odgovarajučih vrijednosti unutar registarskog bloka, usuprotnom korističe se podrazumjevani ražim rada.  
+Prije započinjanja komunikacije potrebo smjestiti podatke u odgovarajuče bafere, u foramtu *| BROJ BAJTOVA | DATA | DATA | ... | DATA |*. Gdje Broj bajtova predstavlja željeni broj podataka koji se žele pisati/čitati sa datog modula, DATA predstavlja same podatke koje se žele pisati/čitati. Za pokretanje same komunikacije između modula i ostalih urađaja potrebno je dovesti start signal na odgovarajući port.
+
+Za dodatne informacije pogledati [Wishbone I2C IP Core: User manual](https://gitlab.com/mladen.knezic/wishbone-i2c/-/wikis/Wishbone-I2C-IP-Core:-User-manual)
 
 ## Tabela portova
 
@@ -15,7 +19,7 @@ _Transaction Controller_ je modul za I2C komunikaciju. Na izlazu ovog modula je 
 | **scl_i**          | in    | std_logic                      | Ulazni takt za I2C komunikaciju.                                                                                                                                 |
 | **tx_buff_e_i**    | in    | std_logic                      | Ulazni signal koji se dovodi sa predajnog **FIFO** bafera koji označava da li je predajni bafer prazan.                                                          |
 | **rx_buff_f_i**    | in    | std_logic                      | Ulazni signal koji se dovodi sa prijemnog **FIFO** bafera koji označava da li je prijemni bafer pun.                                                             |
-| **byte_count_i**   | in    | std_logic_vector(3 downto 0)   | Ulazni signal koji daje informaciju o tome koliko bajtova se prenosi u jednoj transakciji.                                                                       |
+| **i2c_start_i**    | in    | std_logic                      | Ulazni siganl kojim se započinje _I2C_ komunikacija |
 | **slv_addr_i**     | in    | std_logic_vector(9 downto 0)   | Adresa uređaja ukoliko radi u slave režimu rada.                                                                                                                 |
 | **tx_data_i**      | in    | std_logic_vector(7 downto 0)   | Ulazni 8 bitni podaci koji se prenose prema slave-u.                                                                                                             |
 | **mode_i**         | in    | std_logic_vector(1 downto 0)   | Signal koji nam daje informaciju o brzini prenosa iz kontrolnog registra.                                                                                        |
@@ -31,4 +35,4 @@ _Transaction Controller_ je modul za I2C komunikaciju. Na izlazu ovog modula je 
 
 ## Vremenska analiza
 
-Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _208 MHz_.
+Na osnovu rezultata vremenske analize maksimalna frekvencija taktnog signala iznosi _141 MHz_.
