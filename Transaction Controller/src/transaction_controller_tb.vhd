@@ -252,7 +252,7 @@ begin
         wait until falling_edge(scl_test);
       end if;
 
-		sda_test <= 'Z';
+      sda_test <= 'Z';
       wait until rising_edge(scl_test);
 
       -- check ACK
@@ -319,10 +319,9 @@ begin
     procedure init_slave_comm_10_bit_addr (
       constant slv_addr  : in std_logic_vector(9 downto 0);
       constant rw_bit    : in std_logic
-    ) is
-
+    )
+    is
       variable addr_part : std_logic_vector (7 downto 0);
-
     begin
 
       -- form first part of address

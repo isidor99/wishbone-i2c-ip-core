@@ -563,7 +563,7 @@ begin
       when wait_ack_addr =>
         sda_next <= 'Z';
         write_done <= '0';
-        
+
       when enbl_tx_data =>
         sda_next <= '0';
 
