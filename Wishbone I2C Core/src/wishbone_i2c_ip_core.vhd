@@ -40,7 +40,7 @@ entity wishbone_i2c_ip_core is
     addr_i    : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1);
     data_i    : in    std_logic_vector((g_WIDTH - 1) downto 0);
     data_o    : out   std_logic_vector((g_WIDTH - 1) downto 0);
-    ack_o     : out   std_logic; -- To do
+    ack_o     : out   std_logic;
     int_o     : out   std_logic;
     scl_b     : inout std_logic;
     sda_b     : inout std_logic;
@@ -50,6 +50,7 @@ end wishbone_i2c_ip_core;
 
 architecture arch of wishbone_i2c_ip_core is
 
+  -- REGISTER BLOCK
   component register_block is
     generic
     (
@@ -94,9 +95,10 @@ architecture arch of wishbone_i2c_ip_core is
     );
   end component;
 
-
+  -- CLOCK GENERATOR
   component clock_generator
-    port(
+    port
+    (
       clk_i    : in  std_logic;
       rst_i    : in  std_logic;
       enb_i    : in  std_logic;
@@ -106,7 +108,7 @@ architecture arch of wishbone_i2c_ip_core is
     );
   end component;
 
-
+  -- FIFO BUFFER
   component fifo_buffer is
     generic
     (
@@ -126,18 +128,19 @@ architecture arch of wishbone_i2c_ip_core is
     );
   end component;
 
-
+  -- INTERRUPT GENERATOR
   component interrupt_generator
-    port (
-     arlo_i       : in  std_logic;
-     int_ack_i    : in  std_logic;
-     int_enbl_i   : in  std_logic;
-     int_clr_i    : in  std_logic;
-     int_o        : out std_logic
+    port
+    (
+      arlo_i       : in  std_logic;
+      int_ack_i    : in  std_logic;
+      int_enbl_i   : in  std_logic;
+      int_clr_i    : in  std_logic;
+      int_o        : out std_logic
    );
   end component;
 
-
+  -- TRANSACTION CONTROLLER
   component transaction_controller is
     port
     (
@@ -166,9 +169,7 @@ architecture arch of wishbone_i2c_ip_core is
     );
   end component transaction_controller;
 
-
-
-
+  -- SIGNALS
   signal clk_enbl     : std_logic;
   signal sel_mode     : std_logic_vector(1 downto 0);
   signal sysclk       : std_logic_vector(31 downto 0);
@@ -256,6 +257,7 @@ begin
       clk_o    => clk_out
     );
 
+  -- TX BUFFER
   tx_buff : fifo_buffer
     generic map (
       g_WIDTH => g_WIDTH_B,
@@ -272,7 +274,7 @@ begin
       buff_empty_o => tx_empty
     );
 
-
+  -- RX BUFFER
   rx_buff : fifo_buffer
     generic map (
       g_WIDTH => g_WIDTH_B,
@@ -288,6 +290,7 @@ begin
       buff_full_o  => rx_full,
       buff_empty_o => rx_empty
     );
+
 
   tran_contr : transaction_controller
     port map
@@ -327,9 +330,10 @@ begin
 
   clk_dir <= clk_out when master_sel = '0' else
              scl_b;
-  scl_b  <= clk_out;
+
+  scl_b  <= clk_out when master_sel = '0' else
+            'Z';
 
   ack_o  <= ack_int;
-
 
 end arch;
