@@ -42,7 +42,6 @@ architecture arch of interrupt_generator_tb is
   end component;
 
   signal i : integer := 1;
-  signal stop : std_logic := '0';
   constant c_TIME  : time := 20 ns;
 
 
@@ -66,7 +65,9 @@ architecture arch of interrupt_generator_tb is
     ('1', '1', '0', '0', '0'),
     ('1', '1', '1', '0', '1'),
     ('0', '1', '1', '0', '1'),
-    ('0', '1', '1', '1', '0'),
+    ('0', '0', '1', '0', '1'),
+    ('0', '1', '1', '0', '1'),
+    ('0', '0', '0', '0', '0'),
     ('1', '0', '0', '0', '0'),
     ('1', '0', '0', '1', '0'),
     ('1', '0', '1', '0', '1'),
@@ -96,7 +97,7 @@ begin
     clk_i_test <= '1';
     wait for c_TIME;
 
-    if stop = '1' then
+    if i = c_TEST_VECTOR'length then
       wait;
     end if;
 
@@ -105,14 +106,14 @@ begin
   -- check process
   process
   begin
-    wait until rising_edge(clk_i_test);
-    -- wait for 5 ns;
 
-    arlo_i_test <= c_TEST_VECTOR(i).arlo;
-    int_ack_i_test <= c_TEST_VECTOR(i).ack;
-    int_enbl_i_test <= c_TEST_VECTOR(i).ie;
+    arlo_i_test       <= c_TEST_VECTOR(i).arlo;
+    int_ack_i_test    <= c_TEST_VECTOR(i).ack;
+    int_enbl_i_test   <= c_TEST_VECTOR(i).ie;
     int_clr_i_test    <= c_TEST_VECTOR(i).ic;
     io <= c_TEST_VECTOR(i).io;
+
+    wait until rising_edge(clk_i_test);
 
     wait for 5 ns;
 
@@ -123,7 +124,6 @@ begin
     if i /= c_TEST_VECTOR'length then
       i <= i + 1;
     else
-      --stop <= '1';
       report "Test completed.";
       wait;
     end if;

@@ -30,8 +30,8 @@ end interrupt_generator;
 
 architecture arch of interrupt_generator is
 
-  signal tmp     : std_logic;
-  signal int_reg : std_logic:= '0';
+  signal tmp     : std_logic := '0';
+  signal int_reg : std_logic := '0';
   signal is_int  : std_logic;
 
 begin
