@@ -18,13 +18,13 @@
 -----------------------------------------------------------------------------
 
 library ieee;
-
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 library altera;
-
 use altera.altera_syn_attributes.all;
+
+use work.register_pkg.all;
 
 entity register_block is
   generic
@@ -53,14 +53,14 @@ entity register_block is
     arb_lost_o      : out   std_logic;
     int_o           : out   std_logic;
     mode_o          : out   std_logic_vector(1 downto 0);
+    strt_o          : out   std_logic;
     i2c_en_o        : out   std_logic;
     int_en_o        : out   std_logic;
     slv_addr_len_o  : out   std_logic;
     msl_o           : out   std_logic;
     tx_buff_wr_en_o : out   std_logic;
     rx_buff_rd_en_o : out   std_logic;
-    rd_slv_o        : out   std_logic;
-    wr_slv_o        : out   std_logic;
+    rep_strt_o      : out   std_logic;
     clr_intr_o      : out   std_logic;
     tx_data_o       : out   std_logic_vector(7 downto 0);
     gpo_o           : out   std_logic_vector((g_GPO_W - 1) downto 0);
@@ -71,8 +71,6 @@ entity register_block is
 end register_block;
 
 architecture arch of register_block is
-
-  constant c_50_MHZ : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
 
   subtype t_word is std_logic_vector((g_WIDTH - 1) downto 0);
   type memory_t is array((2 ** g_ADDR_WIDTH - 1) downto 0) of t_word;
@@ -85,25 +83,33 @@ begin
   begin
     if rst_i = '1' then
 
-      ram(0) <= (others => '0');
-      ram(1) <= (others => '0');
-      ram(2) <= (0 => '1', others => '0');
-      ram(3) <= (others => '0');
-      ram(4) <= (others => '0');
-      ram(5) <= (others => '0');
-      ram(6) <= (others => '0');
-      ram(7) <= c_50_MHz;
+      ram(c_REG_TX)   <= (others => '0');
+      ram(c_REG_RX)   <= (others => '0');
+      ram(c_REG_CTRL) <= (0 => '1', others => '0');
+      ram(c_REG_STAT) <= (others => '0');
+      ram(C_REG_CMD)  <= (others => '0');
+      ram(c_REG_SLVA) <= (others => '0');
+      ram(c_REG_GPO)  <= (others => '0');
+      ram(c_REG_SYSC) <= c_50_MHz;
 
     elsif rising_edge(clk_i) then
 
       -- get data from rx buffer
-      ram(1)(7 downto 0) <= rx_data_i;
+      ram(c_REG_RX)(t_DATA) <= rx_data_i;
 
       -- get status data from rx and tx buffer
-      ram(3)(7 downto 4) <= (rx_buff_e_i & rx_buff_f_i & tx_buff_e_i & tx_buff_f_i);
+      -- ram(c_REG_STAT)(7 downto 4) <= (rx_buff_e_i & rx_buff_f_i & tx_buff_e_i & tx_buff_f_i);
+      ram(c_REG_STAT)(c_RXB_E) <= rx_buff_e_i;
+      ram(c_REG_STAT)(c_RXB_F) <= rx_buff_f_i;
+      ram(c_REG_STAT)(c_TXB_E) <= tx_buff_e_i;
+      ram(c_REG_STAT)(c_TXB_F) <= tx_buff_f_i;
+      ram(c_REG_STAT)(c_IF)    <= intr_flg_i;
+      ram(c_REG_STAT)(c_BUSY)  <= busy_flg_i;
+      ram(c_REG_STAT)(c_ACK)   <= ack_res_flg_i;
+      ram(c_REG_STAT)(c_ARLO)  <= arb_lost_i;
 
       -- get interrupt data
-      ram(3)(3 downto 0) <= (intr_flg_i & busy_flg_i & ack_res_flg_i & arb_lost_i);
+      -- ram(c_REG_STAT)(3 downto 0) <= (intr_flg_i & busy_flg_i & ack_res_flg_i & arb_lost_i);
 
       -- write or read data from wishbone master side
       if we_i = '1' then
@@ -116,38 +122,38 @@ begin
 
   -- write data to tx buffer
   -- write is completed if tx buffer write is enabled
-  tx_data_o <= ram(0)(7 downto 0);
+  tx_data_o <= ram(c_REG_TX)(t_DATA);
 
   -- sys clock register
-  sys_clk_o <= ram(7);
+  sys_clk_o <= ram(c_REG_SYSC);
 
   -- select slave address
-  with ram(2)(3) select
-    slv_addr_o <= ("000" & ram(5)(6 downto 0)) when '0',
-                  ram(5)(9 downto 0) when others;
+  with ram(c_REG_CTRL)(c_ALEN) select
+    slv_addr_o <= ("000" & ram(c_REG_SLVA)(6 downto 0)) when '0',
+                  ram(c_REG_SLVA)(t_SLAVE_ADDR) when others;
 
   -- get flags from status register
-  int_o      <= ram(3)(3);
-  ack_o      <= ram(3)(1);
-  arb_lost_o <= ram(3)(0);
+  int_o      <= ram(c_REG_STAT)(c_IF);
+  ack_o      <= ram(c_REG_STAT)(c_ACK);
+  arb_lost_o <= ram(c_REG_STAT)(c_ARLO);
 
   -- control register signals
-  i2c_en_o       <= ram(2)(5);
-  int_en_o       <= ram(2)(4);
-  slv_addr_len_o <= ram(2)(3);
-  mode_o         <= ram(2)(2 downto 1);
-  msl_o          <= ram(2)(0);
+  i2c_en_o       <= ram(c_REG_CTRL)(c_I2CEN);
+  int_en_o       <= ram(c_REG_CTRL)(c_IEN);
+  slv_addr_len_o <= ram(c_REG_CTRL)(c_ALEN);
+  mode_o         <= ram(c_REG_CTRL)(t_MODE);
+  msl_o          <= ram(c_REG_CTRL)(c_MSL);
 
   -- general purpose register
-  gpo_o      <= ram(6)((g_GPO_W - 1) downto 0);
+  gpo_o      <= ram(c_REG_GPO)((g_GPO_W - 1) downto 0);
 
   -- command register signals
-  tx_buff_wr_en_o <= '0' when ram(3)(4) = '1' else
-                     ram(4)(3);
-  rx_buff_rd_en_o <= '0' when ram(3)(7) = '1' else
-                     ram(4)(4);
-  rd_slv_o   <= ram(4)(0);
-  wr_slv_o   <= ram(4)(1);
-  clr_intr_o <= ram(4)(2);
+  strt_o <= ram(c_REG_CMD)(c_STRT);
+  tx_buff_wr_en_o <= '0' when ram(c_REG_STAT)(c_TXB_F) = '1' else
+                     ram(c_REG_CMD)(c_TXB_WEN);
+  rx_buff_rd_en_o <= '0' when ram(c_REG_STAT)(c_RXB_E) = '1' else
+                     ram(c_REG_CMD)(c_RXB_REN);
+  clr_intr_o <= ram(c_REG_CMD)(c_IACK);
+  rep_strt_o <= ram(c_REG_CMD)(c_REP_ST);
 
 end arch;

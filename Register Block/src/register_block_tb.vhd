@@ -21,6 +21,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use work.register_pkg.all;
+
 entity register_block_tb is
 end register_block_tb;
 
@@ -53,14 +55,14 @@ architecture arch of register_block_tb is
       arb_lost_o      : out   std_logic;
       int_o           : out   std_logic;
       mode_o          : out   std_logic_vector(1 downto 0);
+      strt_o          : out   std_logic;
       i2c_en_o        : out   std_logic;
       int_en_o        : out   std_logic;
       slv_addr_len_o  : out   std_logic;
       msl_o           : out   std_logic;
       tx_buff_wr_en_o : out   std_logic;
       rx_buff_rd_en_o : out   std_logic;
-      rd_slv_o        : out   std_logic;
-      wr_slv_o        : out   std_logic;
+      rep_strt_o      : out   std_logic;
       clr_intr_o      : out   std_logic;
       tx_data_o       : out   std_logic_vector(7 downto 0);
       gpo_o           : out   std_logic_vector((g_GPO_W - 1) downto 0);
@@ -69,24 +71,6 @@ architecture arch of register_block_tb is
       dat_o           : out   std_logic_vector((g_WIDTH - 1) downto 0)
     );
   end component;
-
-  constant c_WIDTH        : natural := 32;
-  constant c_ADDR_WIDTH   : natural := 3;
-  constant c_GPO_W        : natural := 8;
-  constant c_TIME         : time    := 20 ns;
-
-  -- test data
-  constant c_TEST_DATA_IN : std_logic_vector(31 downto 0) := (1 | 3 | 5 | 7 => '1', others => '0');
-  constant c_TEST_RX_DATA : std_logic_vector(31 downto 0) := (0 | 1 | 2 | 3 => '1', others => '0');
-  constant c_CLOCK_DATA   : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
-  constant c_CTRL_REG_VAL : std_logic_vector(31 downto 0) := (0 | 1 | 4 | 5 => '1', others => '0');
-  constant c_CMD_RD_SLV   : std_logic_vector(31 downto 0) := (0 => '1', others => '0');
-  constant c_CMD_WR_SLV   : std_logic_vector(31 downto 0) := (1 => '1', others => '0');
-  constant c_CMD_CLR_INT  : std_logic_vector(31 downto 0) := (2 => '1', others => '0');
-  constant c_CMD_BUFF_OP  : std_logic_vector(31 downto 0) := (3 | 4 => '1', others => '0');
-  constant c_SLV_ADDR     : std_logic_vector(9 downto 0)  := "1101100111";
-
-  constant c_GPO_VAL : std_logic_vector((c_GPO_W - 1) downto 0) := (0 | 1 | 2 => '1', others => '0');
 
   signal stop  : std_logic := '0';
   signal h_val : std_logic_vector(31 downto 0) := (others => '0');
@@ -109,14 +93,14 @@ architecture arch of register_block_tb is
   signal arb_lost_o_test    : std_logic;
   signal int_test           : std_logic;
   signal mode_test          : std_logic_vector(1 downto 0);
+  signal strt_test          : std_logic;
   signal i2c_en_test        : std_logic;
   signal int_en_test        : std_logic;
   signal slv_addr_len_test  : std_logic;
   signal msl_test           : std_logic;
   signal tx_buff_wr_en_test : std_logic;
   signal rx_buff_rd_en_test : std_logic;
-  signal rd_slv_test        : std_logic;
-  signal wr_slv_test        : std_logic;
+  signal rep_strt_test      : std_logic;
   signal clr_intr_test      : std_logic;
   signal tx_data_test       : std_logic_vector(7 downto 0);
   signal gpo_test           : std_logic_vector((c_GPO_W - 1) downto 0);
@@ -153,14 +137,14 @@ begin
       arb_lost_o      => arb_lost_o_test,
       int_o           => int_test,
       mode_o          => mode_test,
+      strt_o          => strt_test,
       i2c_en_o        => i2c_en_test,
       int_en_o        => int_en_test,
       slv_addr_len_o  => slv_addr_len_test,
       msl_o           => msl_test,
       tx_buff_wr_en_o => tx_buff_wr_en_test,
       rx_buff_rd_en_o => rx_buff_rd_en_test,
-      rd_slv_o        => rd_slv_test,
-      wr_slv_o        => wr_slv_test,
+      rep_strt_o      => rep_strt_test,
       clr_intr_o      => clr_intr_test,
       tx_data_o       => tx_data_test,
       gpo_o           => gpo_test,
@@ -321,24 +305,24 @@ begin
 
     -- test COMMAND register
     addr_test <= 4;
-    dat_i_test <= c_CMD_RD_SLV;
+    dat_i_test <= c_CMD_REP_STRT;
     we_test    <= '1';
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
 
-    assert (rd_slv_test = '1')
+    assert (rep_strt_test = '1')
       report "COMMAND register not ok. Expected bit0 value to be 1, but it is 0"
       severity error;
 
-    dat_i_test <= c_CMD_WR_SLV;
-
-    wait until rising_edge(clk_test);
-    wait for 2 ns;
-
-    assert (wr_slv_test = '1')
-      report "COMMAND register not ok. Expected bit1 value to be 1, but it is 0"
-      severity error;
+--    dat_i_test <= c_CMD_WR_SLV;
+--
+--    wait until rising_edge(clk_test);
+--    wait for 2 ns;
+--
+--    assert (wr_slv_test = '1')
+--      report "COMMAND register not ok. Expected bit1 value to be 1, but it is 0"
+--      severity error;
 
     dat_i_test <= c_CMD_CLR_INT;
 
@@ -346,7 +330,7 @@ begin
     wait for 2 ns;
 
     assert (clr_intr_test = '1')
-      report "COMMAND register not ok. Expected bit2 value to be 1, but it is 0"
+      report "COMMAND register not ok. Expected bit1 value to be 1, but it is 0"
       severity error;
 
     dat_i_test <= c_CMD_BUFF_OP;
@@ -355,10 +339,19 @@ begin
     wait for 2 ns;
 
     assert (tx_buff_wr_en_test = '1')
-      report "COMMAND register not ok. Expected bit3 value to be 1, but it is 0"
+      report "COMMAND register not ok. Expected bit2 value to be 1, but it is 0"
       severity error;
 
     assert (rx_buff_rd_en_test = '1')
+      report "COMMAND register not ok. Expected bit3 value to be 1, but it is 0"
+      severity error;
+
+    dat_i_test <= c_CMD_STRT;
+
+    wait until rising_edge(clk_test);
+    wait for 2 ns;
+
+    assert (strt_test = '1')
       report "COMMAND register not ok. Expected bit4 value to be 1, but it is 0"
       severity error;
 
