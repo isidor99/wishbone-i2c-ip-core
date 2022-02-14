@@ -22,24 +22,29 @@ end interrupt_generator_tb;
 
 architecture arch of interrupt_generator_tb is
 
+  signal clk_i_test        : std_logic;
   signal arlo_i_test       : std_logic;
   signal int_ack_i_test    : std_logic;
   signal int_enbl_i_test   : std_logic;
   signal int_clr_i_test    : std_logic;
   signal int_o_test        : std_logic;
-  signal io                : std_logic; -- for test vector
+  signal io                : std_logic;
 
   component interrupt_generator
     port (
+     clk_i        : in  std_logic;
      arlo_i       : in  std_logic;
      int_ack_i    : in  std_logic;
-     int_enbl_i : in  std_logic;
+     int_enbl_i   : in  std_logic;
      int_clr_i    : in  std_logic;
      int_o        : out std_logic
    );
   end component;
 
   signal i : integer := 1;
+  signal stop : std_logic := '0';
+  constant c_TIME  : time := 20 ns;
+
 
   type t_test_vector is record
    arlo : std_logic;
@@ -71,8 +76,9 @@ architecture arch of interrupt_generator_tb is
   );
 
 begin
-  i1 : interrupt_generator
+  int_gen : interrupt_generator
     port map (
+      clk_i        => clk_i_test,
       arlo_i       => arlo_i_test,
       int_ack_i    => int_ack_i_test,
       int_enbl_i   => int_enbl_i_test,
@@ -80,9 +86,27 @@ begin
       int_o        => int_o_test
    );
 
-  -- process
+
+  -- stimulus generator
   process
   begin
+
+    clk_i_test <= '0';
+    wait for c_TIME;
+    clk_i_test <= '1';
+    wait for c_TIME;
+
+    if stop = '1' then
+      wait;
+    end if;
+
+  end process;
+
+  -- check process
+  process
+  begin
+    wait until rising_edge(clk_i_test);
+    -- wait for 5 ns;
 
     arlo_i_test <= c_TEST_VECTOR(i).arlo;
     int_ack_i_test <= c_TEST_VECTOR(i).ack;
@@ -99,6 +123,7 @@ begin
     if i /= c_TEST_VECTOR'length then
       i <= i + 1;
     else
+      --stop <= '1';
       report "Test completed.";
       wait;
     end if;

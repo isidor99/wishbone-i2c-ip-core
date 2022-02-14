@@ -19,24 +19,37 @@ use ieee.numeric_std.all;
 entity interrupt_generator is
   port
    (
-      -- Input ports
+      clk_i        : in  std_logic;
       int_enbl_i   : in  std_logic;
       int_ack_i    : in  std_logic;
       arlo_i       : in  std_logic;
       int_clr_i    : in  std_logic;
-
-      -- Output ports
       int_o        : out std_logic
    );
 end interrupt_generator;
 
 architecture arch of interrupt_generator is
 
-  signal tmp : std_logic;
+  signal tmp     : std_logic;
+  signal int_reg : std_logic:= '0';
+  signal is_int  : std_logic;
 
 begin
 
-  tmp <= (int_enbl_i and not (int_clr_i));
-  int_o <= tmp and (arlo_i or int_ack_i);
+  -- Process
+  process(clk_i)
+  begin
+    if rising_edge (clk_i) then
+      if int_clr_i = '1' then
+        int_reg <= '0';
+      else
+        int_reg <= tmp;
+      end if;
+    end if;
+  end process;
+
+  is_int <= arlo_i or int_ack_i or int_reg;
+  tmp <= (is_int and int_enbl_i);
+  int_o <= int_reg;
 
 end arch;
