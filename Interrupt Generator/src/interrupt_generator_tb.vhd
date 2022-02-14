@@ -22,24 +22,28 @@ end interrupt_generator_tb;
 
 architecture arch of interrupt_generator_tb is
 
+  signal clk_i_test        : std_logic;
   signal arlo_i_test       : std_logic;
   signal int_ack_i_test    : std_logic;
   signal int_enbl_i_test   : std_logic;
   signal int_clr_i_test    : std_logic;
   signal int_o_test        : std_logic;
-  signal io                : std_logic; -- for test vector
+  signal io                : std_logic;
 
   component interrupt_generator
     port (
+     clk_i        : in  std_logic;
      arlo_i       : in  std_logic;
      int_ack_i    : in  std_logic;
-     int_enbl_i : in  std_logic;
+     int_enbl_i   : in  std_logic;
      int_clr_i    : in  std_logic;
      int_o        : out std_logic
    );
   end component;
 
   signal i : integer := 1;
+  constant c_TIME  : time := 20 ns;
+
 
   type t_test_vector is record
    arlo : std_logic;
@@ -61,7 +65,9 @@ architecture arch of interrupt_generator_tb is
     ('1', '1', '0', '0', '0'),
     ('1', '1', '1', '0', '1'),
     ('0', '1', '1', '0', '1'),
-    ('0', '1', '1', '1', '0'),
+    ('0', '0', '1', '0', '1'),
+    ('0', '1', '1', '0', '1'),
+    ('0', '0', '0', '0', '0'),
     ('1', '0', '0', '0', '0'),
     ('1', '0', '0', '1', '0'),
     ('1', '0', '1', '0', '1'),
@@ -71,8 +77,9 @@ architecture arch of interrupt_generator_tb is
   );
 
 begin
-  i1 : interrupt_generator
+  int_gen : interrupt_generator
     port map (
+      clk_i        => clk_i_test,
       arlo_i       => arlo_i_test,
       int_ack_i    => int_ack_i_test,
       int_enbl_i   => int_enbl_i_test,
@@ -80,15 +87,33 @@ begin
       int_o        => int_o_test
    );
 
-  -- process
+
+  -- stimulus generator
   process
   begin
 
-    arlo_i_test <= c_TEST_VECTOR(i).arlo;
-    int_ack_i_test <= c_TEST_VECTOR(i).ack;
-    int_enbl_i_test <= c_TEST_VECTOR(i).ie;
+    clk_i_test <= '0';
+    wait for c_TIME;
+    clk_i_test <= '1';
+    wait for c_TIME;
+
+    if i = c_TEST_VECTOR'length then
+      wait;
+    end if;
+
+  end process;
+
+  -- check process
+  process
+  begin
+
+    arlo_i_test       <= c_TEST_VECTOR(i).arlo;
+    int_ack_i_test    <= c_TEST_VECTOR(i).ack;
+    int_enbl_i_test   <= c_TEST_VECTOR(i).ie;
     int_clr_i_test    <= c_TEST_VECTOR(i).ic;
     io <= c_TEST_VECTOR(i).io;
+
+    wait until rising_edge(clk_i_test);
 
     wait for 5 ns;
 
