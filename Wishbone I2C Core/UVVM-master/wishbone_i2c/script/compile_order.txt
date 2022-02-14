@@ -1,0 +1,8 @@
+# library wishbone_i2c
+../src/interrupt_generator.vhd
+../src/clock_generator.vhd
+../src/fifo_buffer.vhd
+../src/register_pkg.vhd
+../src/register_block.vhd
+../src/transaction_controller.vhd
+../src/wishbone_i2c_ip_core.vhd
