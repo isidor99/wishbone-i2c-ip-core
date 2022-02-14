@@ -6,6 +6,7 @@ _Interrupt generator_ generiše _interrupt_ tako što na svom izlazu generiše v
 
 | Naziv porta      | Mod | Tip                                      | Opis                                                                                                                                              |
 | ---------------- | --- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                              |
+| **clk_i**          | in   | std_logic                              | Ulazni takt
 | **int_enbl_i**      | in  | std_logic                              | Ulazni signal za omogućenje prekida                                                                                                                  |
 | **int_ack_i**      | in  | std_logic                              | Ulaz koji govori da li je primljena potvrda od slave-a                                   |
 | **arlo_i**      | in  | std_logic  | Ulaz koji definiše da li je izgubljena arbitraža|
@@ -15,7 +16,7 @@ _Interrupt generator_ generiše _interrupt_ tako što na svom izlazu generiše v
 
 ## Vremenska analiza
 
-Maksimalna frekvencija kola je 87 MHz.
+Maksimalna frekvencija kola je 141 MHz.
 ## _RTL_ prikaz
 
 ![rtl_prikaz](Images/rtl_viewer.png)
