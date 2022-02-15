@@ -78,4 +78,11 @@ package register_pkg is
   constant c_SLV_ADDR     : std_logic_vector(9 downto 0)  := "1101100111";
   constant c_GPO_VAL      : std_logic_vector((c_GPO_W - 1) downto 0) := (0 | 1 | 2 => '1', others => '0');
 
+  -- used commands
+  constant c_CMD_WRITE_BUFF  : std_logic_vector(31 downto 0) := (2 => '1', others => '0');
+  constant c_CMD_DISABLE_ALL : std_logic_vector(31 downto 0) := (others => '0');
+  constant c_CMD_I2C_START   : std_logic_vector(31 downto 0) := (4 => '1', others => '0');
+
+  constant c_CTRL_I2C_EN_MASTER : std_logic_vector(31 downto 0) := (5 => '1', others => '0');
+
 end package register_pkg;

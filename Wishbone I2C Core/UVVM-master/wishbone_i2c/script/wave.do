@@ -31,11 +31,15 @@ onerror {resume}
 if {$simulator == "modelsim"} {
   quietly WaveActivateNextPane {} 0
 }
+
+add wave -divider
+add wave -noupdate -divider Clock,Reset
+add wave -divider
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/clk_i
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/rst_i
 
 add wave -divider
-add wave -noupdate -divider Clock,Reset
+add wave -noupdate -divider {Wishbone core}
 add wave -divider
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/we_i
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/stb_i
@@ -46,13 +50,22 @@ add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_co
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/ack_o
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/int_o
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/scl_b
-add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/sda_b
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/sda_test
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/gpo_o
 
 add wave -divider
-add wave -noupdate -divider State
+add wave -noupdate -divider {Transaction}
+add wave -divider
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.write_index
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.read_index
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.tx_data_i
+
+add wave -divider
+add wave -noupdate -divider {Internal state}
 add wave -divider
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.state_reg
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/reg_block.ram
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.data_array
 
 
 # add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/p2c

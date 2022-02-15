@@ -339,6 +339,9 @@ begin
       int_o        => interrupt
    );
 
+  strobe    <= stb_i;
+  cyc_valid <= cyc_i;
+
   clk_dir <= clk_out when master_sel = '0' else
              scl_b;
 

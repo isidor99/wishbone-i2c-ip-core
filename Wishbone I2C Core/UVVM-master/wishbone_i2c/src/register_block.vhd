@@ -103,7 +103,7 @@ begin
 
       -- get status data from rx and tx buffer
       -- ram(c_REG_STAT)(7 downto 4) <= (rx_buff_e_i & rx_buff_f_i & tx_buff_e_i & tx_buff_f_i);
-      ram(to_integer(c_REG_STAT))(c_RXB_E)  <= rx_buff_e_i;
+      ram(to_integer(c_REG_STAT))(c_RXB_E) <= rx_buff_e_i;
       ram(to_integer(c_REG_STAT))(c_RXB_F) <= rx_buff_f_i;
       ram(to_integer(c_REG_STAT))(c_TXB_E) <= tx_buff_e_i;
       ram(to_integer(c_REG_STAT))(c_TXB_F) <= tx_buff_f_i;
@@ -129,7 +129,6 @@ begin
       end if;
     end if;
   end process;
-
 
   -- write data to tx buffer
   -- write is completed if tx buffer write is enabled

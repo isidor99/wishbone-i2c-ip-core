@@ -76,6 +76,12 @@ set_input_delay -clock clk_virt -min 1.500 [get_ports {data_i[*]}]
 set_input_delay -clock clk_virt -max 0.700 [get_ports {scl_b}]
 set_input_delay -clock clk_virt -min 0.500 [get_ports {scl_b}]
 
+set_input_delay -clock clk_virt -max 0.700 [get_ports {stb_i}]
+set_input_delay -clock clk_virt -min 0.500 [get_ports {stb_i}]
+
+set_input_delay -clock clk_virt -max 0.700 [get_ports {cyc_i}]
+set_input_delay -clock clk_virt -min 0.500 [get_ports {cyc_i}]
+
 set_input_delay -clock clk_virt -max 0.700 [get_ports {sda_b}]
 set_input_delay -clock clk_virt -min 0.500 [get_ports {sda_b}]
 

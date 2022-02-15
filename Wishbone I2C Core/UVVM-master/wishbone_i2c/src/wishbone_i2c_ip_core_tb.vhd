@@ -66,10 +66,11 @@ end wishbone_i2c_ip_core_tb;
 architecture arch of wishbone_i2c_ip_core_tb is
 
   constant C_CLK_PERIOD : time    := 20 ns;
+  constant C_SCL_PERIOD : time    := 10 us;
 
-  constant C_TEST_DATA : std_logic_vector(31 downto 0) := (1 => '1', others => '0');
+  constant C_TEST_DATA : std_logic_vector(31 downto 0) := (0 | 1 | 4 | 7 => '1', others => '0');
 
-  constant C_ADDR : unsigned(2 downto 0) := "011";
+  constant C_SLAVE_ADDRESS : unsigned(6 downto 0) := "1110001";
 
 begin
 
@@ -77,6 +78,19 @@ begin
 
   -- main process
   process
+
+    -- send data to buffer
+    procedure write_buffer (
+      constant data : std_logic_vector(7 downto 0)
+    ) is
+      variable send : std_logic_vector(31 downto 0) := (others => '0');
+    begin
+      send := send(31 downto 8) & data;
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_TX, send, "Test transmit");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_WRITE_BUFF, "Enable TX");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Disable all");
+    end write_buffer;
+
   begin
 
     -- Wait for UVVM to finish initialization
@@ -103,21 +117,39 @@ begin
 
     log(ID_LOG_HDR, "Check simple transmit", C_SCOPE);
     -----------------------------------------------------------------------------
-    wishbone_write(WISHBONE_VVCT, 1, C_ADDR, C_TEST_DATA, "Test transmit");
-	 wait for 3 * C_CLK_PERIOD;
-    wishbone_read(WISHBONE_VVCT, 1, C_ADDR, "Receive");
+    write_buffer("00000010");
+    write_buffer("11100010");
+    write_buffer("00011001");
+    write_buffer("11001101");
 
-    wait for 10 * C_CLK_PERIOD;
+    -- control register
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CTRL, c_CTRL_I2C_EN_MASTER, "Setup control register");
 
-    --wishbone_write(WISHBONE_VVCT, 1, C_ADDR, C_TEST_DATA, "Test transmit");
-    --wishbone_read(WISHBONE_VVCT, 1, C_ADDR, "Receive");
+    -- command register
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START, "Setup command register");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
 
+    i2c_slave_receive(I2C_VVCT, 1, 2, "I2C Slave receive");
+    await_completion(I2C_VVCT, 1, 3 * 11 * C_SCL_PERIOD);
 
+    wait for 50 us;
+
+    write_buffer("00000001");
+    write_buffer("11100010");
+    write_buffer("00011001");
+
+    -- command register
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START, "Setup command register");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+	 
+    -- i2c_slave_receive(I2C_VVCT, 1, 1, "I2C Slave receive one byte");
+    i2c_slave_check(I2C_VVCT, 1, "00011001", "I2C Slave check");
+    await_completion(I2C_VVCT, 1, 2 * 10 * C_SCL_PERIOD);
 
     -----------------------------------------------------------------------------
     -- Ending the simulation
     -----------------------------------------------------------------------------
-    wait for 100 us;             -- to allow some time for completion
+    wait for 2000 us;              -- to allow some time for completion
     report_alert_counters(FINAL); -- Report final counters and print conclusion for simulation (Success/Fail)
     log(ID_LOG_HDR, "SIMULATION COMPLETED", C_SCOPE);
 

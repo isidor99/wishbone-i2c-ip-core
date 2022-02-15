@@ -531,11 +531,21 @@ begin
       when load_tx_size =>
         byte_count_next <= to_integer(unsigned(tx_data_i));
 
+      when ready =>
+        sda_next <= '1';
+
+      when enbl_tx_addr =>
+        sda_next <= '1';
+
+      when wait_tx_addr =>
+        sda_next <= '1';
+
       when load_tx_addr =>
         shift_next     <= tx_data_i;
         bit_count_next <= 8;
         rst_count_next <= '0';
         rw_next        <= tx_data_i(0);
+        sda_next       <= '1';
 
       when sda_low =>
         sda_next <= '0';
