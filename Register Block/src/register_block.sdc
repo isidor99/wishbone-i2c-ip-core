@@ -67,6 +67,11 @@ derive_clock_uncertainty
 # Set Input Delay
 #**************************************************************
 
+set_input_delay -clock clk_virt -max 0.650 [get_ports {stb_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {stb_i}]
+
+set_input_delay -clock clk_virt -max 0.650 [get_ports {cyc_i}]
+set_input_delay -clock clk_virt -min 0.450 [get_ports {cyc_i}]
 
 set_input_delay -clock clk_virt -max 0.650 [get_ports {we_i}]
 set_input_delay -clock clk_virt -min 0.450 [get_ports {we_i}]

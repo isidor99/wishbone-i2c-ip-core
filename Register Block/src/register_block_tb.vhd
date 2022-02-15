@@ -39,8 +39,10 @@ architecture arch of register_block_tb is
     (
       clk_i           : in    std_logic;
       rst_i           : in    std_logic;
+		stb_i           : in    std_logic;
+	   cyc_i           : in    std_logic;
       we_i            : in    std_logic;
-      addr_i          : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1);
+      addr_i          : in    unsigned((2 ** g_ADDR_WIDTH - 1) downto 0);
       dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0);
       tx_buff_f_i     : in    std_logic;
       tx_buff_e_i     : in    std_logic;
@@ -77,8 +79,10 @@ architecture arch of register_block_tb is
 
   signal clk_test           : std_logic;
   signal rst_test           : std_logic;
+  signal stb_test           : std_logic;
+  signal cyc_test           : std_logic;
   signal we_test            : std_logic;
-  signal addr_test          : natural range 0 to (2 ** c_ADDR_WIDTH - 1);
+  signal addr_test          : unsigned((2 ** c_ADDR_WIDTH - 1) downto 0);
   signal dat_i_test         : std_logic_vector((c_WIDTH - 1) downto 0);
   signal tx_buff_f_test     : std_logic;
   signal tx_buff_e_test     : std_logic;
@@ -121,6 +125,8 @@ begin
     (
       clk_i           => clk_test,
       rst_i           => rst_test,
+		stb_i           => stb_test,
+		cyc_i           => cyc_test,
       we_i            => we_test,
       addr_i          => addr_test,
       dat_i           => dat_i_test,
@@ -174,7 +180,7 @@ begin
 
     -- write test data
     we_test          <= '0';
-    addr_test        <= 0;
+    addr_test        <= (others => '0');
     rst_test         <= '0';
     rx_buff_e_test   <= '1';
     rx_buff_f_test   <= '0';
@@ -186,6 +192,9 @@ begin
     arb_lost_i_test  <= '0';
     rx_data_test     <= "00001111";
     dat_i_test       <= c_TEST_DATA_IN;
+	 
+	 -- enable wishbone slave
+	 stb_test <= '1';
 
     -- test TX register
     wait until rising_edge(clk_test);
@@ -213,7 +222,7 @@ begin
       severity error;
 
     -- test RX register
-    addr_test <= 1;
+    addr_test <= "00000001";
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
@@ -225,7 +234,7 @@ begin
       severity error;
 
     -- test CONTROL register
-    addr_test  <= 2;
+    addr_test  <= "00000010";
     dat_i_test <= c_CTRL_REG_VAL;
     we_test    <= '1';
 
@@ -256,7 +265,7 @@ begin
     we_test <= '0';
 
     -- test STATUS register
-    addr_test <= 3;
+    addr_test <= "00000011";
     h_val     <= (1 | 5 | 7 => '1', others => '0');
 
     wait until rising_edge(clk_test);
@@ -304,7 +313,7 @@ begin
       severity error;
 
     -- test COMMAND register
-    addr_test <= 4;
+    addr_test <= "00000100";
     dat_i_test <= c_CMD_REP_STRT;
     we_test    <= '1';
 
@@ -358,7 +367,7 @@ begin
     -- test SLAVE ADDRESS register
     dat_i_test             <= (others => '0');
     dat_i_test(9 downto 0) <= c_SLV_ADDR;
-    addr_test              <= 5;
+    addr_test              <= "00000101";
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
@@ -370,7 +379,7 @@ begin
              integer'image(to_integer(unsigned(dat_o_test(6 downto 0))))
       severity error;
 
-    addr_test     <= 2;
+    addr_test     <= "00000010";
     dat_i_test    <= c_CTRL_REG_VAL;
     dat_i_test(3) <= '1';
     we_test       <= '1';
@@ -386,7 +395,7 @@ begin
       severity error;
 
     -- test GPO register
-    addr_test <= 6;
+    addr_test <= "00000110";
     we_test   <= '1';
 
     dat_i_test                         <= (others => '0');
@@ -408,7 +417,7 @@ begin
       severity error;
 
     -- test SYSCLK register
-    addr_test <= 7;
+    addr_test <= "00000111";
 
     wait until rising_edge(clk_test);
     wait for 2 ns;
