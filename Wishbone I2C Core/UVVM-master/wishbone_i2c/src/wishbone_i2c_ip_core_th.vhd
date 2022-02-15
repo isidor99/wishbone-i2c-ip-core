@@ -79,6 +79,7 @@ architecture arch of wishbone_i2c_ip_core_th is
   signal rst_test    : std_logic;
   signal we_test     : std_logic;
   signal addr_test   : std_logic_vector((C_ADDR_WIDTH - 1) downto 0);
+  signal addr_test_u : unsigned((C_ADDR_WIDTH - 1) downto 0);
   signal data_i_test : std_logic_vector((C_WIDTH - 1) downto 0);
   signal data_o_test : std_logic_vector((C_WIDTH - 1) downto 0);
   signal stb_test    : std_logic;
@@ -87,15 +88,16 @@ architecture arch of wishbone_i2c_ip_core_th is
   signal int_test    : std_logic;
   signal scl_test    : std_logic;
   signal sda_test    : std_logic;
-  signal gpo_test    : std_logic_vector (C_GPO_W - 1 downto 0);
+  signal gpo_test    : std_logic_vector(C_GPO_W - 1 downto 0);
 
-  signal addr_p : natural := 2;
 begin
 
   -----------------------------------------------------------------------------
   -- Instantiate the concurrent procedure that initializes UVVM
   -----------------------------------------------------------------------------
   i_ti_uvvm_engine : entity uvvm_vvc_framework.ti_uvvm_engine;
+
+  addr_test_u <= unsigned(addr_test);
 
   -----------------------------------------------------------------------------
   -- Wishbone I2C IP Core
@@ -114,11 +116,11 @@ begin
       clk_i     => clk_test,
       rst_i     => rst_test,
       we_i      => we_test,
-      addr_i    => addr_p,
+      stb_i     => stb_test,
+      cyc_i     => cyc_test,
+      addr_i    => addr_test_u,
       data_i    => data_i_test,
       data_o    => data_o_test,
-      -- stb_i     => stb_test,
-      -- cyc_i     => cyc_test,
       ack_o     => ack_test,
       int_o     => int_test,
       scl_b     => scl_test,

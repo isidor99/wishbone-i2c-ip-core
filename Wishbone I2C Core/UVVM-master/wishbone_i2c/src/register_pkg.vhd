@@ -18,19 +18,20 @@
 -----------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 package register_pkg is
 
   constant c_50_MHZ : std_logic_vector(31 downto 0) := "10000000000000000000000000110010";
 
-  constant c_REG_TX   : natural := 0;
-  constant c_REG_RX   : natural := 1;
-  constant c_REG_CTRL : natural := 2;
-  constant c_REG_STAT : natural := 3;
-  constant c_REG_CMD  : natural := 4;
-  constant c_REG_SLVA : natural := 5;
-  constant c_REG_GPO  : natural := 6;
-  constant c_REG_SYSC : natural := 7;
+  constant c_REG_TX   : unsigned(2 downto 0) := "000";
+  constant c_REG_RX   : unsigned(2 downto 0) := "001";
+  constant c_REG_CTRL : unsigned(2 downto 0) := "010";
+  constant c_REG_STAT : unsigned(2 downto 0) := "011";
+  constant c_REG_CMD  : unsigned(2 downto 0) := "100";
+  constant c_REG_SLVA : unsigned(2 downto 0) := "101";
+  constant c_REG_GPO  : unsigned(2 downto 0) := "110";
+  constant c_REG_SYSC : unsigned(2 downto 0) := "111";
 
   -- range
   subtype t_MODE         is natural range 2 downto 1;

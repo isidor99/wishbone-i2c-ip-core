@@ -38,6 +38,8 @@ add wave -divider
 add wave -noupdate -divider Clock,Reset
 add wave -divider
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/we_i
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/stb_i
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/cyc_i
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/addr_i
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/data_i
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/data_o
@@ -46,11 +48,6 @@ add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/scl_b
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/sda_b
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/gpo_o
-
-add wave -divider
-add wave -noupdate -divider Strobe
-add wave -divider
-add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i1_wishbone_vvc/wishbone_vvc_master_if.stb_o
 
 add wave -divider
 add wave -noupdate -divider State

@@ -37,7 +37,9 @@ entity wishbone_i2c_ip_core is
     clk_i     : in    std_logic;
     rst_i     : in    std_logic;
     we_i      : in    std_logic;
-    addr_i    : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1);
+    stb_i     : in    std_logic;
+    cyc_i     : in    std_logic;
+    addr_i    : in    unsigned((g_ADDR_WIDTH - 1) downto 0);
     data_i    : in    std_logic_vector((g_WIDTH - 1) downto 0);
     data_o    : out   std_logic_vector((g_WIDTH - 1) downto 0);
     ack_o     : out   std_logic;
@@ -63,7 +65,7 @@ architecture arch of wishbone_i2c_ip_core is
       clk_i           : in    std_logic;
       rst_i           : in    std_logic;
       we_i            : in    std_logic;
-      addr_i          : in    natural range 0 to (2 ** g_ADDR_WIDTH - 1);
+      addr_i          : in    unsigned((g_ADDR_WIDTH - 1) downto 0);
       dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0);
       tx_buff_f_i     : in    std_logic;
       tx_buff_e_i     : in    std_logic;
@@ -73,6 +75,8 @@ architecture arch of wishbone_i2c_ip_core is
       ack_res_flg_i   : in    std_logic;
       busy_flg_i      : in    std_logic;
       intr_flg_i      : in    std_logic;
+      stb_i           : in    std_logic;
+      cyc_i           : in    std_logic;
       rx_data_i       : in    std_logic_vector(7 downto 0);
       ack_o           : out   std_logic;
       arb_lost_o      : out   std_logic;
@@ -182,6 +186,8 @@ architecture arch of wishbone_i2c_ip_core is
   signal rx_full      : std_logic;
   signal rx_empty     : std_logic;
   signal rx_read_enbl : std_logic;
+  signal strobe       : std_logic;
+  signal cyc_valid    : std_logic;
   signal rx_data_out  : std_logic_vector(7 downto 0);
   signal i2c_enbl     : std_logic;
   signal i2c_start    : std_logic;
@@ -196,7 +202,7 @@ architecture arch of wishbone_i2c_ip_core is
   signal ack          : std_logic;
   signal arb_lost     : std_logic;
   signal arb_lost_int : std_logic;
-  signal ack_int      : std_logic;
+  -- signal ack_int      : std_logic;
   signal int_enbl     : std_logic;
   signal int_clear    : std_logic;
   signal interrupt    : std_logic;
@@ -227,8 +233,10 @@ begin
       ack_res_flg_i   => ack,
       busy_flg_i      => busy,
       intr_flg_i      => interrupt,
+      stb_i           => strobe,
+      cyc_i           => cyc_valid,
       rx_data_i       => rx_data_out,
-      ack_o           => ack_int,
+      ack_o           => ack_o,
       arb_lost_o      => arb_lost_int,
       int_o           => int_o,
       mode_o          => sel_mode,
@@ -325,7 +333,7 @@ begin
 	 (
       clk_i        => clk_i,
       arlo_i       => arb_lost_int,
-      int_ack_i    => ack_int,
+      int_ack_i    => ack,
       int_enbl_i   => int_enbl,
       int_clr_i    => int_clear,
       int_o        => interrupt
@@ -336,7 +344,5 @@ begin
 
   scl_b  <= clk_out when master_sel = '0' else
             'Z';
-
-  ack_o  <= ack_int;
 
 end arch;
