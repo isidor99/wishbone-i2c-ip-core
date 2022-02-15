@@ -37,8 +37,8 @@ entity register_block is
   (
     clk_i           : in    std_logic;
     rst_i           : in    std_logic;
-	 stb_i           : in    std_logic;
-	 cyc_i           : in    std_logic;
+    stb_i           : in    std_logic;
+    cyc_i           : in    std_logic;
     we_i            : in    std_logic;
     addr_i          : in    unsigned((2 ** g_ADDR_WIDTH - 1) downto 0);
     dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0);
@@ -93,8 +93,8 @@ begin
       ram(to_integer(c_REG_SLVA)) <= (others => '0');
       ram(to_integer(c_REG_GPO))  <= (others => '0');
       ram(to_integer(c_REG_SYSC)) <= c_50_MHz;
-		
-		ack_o <= '0';
+
+      ack_o <= '0';
 
     elsif rising_edge(clk_i) then
 
@@ -111,14 +111,14 @@ begin
       ram(to_integer(c_REG_STAT))(c_BUSY)  <= busy_flg_i;
       ram(to_integer(c_REG_STAT))(c_ACK)   <= ack_res_flg_i;
       ram(to_integer(c_REG_STAT))(c_ARLO)  <= arb_lost_i;
-		
-		ack_o <= '0';
+
+      ack_o <= '0';
 
       -- get interrupt data
       -- ram(c_REG_STAT)(3 downto 0) <= (intr_flg_i & busy_flg_i & ack_res_flg_i & arb_lost_i);
 
       -- write or read data from wishbone master side
-		if stb_i = '1' then
+      if stb_i = '1' then
         if we_i = '1' then
           ram(to_integer(addr_i)) <= dat_i;
         else
@@ -129,7 +129,7 @@ begin
       end if;
     end if;
   end process;
-  
+
 
   -- write data to tx buffer
   -- write is completed if tx buffer write is enabled
@@ -145,7 +145,7 @@ begin
 
   -- get flags from status register
   int_o      <= ram(to_integer(c_REG_STAT))(c_IF);
-  --ack_o      <= ram(c_REG_STAT)(c_ACK);
+  -- ack_o      <= ram(c_REG_STAT)(c_ACK);
   arb_lost_o <= ram(to_integer(c_REG_STAT))(c_ARLO);
 
   -- control register signals

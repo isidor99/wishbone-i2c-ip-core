@@ -39,8 +39,8 @@ architecture arch of register_block_tb is
     (
       clk_i           : in    std_logic;
       rst_i           : in    std_logic;
-		stb_i           : in    std_logic;
-	   cyc_i           : in    std_logic;
+      stb_i           : in    std_logic;
+      cyc_i           : in    std_logic;
       we_i            : in    std_logic;
       addr_i          : in    unsigned((2 ** g_ADDR_WIDTH - 1) downto 0);
       dat_i           : in    std_logic_vector((g_WIDTH - 1) downto 0);
@@ -125,8 +125,8 @@ begin
     (
       clk_i           => clk_test,
       rst_i           => rst_test,
-		stb_i           => stb_test,
-		cyc_i           => cyc_test,
+      stb_i           => stb_test,
+      cyc_i           => cyc_test,
       we_i            => we_test,
       addr_i          => addr_test,
       dat_i           => dat_i_test,
@@ -192,9 +192,9 @@ begin
     arb_lost_i_test  <= '0';
     rx_data_test     <= "00001111";
     dat_i_test       <= c_TEST_DATA_IN;
-	 
-	 -- enable wishbone slave
-	 stb_test <= '1';
+
+    -- enable wishbone slave
+    stb_test <= '1';
 
     -- test TX register
     wait until rising_edge(clk_test);
