@@ -114,8 +114,10 @@ begin
       -- write or read data from wishbone master side
       if we_i = '1' then
         ram(addr_i) <= dat_i;
+        -- ack_o <= '1';
       else
         dat_o <= ram(addr_i);
+        -- ack_o <= '1';
       end if;
     end if;
   end process;

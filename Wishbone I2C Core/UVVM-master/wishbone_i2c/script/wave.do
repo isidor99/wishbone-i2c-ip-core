@@ -31,20 +31,41 @@ onerror {resume}
 if {$simulator == "modelsim"} {
   quietly WaveActivateNextPane {} 0
 }
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/C_CLK_PERIOD
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/clock_ena
-add wave -noupdate -divider Clock,Reset,SBI
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/clk
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/arst
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/sbi_if
-add wave -noupdate -divider {C2P, P2C and Regs}
-add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/p2c
-add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr {-color White -radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/c2p
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/i_irqc/i_irqc_core/igr
-add wave -noupdate -divider {IRQ in and out}
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/irq2cpu
-add wave -noupdate -radix hexadecimal /irqc_demo_tb/irq2cpu_ack
-add wave -noupdate -color Cyan -radix hexadecimal /irqc_demo_tb/irq_source
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/clk_i
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/rst_i
+
+add wave -divider
+add wave -noupdate -divider Clock,Reset
+add wave -divider
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/we_i
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/addr_i
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/data_i
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/data_o
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/ack_o
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/int_o
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/scl_b
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/sda_b
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/gpo_o
+
+add wave -divider
+add wave -noupdate -divider Strobe
+add wave -divider
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i1_wishbone_vvc/wishbone_vvc_master_if.stb_o
+
+add wave -divider
+add wave -noupdate -divider State
+add wave -divider
+add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.state_reg
+
+
+# add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/p2c
+# add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr {-color White -radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/c2p
+# add wave -noupdate -radix hexadecimal /irqc_demo_tb/i_irqc/i_irqc_core/igr
+# add wave -noupdate -divider {IRQ in and out}
+# add wave -noupdate -radix hexadecimal /irqc_demo_tb/irq2cpu
+# add wave -noupdate -radix hexadecimal /irqc_demo_tb/irq2cpu_ack
+# add wave -noupdate -color Cyan -radix hexadecimal /irqc_demo_tb/irq_source
+
 if {$simulator == "modelsim"} {
   TreeUpdate [SetDefaultTree]
   WaveRestoreCursors {{Cursor 1} {193798 ps} 0}

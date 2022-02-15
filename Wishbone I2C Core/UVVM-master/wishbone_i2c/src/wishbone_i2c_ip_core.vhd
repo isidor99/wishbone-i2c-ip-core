@@ -132,6 +132,7 @@ architecture arch of wishbone_i2c_ip_core is
   component interrupt_generator
     port
     (
+      clk_i        : in  std_logic;
       arlo_i       : in  std_logic;
       int_ack_i    : in  std_logic;
       int_enbl_i   : in  std_logic;
@@ -320,7 +321,9 @@ begin
     );
 
   int_gen : interrupt_generator
-    port map (
+    port map
+	 (
+      clk_i        => clk_i,
       arlo_i       => arb_lost_int,
       int_ack_i    => ack_int,
       int_enbl_i   => int_enbl,

@@ -56,5 +56,7 @@ if { [string equal -nocase $simulator "modelsim"] } {
 }
 
 echo "\nCompiling TB\n"
+echo "eval vcom  $compdirectives  ../src/wishbone_i2c_ip_core_th.vhd"
+eval vcom  $compdirectives  ../src/wishbone_i2c_ip_core_th.vhd
 echo "eval vcom  $compdirectives  ../src/wishbone_i2c_ip_core_tb.vhd"
 eval vcom  $compdirectives  ../src/wishbone_i2c_ip_core_tb.vhd
