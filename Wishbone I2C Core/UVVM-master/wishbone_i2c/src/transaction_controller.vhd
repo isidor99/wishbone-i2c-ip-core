@@ -224,7 +224,7 @@ begin
         end if;
 
       when wait_ack_addr =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           if data_sda = '1' then
             state_next <= ack_intr;
           else
@@ -263,7 +263,7 @@ begin
         end if;
 
       when wait_ack_data =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           if data_sda = '1' then
             state_next <= ack_intr;
           elsif byte_count /= 0 then
@@ -278,14 +278,14 @@ begin
         end if;
 
       when wait_rep =>
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           state_next <= sda_high_rep;
         else
           state_next <= wait_rep;
         end if;
 
       when wait_stop =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           state_next <= scl_high_stop;
         else
           state_next <= wait_stop;
@@ -309,7 +309,7 @@ begin
         end if;
 
       when send_ack =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           state_next <= store;
         else
           state_next <= send_ack;
@@ -326,14 +326,14 @@ begin
 
       -- slave part
       when sda_low_slave =>
-        if (data_sda_prev = 'Z' or data_sda_prev = '1') and data_sda = '0' then
+        if (data_sda_prev = 'H' or data_sda_prev = '1') and data_sda = '0' then
           state_next <= scl_low_slave;
         else
           state_next <= sda_low_slave;
         end if;
 
       when scl_low_slave =>
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           state_next <= shift_addr_slave;
         else
           state_next <= scl_low_slave;
@@ -356,7 +356,8 @@ begin
         end if;
 
       when generate_ack_slave_ok =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        -- if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
+        if (data_clk_prev = 'H' or data_clk_prev = '1') and data_clk = '0' then
           if slv_addr_len_i = '0' then
             if rw_reg = '0' then
               state_next <= write_slave;
@@ -379,7 +380,8 @@ begin
         end if;
 
       when generate_ack_slave_nok =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        -- if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
+        if (data_clk_prev = 'H' or data_clk_prev = '1') and data_clk = '0' then
           state_next <= ready;
         else
           state_next <= generate_ack_slave_nok;
@@ -393,7 +395,8 @@ begin
         end if;
 
       when send_ack_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        -- if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
+        if (data_clk_prev = 'H' or data_clk_prev = '1') and data_clk = '0' then
           state_next <= store_slave;
         else
           state_next <= send_ack_slave;
@@ -407,14 +410,14 @@ begin
         end if;
 
       when wait_stop_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           state_next <= sda_high_slave;
         else
           state_next <= wait_stop_slave;
         end if;
 
       when sda_high_slave =>
-        if data_sda_prev = '0' and data_sda = '1' then
+        if data_sda_prev = '0' and (data_sda = '1' or data_sda = 'H') then
           state_next <= idle;
         else
           state_next <= sda_high_slave;
@@ -437,7 +440,7 @@ begin
         end if;
 
       when wait_ack_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           if data_sda = '1' then
             state_next <= ack_intr;
           elsif byte_count /= 0 then
@@ -508,7 +511,7 @@ begin
           slv_addr_len_i, rw_reg)
   begin
 
-    sda_next        <= 'Z';
+    sda_next        <= 'H';
     busy_next       <= busy_reg;
     byte_count_next <= byte_count_reg;
     bit_count_next  <= 8;
@@ -531,21 +534,21 @@ begin
       when load_tx_size =>
         byte_count_next <= to_integer(unsigned(tx_data_i));
 
-      when ready =>
-        sda_next <= '1';
-
-      when enbl_tx_addr =>
-        sda_next <= '1';
-
-      when wait_tx_addr =>
-        sda_next <= '1';
+--      when ready =>
+--        sda_next <= '1';
+--
+--      when enbl_tx_addr =>
+--        sda_next <= '1';
+--
+--      when wait_tx_addr =>
+--        sda_next <= '1';
 
       when load_tx_addr =>
         shift_next     <= tx_data_i;
         bit_count_next <= 8;
         rst_count_next <= '0';
         rw_next        <= tx_data_i(0);
-        sda_next       <= '1';
+        -- sda_next       <= '1';
 
       when sda_low =>
         sda_next <= '0';
@@ -557,21 +560,21 @@ begin
       when addr_op =>
         bit_count_next <= bit_count_reg;
         sda_next <= sda_reg;
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             write_done <= '1';
           else
             bit_count_next <= bit_count_reg - 1;
             sda_next <= shift_reg(bit_count_reg - 1);
           end if;
-        elsif data_clk_prev = '0' and data_clk = '1' then
+        elsif data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           if sda_b /= shift_reg(bit_count_reg) then
             arb_lost <= '1';
           end if;
         end if;
 
       when wait_ack_addr =>
-        sda_next <= 'Z';
+        sda_next <= 'H';
         write_done <= '0';
 
       when enbl_tx_data =>
@@ -586,11 +589,11 @@ begin
         bit_count_next <= 8;
 
       when write_op =>
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             write_done <= '1';
             byte_count_next <= byte_count_reg - 1;
-            sda_next <= 'Z';
+            sda_next <= 'H';
           else
             bit_count_next <= bit_count_reg - 1;
             sda_next <= shift_reg(bit_count_reg - 1);
@@ -601,7 +604,7 @@ begin
         end if;
 
       when wait_ack_data =>
-        sda_next   <= 'Z';
+        sda_next   <= 'H';
         write_done <= '0';
 
       when wait_rep =>
@@ -619,10 +622,17 @@ begin
         sda_next <= '1';
 
       when read_op =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           bit_count_next <= bit_count_reg - 1;
-          shift_next(bit_count_reg - 1) <= sda_b;
-        elsif data_clk_prev = '1' and data_clk = '0' then
+          -- code change
+          if sda_b = 'H' then
+            shift_next(bit_count_reg - 1) <= '1';
+          else
+            shift_next(bit_count_reg - 1) <= sda_b;
+          end if;
+          -- end code change
+          -- shift_next(bit_count_reg - 1) <= sda_b;
+        elsif (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
             byte_count_next <= byte_count_reg - 1;
@@ -634,11 +644,19 @@ begin
         end if;
 
       when send_ack =>
-        sda_next <= '0';
+        if byte_count_reg = 0 then
+          sda_next <= '1';
+        else
+          sda_next <= '0';
+        end if;
 
       when sda_high_rep =>
-        sda_next       <= '1';
-        rst_count_next <= '0';
+        if sda_b /= '0' then
+          sda_next       <= '1';
+          rst_count_next <= '0';
+        else
+          rst_count_next <= '1';
+        end if;
 
       when scl_high_rep =>
         sda_next       <= '1';
@@ -646,15 +664,15 @@ begin
 
       -- slave part
       when scl_low_slave =>
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           busy_next <= '1';
         end if;
 
       when shift_addr_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           bit_count_next <= bit_count_reg - 1;
-          shift_next(bit_count_reg - 1) <= sda_b;
-        elsif data_clk_prev = '1' and data_clk = '0' then
+          shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+        elsif (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
           else
@@ -685,7 +703,7 @@ begin
 
       when generate_ack_slave_ok =>
         sda_next <= '0';
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           if slv_addr_len_i = '1' then
             if ten_bit_reg = '0' then
               ten_bit_next <= '1';
@@ -699,10 +717,17 @@ begin
         sda_next <= '1';
 
       when write_slave =>
-        if data_clk_prev = '0' and data_clk = '1' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           bit_count_next <= bit_count_reg - 1;
-          shift_next(bit_count_reg - 1) <= sda_b;
-        elsif data_clk_prev = '1' and data_clk = '0' then
+          -- code change
+--          if sda_b = 'H' then
+--            shift_next(bit_count_reg - 1) <= '1';
+--          else
+--            shift_next(bit_count_reg - 1) <= sda_b;
+--          end if;
+          -- end code change
+          shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+        elsif (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
             byte_count_next <= byte_count_reg - 1;
@@ -728,11 +753,11 @@ begin
         bit_count_next <= 8;
 
       when read_op_slave =>
-        if data_clk_prev = '1' and data_clk = '0' then
+        if (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             write_done <= '1';
             byte_count_next <= byte_count_reg - 1;
-            sda_next <= 'Z';
+            sda_next <= 'H';
           else
             bit_count_next <= bit_count_reg - 1;
             sda_next <= shift_reg(bit_count_reg - 1);

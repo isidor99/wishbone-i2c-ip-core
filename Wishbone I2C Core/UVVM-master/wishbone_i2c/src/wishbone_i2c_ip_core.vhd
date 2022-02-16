@@ -346,6 +346,6 @@ begin
              scl_b;
 
   scl_b  <= clk_out when master_sel = '0' else
-            'Z';
+            'H';
 
 end arch;

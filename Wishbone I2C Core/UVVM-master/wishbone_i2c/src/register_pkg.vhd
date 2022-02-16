@@ -80,9 +80,12 @@ package register_pkg is
 
   -- used commands
   constant c_CMD_WRITE_BUFF  : std_logic_vector(31 downto 0) := (2 => '1', others => '0');
+  constant c_CMD_READ_BUFF   : std_logic_vector(31 downto 0) := (3 => '1', others => '0');
   constant c_CMD_DISABLE_ALL : std_logic_vector(31 downto 0) := (others => '0');
   constant c_CMD_I2C_START   : std_logic_vector(31 downto 0) := (4 => '1', others => '0');
+  constant c_CMD_REP_START   : std_logic_Vector(31 downto 0) := (0 => '1', others => '0');
 
   constant c_CTRL_I2C_EN_MASTER : std_logic_vector(31 downto 0) := (5 => '1', others => '0');
+  constant c_CTRL_I2C_EN_SLAVE  : std_logic_vector(31 downto 0) := (5 | 0 => '1', others => '0');
 
 end package register_pkg;
