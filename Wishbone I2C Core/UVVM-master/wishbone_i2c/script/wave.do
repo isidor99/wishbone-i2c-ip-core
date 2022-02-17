@@ -71,7 +71,7 @@ add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_co
 add wave -divider
 add wave -noupdate -divider {Shift register}
 add wave -divider
-add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.shift_reg
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.shift_reg
 
 # add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/p2c.rw_ier {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_itr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_icr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/p2c.awt_irq2cpu_ena {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/p2c
 # add wave -noupdate -radix hexadecimal -childformat {{/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr -radix hexadecimal} {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed -radix hexadecimal}} -expand -subitemconfig {/irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irr {-color White -radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_ipr {-radix hexadecimal} /irqc_demo_tb/i_irqc/i_irqc_core/c2p.aro_irq2cpu_allowed {-radix hexadecimal}} /irqc_demo_tb/i_irqc/i_irqc_core/c2p

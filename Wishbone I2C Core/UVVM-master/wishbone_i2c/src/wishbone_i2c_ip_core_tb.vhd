@@ -45,6 +45,7 @@ use bitvis_vip_sbi.td_vvc_framework_common_methods_pkg.all;
 library bitvis_vip_i2c;
 use bitvis_vip_i2c.vvc_methods_pkg.all;
 use bitvis_vip_i2c.td_vvc_framework_common_methods_pkg.all;
+use bitvis_vip_i2c.i2c_bfm_pkg.C_READ_BIT;
 
 library bitvis_vip_wishbone;
 use bitvis_vip_wishbone.vvc_methods_pkg.all;
@@ -70,9 +71,10 @@ architecture arch of wishbone_i2c_ip_core_tb is
 
   constant C_TEST_DATA : std_logic_vector(31 downto 0) := (0 | 1 | 4 | 7 => '1', others => '0');
 
-  constant C_SLAVE_ADDRESS       : std_logic_vector(6 downto 0) := "1110001";
-  constant C_SLAVE_ADDRESS_CORE  : unsigned(6 downto 0)         := "0011110";  -- 0011110
-  constant C_SLAVE_ADDRESS_8_BIT : std_logic_vector(7 downto 0) := "00100110";
+  constant C_SLAVE_ADDRESS         : std_logic_vector(6 downto 0) := "1110001";
+  constant C_SLAVE_ADDRESS_CORE    : unsigned(6 downto 0)         := "0011110";  -- 0011110
+  constant C_SLAVE_ADDRESS_CORE_10 : unsigned(9 downto 0)         := "1010011010";
+  constant C_SLAVE_ADDRESS_8_BIT   : std_logic_vector(7 downto 0) := "00100110";
 
   constant C_TEST_VECTOR_A : t_byte_array := (
     x"19",
@@ -85,7 +87,23 @@ architecture arch of wishbone_i2c_ip_core_tb is
     x"6F"
   );
 
-  constant ADDR_DATA  : std_logic_vector(31 downto 0) := "00000000000000000000000000011110";
+  constant C_TEST_VECTOR_A_3 : t_byte_array := (
+    x"7E",
+    x"96",
+    x"34"
+  );
+
+  constant C_TEST_VECTOR_A_4 : t_byte_array := (
+    x"32",
+    x"07",
+    x"B1",
+    x"4F",
+    x"D5",
+    x"Ac"
+  );
+
+  constant ADDR_DATA    : std_logic_vector(31 downto 0) := "00000000000000000000000000011110";
+  constant ADDR_DATA_10 : std_logic_vector(31 downto 0) := "00000000000000000000001010011010";
 
 begin
 
@@ -101,9 +119,9 @@ begin
       variable send : std_logic_vector(31 downto 0) := (others => '0');
     begin
       send := send(31 downto 8) & data;
-      wishbone_write(WISHBONE_VVCT, 1, c_REG_TX,  send,              "Write data to TX register");
-      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_WRITE_BUFF,  "Enable TX");
-      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Disable all");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_TX,  send,              "Tx register - TX DATA");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_WRITE_BUFF,  "Command register - ENABLE TX BUFFER");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Command register - DISABLE");
     end write_buffer;
 
     -- read data from RX buffer and check
@@ -113,9 +131,9 @@ begin
       variable send : std_logic_vector(31 downto 0) := (others => '0');
     begin
       send := send(31 downto 8) & data;
-      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_READ_BUFF,   "Enable RX");
-      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Disable all");
-      wishbone_check(WISHBONE_VVCT, 1, c_REG_RX,  send,              "Check data in RX buffer");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_READ_BUFF,   "Command register - ENABLE RX BUFFER");
+      wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Command register - DISABLE");
+      wishbone_check(WISHBONE_VVCT, 1, c_REG_RX,  send,              "Rx register - RX DATA");
     end check_buffer;
 
   begin
@@ -144,7 +162,7 @@ begin
     -- enable I2C and select master mode
     wishbone_write(WISHBONE_VVCT, 1, c_REG_CTRL, c_CTRL_I2C_EN_MASTER, "Setup control register");
 
-    log(ID_LOG_HDR, "Test transmit two bytes", C_SCOPE);
+    log(ID_LOG_HDR, "Test transmit two bytes - MASTER MODE", C_SCOPE);
     -----------------------------------------------------------------------------
     write_buffer("00000010");
     write_buffer("11100010");
@@ -158,26 +176,28 @@ begin
     i2c_slave_check(I2C_VVCT, 1, C_TEST_VECTOR_A, "I2C slave check bytes");
 
     await_completion(I2C_VVCT, 1, 3 * 11 * C_SCL_PERIOD);
-
-    wait for 50 us;
-
-    log(ID_LOG_HDR, "Test transmit one byte", C_SCOPE);
     -----------------------------------------------------------------------------
-    write_buffer("00000001");
-    write_buffer("11100010");
-    write_buffer("00011001");
-
-    -- command register
-    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
-    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
-
-    i2c_slave_check(I2C_VVCT, 1, "00011001", "I2C slave check byte");
-
-    await_completion(I2C_VVCT, 1, 2 * 10 * C_SCL_PERIOD);
 
     wait for 50 us;
 
-    log(ID_LOG_HDR, "Test read two bytes", C_SCOPE);
+--    log(ID_LOG_HDR, "Test transmit one byte - MASTER MODE", C_SCOPE);
+--    -----------------------------------------------------------------------------
+--    write_buffer("00000001");
+--    write_buffer("11100010");
+--    write_buffer("00011001");
+--
+--    -- command register
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+--
+--    i2c_slave_check(I2C_VVCT, 1, "00011001", "I2C slave check byte");
+--
+--    await_completion(I2C_VVCT, 1, 2 * 10 * C_SCL_PERIOD);
+--    -----------------------------------------------------------------------------
+--
+--    wait for 50 us;
+
+    log(ID_LOG_HDR, "Test read two bytes - MASTER MODE", C_SCOPE);
     -----------------------------------------------------------------------------
     write_buffer("00000010");
     write_buffer("11100011");
@@ -193,10 +213,11 @@ begin
     -- wishbone read from RX buffer and check
     check_buffer(C_TEST_VECTOR_A(0));
     check_buffer(C_TEST_VECTOR_A(1));
+    -----------------------------------------------------------------------------
 
     wait for 50 us;
 
-    log(ID_LOG_HDR, "Test repeated start", C_SCOPE);
+    log(ID_LOG_HDR, "Test repeated start - MASTER MODE", C_SCOPE);
     -----------------------------------------------------------------------------
     write_buffer("00000011");
     write_buffer("11100010");
@@ -211,7 +232,7 @@ begin
     i2c_slave_check(I2C_VVCT, 1, C_TEST_VECTOR_A_2, "I2C slave check bytes");
 
     -- set new data in TX
-    write_buffer("00000001");
+    write_buffer("00000010");
     write_buffer("11100011");
 
     -- command register
@@ -224,20 +245,21 @@ begin
     wait for 100 ns;
 
     -- command register
-    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register - repeated start");
 
     -- slave write data
-    i2c_slave_transmit(I2C_VVCT, 1, C_TEST_VECTOR_A(0), "Slave transmit");
+    i2c_slave_transmit(I2C_VVCT, 1, C_TEST_VECTOR_A, "Slave transmit");
 
-    await_completion(I2C_VVCT, 1, 2 * 10 * C_SCL_PERIOD);
+    await_completion(I2C_VVCT, 1, 3 * 10 * C_SCL_PERIOD);
 
     -- wishbone read from RX buffer and check
     check_buffer(C_TEST_VECTOR_A(0));
-
+    check_buffer(C_TEST_VECTOR_A(1));
+    -----------------------------------------------------------------------------
 
     wait for 50 us;
 
-    log(ID_LOG_HDR, "Test transmit two bytes to 10-bit address slave", C_SCOPE);
+    log(ID_LOG_HDR, "Test transmit two bytes to 10-bit address slave - MASTER MODE", C_SCOPE);
     -----------------------------------------------------------------------------
     write_buffer("00000011");
     write_buffer("11110110");            -- 10-bit address first byte
@@ -252,6 +274,53 @@ begin
     i2c_slave_check(I2C_VVCT, 2, C_TEST_VECTOR_A, "I2C slave check bytes");
 
     await_completion(I2C_VVCT, 2, 4 * 11 * C_SCL_PERIOD);
+    -----------------------------------------------------------------------------
+
+    wait for 50 us;
+
+--    log(ID_LOG_HDR, "Test read three bytes from 10-bit address slave - MASTER MODE", C_SCOPE);
+--    -----------------------------------------------------------------------------
+--    write_buffer("00000001");
+--    write_buffer("11110110");            -- 10-bit address first byte
+--    write_buffer(C_SLAVE_ADDRESS_8_BIT); -- 10-bit address second byte
+--
+--    -- command register
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Command register - I2C START");
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Command register - DISABLE");
+--
+--    -- set new data in TX
+--    write_buffer("00000011");
+--    write_buffer("11110111");
+--
+--    -- command register
+--    -- set repeated start
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_REP_START, "Command register - REPEATED START");
+--
+--    -- wait for I2C completion
+--    -- await_completion(WISHBONE_VVCT, 1, 2 * C_SCL_PERIOD);
+--    -- wait for 300 ns;
+--    -- wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+--
+--    -- i2c_slave_receive(I2C_VVCT, 2, 1, "I2C 10-bit slave - 2ND ADDRESS BYTE"); 
+--    -- await_completion(I2C_VVCT, 2, 10 * C_SCL_PERIOD);
+--
+--    -- wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Command register - DISABLE");
+--
+--    -- command register
+--    -- wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+--
+--    -- slave write data
+--    i2c_slave_transmit(I2C_VVCT, 2, C_TEST_VECTOR_A_3, "Slave transmit");
+--    await_completion(I2C_VVCT, 2, 6 * 10 * C_SCL_PERIOD);
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Command register - DISABLE");
+--
+--    wait for 100 ns;
+--
+--    -- wishbone read from RX buffer and check
+--    check_buffer(C_TEST_VECTOR_A_3(0));
+--    check_buffer(C_TEST_VECTOR_A_3(1));
+--    check_buffer(C_TEST_VECTOR_A_3(2));
+    -----------------------------------------------------------------------------
 
     wait for 50 us;
 
@@ -264,11 +333,39 @@ begin
 
     wait for 20 us;
 
-    log(ID_LOG_HDR, "Test read from slave", C_SCOPE);
+    log(ID_LOG_HDR, "Test write to slave - SLAVE MODE", C_SCOPE);
     -----------------------------------------------------------------------------
-    write_buffer("00000001");
-    write_buffer(C_TEST_VECTOR_A(0));
-    -- write_buffer(C_TEST_VECTOR_A(1));
+    write_buffer("00000011");
+
+    -- command register
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+    await_completion(I2C_VVCT, 3, C_SCL_PERIOD);
+
+    wait for 5 us;
+
+    -- master transmit
+    i2c_master_transmit(I2C_VVCT, 3, C_SLAVE_ADDRESS_CORE, C_TEST_VECTOR_A_3, "Master transmit");
+    await_completion(I2C_VVCT, 3, 5 * 11 * C_SCL_PERIOD);
+
+    -- check data
+    -- wishbone read from RX buffer and check
+    check_buffer(C_TEST_VECTOR_A_3(0));
+    check_buffer(C_TEST_VECTOR_A_3(1));
+    check_buffer(C_TEST_VECTOR_A_3(2));
+    -----------------------------------------------------------------------------
+
+    wait for 50 us;
+
+    log(ID_LOG_HDR, "Test read from slave - SLAVE MODE", C_SCOPE);
+    -----------------------------------------------------------------------------
+    write_buffer("00000110");
+    write_buffer(C_TEST_VECTOR_A_4(0));
+    write_buffer(C_TEST_VECTOR_A_4(1));
+    write_buffer(C_TEST_VECTOR_A_4(2));
+    write_buffer(C_TEST_VECTOR_A_4(3));
+    write_buffer(C_TEST_VECTOR_A_4(4));
+    write_buffer(C_TEST_VECTOR_A_4(5));
 
     -- command register
     wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
@@ -277,9 +374,68 @@ begin
 
     wait for 5 us;
 
+    -- master receive
+    -- i2c_master_receive(I2C_VVCT, 3, C_SLAVE_ADDRESS_CORE, 6, "Master receive");
+    i2c_master_check(I2C_VVCT, 3, C_SLAVE_ADDRESS_CORE, C_TEST_VECTOR_A_4, "Master check received");
+    await_completion(I2C_VVCT, 3, 7 * 11 * C_SCL_PERIOD);
+    -----------------------------------------------------------------------------
+
+    wait for 50 us;
+
+    -- set slave 10-bit address
+    -- enable I2C and select slave mode
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_SLVA, ADDR_DATA_10, "Setup core slave address");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CTRL, c_CTRL_I2C_EN_SLAVE_10_BIT,  "Setup control register");
+
+    log(ID_LOG_HDR, "Test write to 10-bit slave - SLAVE MODE", C_SCOPE);
+    -----------------------------------------------------------------------------
+    write_buffer("00000011");
+
+    -- command register
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
+    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+    await_completion(I2C_VVCT, 4, 3 * C_SCL_PERIOD);
+
+    wait for 5 us;
+
     -- master transmit
-    i2c_master_transmit(I2C_VVCT, 3, C_SLAVE_ADDRESS_CORE, x"A4", "Master transmit");
-    await_completion(I2C_VVCT, 3, 3 * 11 * C_SCL_PERIOD);
+    i2c_master_transmit(I2C_VVCT, 4, C_SLAVE_ADDRESS_CORE_10, C_TEST_VECTOR_A_3, "Master transmit");
+    await_completion(I2C_VVCT, 4, 5 * 11 * C_SCL_PERIOD);
+
+    -- check data
+    -- wishbone read from RX buffer and check
+    check_buffer(C_TEST_VECTOR_A_3(0));
+    check_buffer(C_TEST_VECTOR_A_3(1));
+    check_buffer(C_TEST_VECTOR_A_3(2));
+    await_completion(WISHBONE_VVCT, 1, C_SCL_PERIOD);
+    -----------------------------------------------------------------------------
+
+    wait for 50 us;
+
+--    log(ID_LOG_HDR, "Test read from 10-bit slave SLAVE MODE", C_SCOPE);
+--    -----------------------------------------------------------------------------
+--    write_buffer("00000110");
+--    write_buffer(C_TEST_VECTOR_A_4(0));
+--    write_buffer(C_TEST_VECTOR_A_4(1));
+--    write_buffer(C_TEST_VECTOR_A_4(2));
+--    write_buffer(C_TEST_VECTOR_A_4(3));
+--    write_buffer(C_TEST_VECTOR_A_4(4));
+--    write_buffer(C_TEST_VECTOR_A_4(5));
+--
+--    -- command register
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_I2C_START,   "Setup command register");
+--    wishbone_write(WISHBONE_VVCT, 1, c_REG_CMD, c_CMD_DISABLE_ALL, "Setup command register");
+--    await_completion(I2C_VVCT, 4, 5 * C_SCL_PERIOD);
+--
+--    wait for 100 us;
+--
+--    -- master receive
+--    -- i2c_master_quick_command(I2C_VVCT, 4,  C_SLAVE_ADDRESS_CORE_10, "Master receive", C_READ_BIT);
+--    i2c_master_receive(I2C_VVCT, 4, C_SLAVE_ADDRESS_CORE_10, 6, "Receive data");
+--    -- i2c_master_transmit(I2C_VVCT, 4, C_SLAVE_ADDRESS_CORE_10, C_TEST_VECTOR_A_4, "Master receive");
+--    await_completion(I2C_VVCT, 4, 8 * 11 * C_SCL_PERIOD);
+    -----------------------------------------------------------------------------
+
 
     -----------------------------------------------------------------------------
     -- Ending the simulation

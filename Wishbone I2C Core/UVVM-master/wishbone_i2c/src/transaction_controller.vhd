@@ -80,7 +80,6 @@ architecture arch of transaction_controller is
   signal ack           : std_logic := '0';
   signal rst_count     : std_logic := '0';
   signal arb_lost      : std_logic := '0';
-  -- signal read_or_write : std_logic := '0';
   signal wait_done     : std_logic := '0';
   signal write_done    : std_logic := '0';
   signal read_done     : std_logic := '0';
@@ -356,8 +355,8 @@ begin
         end if;
 
       when generate_ack_slave_ok =>
-        -- if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
-        if (data_clk_prev = 'H' or data_clk_prev = '1') and data_clk = '0' then
+        if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
+        -- if (data_clk_prev = 'H' or data_clk_prev = '1') and data_clk = '0' then
           if slv_addr_len_i = '0' then
             if rw_reg = '0' then
               state_next <= write_slave;
@@ -680,6 +679,7 @@ begin
           end if;
         else
           bit_count_next <= bit_count_reg;
+          sda_next <= sda_reg;
         end if;
 
       when check_addr_slave =>
@@ -736,6 +736,7 @@ begin
           end if;
         else
           bit_count_next <= bit_count_reg;
+          sda_next <= sda_reg;
         end if;
 
       when send_ack_slave =>

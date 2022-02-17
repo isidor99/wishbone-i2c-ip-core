@@ -79,8 +79,8 @@ architecture arch of wishbone_i2c_ip_core_th is
     id_for_bfm_poll             => ID_BFM_POLL
   );
 
-  -- Define value for the I2C Slave BFM config
-  constant C_I2C_BFM_CONFIG : t_i2c_bfm_config := (
+  -- Define value for the I2C Slave BFM config 7-bit address
+  constant C_I2C_BFM_CONFIG_7_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => false,
     master_sda_to_scl               => 5 us,
     master_scl_to_sda               => 5 us,
@@ -125,8 +125,8 @@ architecture arch of wishbone_i2c_ip_core_th is
     id_for_bfm_poll                 => ID_BFM_POLL
   );
 
-  -- Define value for the I2C Master BFM config
-  constant C_I2C_BFM_CONFIG_MASTER : t_i2c_bfm_config := (
+  -- Define value for the I2C Master BFM config 7-bit address
+  constant C_I2C_BFM_CONFIG_MASTER_7_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => false,
     master_sda_to_scl               => 1 us,
     master_scl_to_sda               => 1 us,
@@ -148,6 +148,28 @@ architecture arch of wishbone_i2c_ip_core_th is
     id_for_bfm_poll                 => ID_BFM_POLL
   );
 
+  -- Define value for the I2C Master BFM config 10-bit address
+  constant C_I2C_BFM_CONFIG_MASTER_10_BIT : t_i2c_bfm_config := (
+    enable_10_bits_addressing       => true,
+    master_sda_to_scl               => 1 us,
+    master_scl_to_sda               => 1 us,
+    master_stop_condition_hold_time => 1 us,
+    max_wait_scl_change             => 1 ms,
+    max_wait_scl_change_severity    => warning,
+    max_wait_sda_change             => 1 ms,
+    max_wait_sda_change_severity    => warning,
+    i2c_bit_time                    => 10 us,
+    i2c_bit_time_severity           => failure,
+    acknowledge_severity            => failure,
+    slave_mode_address              => C_SLAVE_ADDRESS,
+    slave_mode_address_severity     => failure,
+    slave_rw_bit_severity           => failure,
+    reserved_address_severity       => warning,
+    match_strictness                => MATCH_EXACT,
+    id_for_bfm                      => ID_BFM,
+    id_for_bfm_wait                 => ID_BFM_WAIT,
+    id_for_bfm_poll                 => ID_BFM_POLL
+  );
 
   signal clk_test    : std_logic;
   signal rst_test    : std_logic;
@@ -252,7 +274,7 @@ begin
     (
       GC_INSTANCE_IDX => 1,
       GC_MASTER_MODE  => false,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG
+      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_7_BIT
     )
     port map
     (
@@ -274,16 +296,30 @@ begin
       i2c_vvc_if.sda => sda_test
     );
 
-  -- master
-  i2_i2c_vvc_master : entity bitvis_vip_i2c.i2c_vvc
+  -- 7-bit master
+  i1_i2c_vvc_master : entity bitvis_vip_i2c.i2c_vvc
     generic map
     (
       GC_INSTANCE_IDX => 3,
       GC_MASTER_MODE  => true,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_MASTER
+      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_MASTER_7_BIT
     )
     port map
 	 (
+      i2c_vvc_if.scl => scl_test,
+      i2c_vvc_if.sda => sda_test
+    );
+
+  -- 10-bit master
+  i2_i2c_vvc_master : entity bitvis_vip_i2c.i2c_vvc
+    generic map
+    (
+      GC_INSTANCE_IDX => 4,
+      GC_MASTER_MODE  => true,
+      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_MASTER_10_BIT
+    )
+    port map
+    (
       i2c_vvc_if.scl => scl_test,
       i2c_vvc_if.sda => sda_test
     );
