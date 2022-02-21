@@ -112,6 +112,12 @@ begin
       ram(to_integer(c_REG_STAT))(c_ACK)   <= ack_res_flg_i;
       ram(to_integer(c_REG_STAT))(c_ARLO)  <= arb_lost_i;
 
+      -- arbitration is lost
+      -- go to slave mode
+      if arb_lost_i = '1' then
+        ram(to_integer(c_REG_CTRL))(c_MSL) <= '1';
+      end if;
+
       ack_o <= '0';
 
       -- get interrupt data

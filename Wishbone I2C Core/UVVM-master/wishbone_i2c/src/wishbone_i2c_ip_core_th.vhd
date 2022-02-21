@@ -37,38 +37,45 @@ use uvvm_util.func_cov_pkg.all;
 library uvvm_vvc_framework;
 use uvvm_vvc_framework.ti_vvc_framework_support_pkg.all;
 
-library bitvis_vip_sbi;
-
 library bitvis_vip_i2c;
-use bitvis_vip_i2c.i2c_bfm_pkg.t_i2c_bfm_config;
+use bitvis_vip_i2c.i2c_bfm_pkg.all;
 
 library bitvis_vip_wishbone;
-use bitvis_vip_wishbone.wishbone_bfm_pkg.t_wishbone_bfm_config;
+use bitvis_vip_wishbone.wishbone_bfm_pkg.all;
 
 library bitvis_vip_clock_generator;
+use bitvis_vip_clock_generator.vvc_methods_pkg.all;
 
 entity wishbone_i2c_ip_core_th is
+  port
+  (
+    int_o : out std_logic
+  );
 end wishbone_i2c_ip_core_th;
 
 architecture arch of wishbone_i2c_ip_core_th is
 
-  constant C_WIDTH      : natural := 32;
-  constant C_ADDR_WIDTH : natural := 3;
-  constant C_GPO_W      : natural := 8;
-  constant C_WIDTH_B    : natural := 8;
-  constant C_DEPTH      : natural := 16;
+  constant c_WIDTH      : natural := 32;
+  constant c_ADDR_WIDTH : natural := 3;
+  constant c_GPO_W      : natural := 8;
+  constant c_WIDTH_B    : natural := 8;
+  constant c_DEPTH      : natural := 16;
 
-  constant C_CLK_PERIOD : time    := 20 ns;
-  constant C_CLOCK_GEN  : natural := 1;
+  constant c_CLK_PERIOD : time    := 20 ns;
+  constant c_CLOCK_GEN  : natural := 1;
 
-  constant C_SLAVE_ADDRESS        : unsigned(9 downto 0) := "0001110001";
-  constant C_SLAVE_ADDRESS_10_BIT : unsigned(9 downto 0) := "1100100110";
+  constant c_SLAVE_ADDRESS        : unsigned(9 downto 0) := "0001110001";
+  constant c_SLAVE_ADDRESS_10_BIT : unsigned(9 downto 0) := "1100100110";
+
+  constant c_BIT_TIME : time := 10 us;
+  -- constant c_BIT_TIME : time := 2500 ns;
+  -- constant c_BIT_TIME : time := 1 us;
 
   -- Define value for the Wishbone BFM config
-  constant C_WISHBONE_BFM_CONFIG : t_wishbone_bfm_config := (
+  constant c_WISHBONE_BFM_CONFIG : t_wishbone_bfm_config := (
     max_wait_cycles             => 10,
     max_wait_cycles_severity    => failure,
-    clock_period                => C_CLK_PERIOD,
+    clock_period                => c_CLK_PERIOD,
     clock_period_margin         => 0 ns,
     clock_margin_severity       => TB_ERROR,
     setup_time                  => 1 ns,
@@ -80,7 +87,7 @@ architecture arch of wishbone_i2c_ip_core_th is
   );
 
   -- Define value for the I2C Slave BFM config 7-bit address
-  constant C_I2C_BFM_CONFIG_7_BIT : t_i2c_bfm_config := (
+  constant c_I2C_BFM_CONFIG_7_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => false,
     master_sda_to_scl               => 5 us,
     master_scl_to_sda               => 5 us,
@@ -89,10 +96,10 @@ architecture arch of wishbone_i2c_ip_core_th is
     max_wait_scl_change_severity    => warning,
     max_wait_sda_change             => 10 ms,
     max_wait_sda_change_severity    => warning,
-    i2c_bit_time                    => 10 us,
+    i2c_bit_time                    => c_BIT_TIME,
     i2c_bit_time_severity           => failure,
     acknowledge_severity            => failure,
-    slave_mode_address              => C_SLAVE_ADDRESS,
+    slave_mode_address              => c_SLAVE_ADDRESS,
     slave_mode_address_severity     => failure,
     slave_rw_bit_severity           => failure,
     reserved_address_severity       => warning,
@@ -103,7 +110,7 @@ architecture arch of wishbone_i2c_ip_core_th is
   );
 
   -- Define value for the I2C Slave BFM config 10-bit address
-  constant C_I2C_BFM_CONFIG_10_BIT : t_i2c_bfm_config := (
+  constant c_I2C_BFM_CONFIG_10_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => true,
     master_sda_to_scl               => 5 us,
     master_scl_to_sda               => 5 us,
@@ -112,10 +119,10 @@ architecture arch of wishbone_i2c_ip_core_th is
     max_wait_scl_change_severity    => warning,
     max_wait_sda_change             => 10 ms,
     max_wait_sda_change_severity    => warning,
-    i2c_bit_time                    => 10 us,
+    i2c_bit_time                    => c_BIT_TIME,
     i2c_bit_time_severity           => failure,
     acknowledge_severity            => failure,
-    slave_mode_address              => C_SLAVE_ADDRESS_10_BIT,
+    slave_mode_address              => c_SLAVE_ADDRESS_10_BIT,
     slave_mode_address_severity     => failure,
     slave_rw_bit_severity           => failure,
     reserved_address_severity       => warning,
@@ -126,19 +133,19 @@ architecture arch of wishbone_i2c_ip_core_th is
   );
 
   -- Define value for the I2C Master BFM config 7-bit address
-  constant C_I2C_BFM_CONFIG_MASTER_7_BIT : t_i2c_bfm_config := (
+  constant c_I2C_BFM_CONFIG_MASTER_7_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => false,
-    master_sda_to_scl               => 1 us,
+    master_sda_to_scl               => 2500 ns,
     master_scl_to_sda               => 1 us,
     master_stop_condition_hold_time => 1 us,
     max_wait_scl_change             => 1 ms,
     max_wait_scl_change_severity    => warning,
     max_wait_sda_change             => 1 ms,
     max_wait_sda_change_severity    => warning,
-    i2c_bit_time                    => 10 us,
+    i2c_bit_time                    => c_BIT_TIME,
     i2c_bit_time_severity           => failure,
-    acknowledge_severity            => failure,
-    slave_mode_address              => C_SLAVE_ADDRESS,
+    acknowledge_severity            => warning, -- failure,
+    slave_mode_address              => c_SLAVE_ADDRESS,
     slave_mode_address_severity     => failure,
     slave_rw_bit_severity           => failure,
     reserved_address_severity       => warning,
@@ -149,7 +156,7 @@ architecture arch of wishbone_i2c_ip_core_th is
   );
 
   -- Define value for the I2C Master BFM config 10-bit address
-  constant C_I2C_BFM_CONFIG_MASTER_10_BIT : t_i2c_bfm_config := (
+  constant c_I2C_BFM_CONFIG_MASTER_10_BIT : t_i2c_bfm_config := (
     enable_10_bits_addressing       => true,
     master_sda_to_scl               => 1 us,
     master_scl_to_sda               => 1 us,
@@ -158,10 +165,10 @@ architecture arch of wishbone_i2c_ip_core_th is
     max_wait_scl_change_severity    => warning,
     max_wait_sda_change             => 1 ms,
     max_wait_sda_change_severity    => warning,
-    i2c_bit_time                    => 10 us,
+    i2c_bit_time                    => c_BIT_TIME,
     i2c_bit_time_severity           => failure,
     acknowledge_severity            => failure,
-    slave_mode_address              => C_SLAVE_ADDRESS,
+    slave_mode_address              => c_SLAVE_ADDRESS,
     slave_mode_address_severity     => failure,
     slave_rw_bit_severity           => failure,
     reserved_address_severity       => warning,
@@ -174,17 +181,17 @@ architecture arch of wishbone_i2c_ip_core_th is
   signal clk_test    : std_logic;
   signal rst_test    : std_logic;
   signal we_test     : std_logic;
-  signal addr_test   : std_logic_vector((C_ADDR_WIDTH - 1) downto 0);
-  signal addr_test_u : unsigned((C_ADDR_WIDTH - 1) downto 0);
-  signal data_i_test : std_logic_vector((C_WIDTH - 1) downto 0);
-  signal data_o_test : std_logic_vector((C_WIDTH - 1) downto 0);
+  signal addr_test   : std_logic_vector((c_ADDR_WIDTH - 1) downto 0);
+  signal addr_test_u : unsigned((c_ADDR_WIDTH - 1) downto 0);
+  signal data_i_test : std_logic_vector((c_WIDTH - 1) downto 0);
+  signal data_o_test : std_logic_vector((c_WIDTH - 1) downto 0);
   signal stb_test    : std_logic;
   signal cyc_test    : std_logic;
   signal ack_test    : std_logic;
   signal int_test    : std_logic;
   signal scl_test    : std_logic;
   signal sda_test    : std_logic;
-  signal gpo_test    : std_logic_vector(C_GPO_W - 1 downto 0);
+  signal gpo_test    : std_logic_vector(c_GPO_W - 1 downto 0);
 
 begin
 
@@ -195,24 +202,7 @@ begin
 
   addr_test_u <= unsigned(addr_test);
 
-  -- sda
---  process(sda_test, sda_line)
---  begin
---
---    if (sda_test /= '1' and sda_test /= '0') and (sda_line /= '1' and sda_line /= '0') then
---      sda_test <= '1';
---      sda_line <= '1';
---    elsif (sda_test /= '1' and sda_test /= '0') and (sda_line = '1' or sda_line = '0') then
---      sda_test <= sda_line;
---    elsif (sda_test = '1' or sda_test = '0') and (sda_line /= '1' and sda_line /= '0') then
---      sda_line <= sda_test;
---    else
---      sda_test <= 'Z';
---      sda_line <= 'Z';
---    end if;
---
---  end process;
-
+  int_o <= int_test;
 
   -----------------------------------------------------------------------------
   -- Wishbone I2C IP Core
@@ -220,11 +210,11 @@ begin
   i_wishbone_i2c_ip_core : entity work.wishbone_i2c_ip_core
     generic map
     (
-      g_WIDTH      => C_WIDTH,
-      g_ADDR_WIDTH => C_ADDR_WIDTH,
-      g_GPO_W      => C_GPO_W,
-      g_WIDTH_B    => C_WIDTH_B,
-      g_DEPTH      => C_DEPTH
+      g_WIDTH      => c_WIDTH,
+      g_ADDR_WIDTH => c_ADDR_WIDTH,
+      g_GPO_W      => c_GPO_W,
+      g_WIDTH_B    => c_WIDTH_B,
+      g_DEPTH      => c_DEPTH
     )
     port map
     (
@@ -249,13 +239,13 @@ begin
   i1_wishbone_vvc : entity bitvis_vip_wishbone.wishbone_vvc
     generic map
     (
-      GC_ADDR_WIDTH          => C_ADDR_WIDTH,
-      GC_DATA_WIDTH          => C_WIDTH,
-      GC_WISHBONE_BFM_CONFIG => C_WISHBONE_BFM_CONFIG
+      Gc_ADDR_WIDTH          => c_ADDR_WIDTH,
+      GC_DATA_WIDTH          => c_WIDTH,
+      Gc_WISHBONE_BFM_CONFIG => c_WISHBONE_BFM_CONFIG
     )
     port map
     (
-      clk => clk_test,
+      clk                          => clk_test,
       wishbone_vvc_master_if.dat_i => data_o_test,
       wishbone_vvc_master_if.ack_i => ack_test,
       wishbone_vvc_master_if.adr_o => addr_test,
@@ -274,7 +264,7 @@ begin
     (
       GC_INSTANCE_IDX => 1,
       GC_MASTER_MODE  => false,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_7_BIT
+      Gc_I2C_CONFIG   => c_I2C_BFM_CONFIG_7_BIT
     )
     port map
     (
@@ -288,7 +278,7 @@ begin
     (
       GC_INSTANCE_IDX => 2,
       GC_MASTER_MODE  => false,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_10_BIT
+      Gc_I2C_CONFIG   => c_I2C_BFM_CONFIG_10_BIT
     )
     port map
     (
@@ -302,10 +292,10 @@ begin
     (
       GC_INSTANCE_IDX => 3,
       GC_MASTER_MODE  => true,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_MASTER_7_BIT
+      Gc_I2C_CONFIG   => c_I2C_BFM_CONFIG_MASTER_7_BIT
     )
     port map
-	 (
+    (
       i2c_vvc_if.scl => scl_test,
       i2c_vvc_if.sda => sda_test
     );
@@ -316,7 +306,7 @@ begin
     (
       GC_INSTANCE_IDX => 4,
       GC_MASTER_MODE  => true,
-      GC_I2C_CONFIG   => C_I2C_BFM_CONFIG_MASTER_10_BIT
+      Gc_I2C_CONFIG   => c_I2C_BFM_CONFIG_MASTER_10_BIT
     )
     port map
     (
@@ -331,16 +321,16 @@ begin
   i_clock_generator_vvc : entity bitvis_vip_clock_generator.clock_generator_vvc
     generic map
     (
-      GC_INSTANCE_IDX    => C_CLOCK_GEN,
+      GC_INSTANCE_IDX    => c_CLOCK_GEN,
       GC_CLOCK_NAME      => "Clock",
-      GC_CLOCK_PERIOD    => C_CLK_PERIOD,
-      GC_CLOCK_HIGH_TIME => C_CLK_PERIOD / 2
+      GC_CLOCK_PERIOD    => c_CLK_PERIOD,
+      GC_CLOCK_HIGH_TIME => c_CLK_PERIOD / 2
     )
     port map
     (
       clk => clk_test
     );
 
-  rst_test <= '1', '0' after (5 * C_CLK_PERIOD);
+  rst_test <= '1', '0' after (5 * c_CLK_PERIOD);
 
 end arch;

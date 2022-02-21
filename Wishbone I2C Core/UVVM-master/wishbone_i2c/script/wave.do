@@ -54,19 +54,21 @@ add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/gpo_o
 
 add wave -divider
-add wave -noupdate -divider {Transaction}
-add wave -divider
-add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.write_index
-add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.read_index
-add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.tx_data_i
-
-add wave -divider
 add wave -noupdate -divider {Internal state}
 add wave -divider
 add wave -noupdate -radix binary /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.state_reg
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/reg_block.ram
+
+add wave -divider
+add wave -noupdate -divider {Transaction}
+add wave -divider
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.write_index
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.read_index
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tx_buff.data_array
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/rx_buff.write_index
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/rx_buff.read_index
 add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/rx_buff.data_array
+add wave -noupdate -radix hexadecimal /wishbone_i2c_ip_core_tb/i_wishbone_i2c_core/i_wishbone_i2c_ip_core/tran_contr.tx_data_i
 
 add wave -divider
 add wave -noupdate -divider {Shift register}

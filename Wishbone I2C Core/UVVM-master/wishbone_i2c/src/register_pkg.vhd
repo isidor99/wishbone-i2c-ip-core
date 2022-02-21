@@ -84,9 +84,24 @@ package register_pkg is
   constant c_CMD_DISABLE_ALL : std_logic_vector(31 downto 0) := (others => '0');
   constant c_CMD_I2C_START   : std_logic_vector(31 downto 0) := (4 => '1', others => '0');
   constant c_CMD_REP_START   : std_logic_Vector(31 downto 0) := (0 => '1', others => '0');
+  constant c_CMD_INT_CLR     : std_logic_vector(31 downto 0) := (1 => '1', others => '0');
 
+  -- UNCOMMENT TO SELECT 100 KHZ
   constant c_CTRL_I2C_EN_MASTER       : std_logic_vector(31 downto 0) := (5 => '1', others => '0');
+  constant c_CTRL_I2C_EN_MASTER_INTR  : std_logic_vector(31 downto 0) := (5 | 4 => '1', others => '0');
   constant c_CTRL_I2C_EN_SLAVE        : std_logic_vector(31 downto 0) := (5 | 0 => '1', others => '0');
   constant c_CTRL_I2C_EN_SLAVE_10_BIT : std_logic_vector(31 downto 0) := (5 | 3 | 0 => '1', others => '0');
+
+  -- UNCOMMENT TO SELECT 400 KHZ
+--  constant c_CTRL_I2C_EN_MASTER       : std_logic_vector(31 downto 0) := (5 | 1 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_MASTER_INTR  : std_logic_vector(31 downto 0) := (5 | 4 | 1 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_SLAVE        : std_logic_vector(31 downto 0) := (5 | 1 | 0 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_SLAVE_10_BIT : std_logic_vector(31 downto 0) := (5 | 3 | 1 | 0 => '1', others => '0');
+
+  -- UNCOMMENT TO SELECT 1 MHZ
+--  constant c_CTRL_I2C_EN_MASTER       : std_logic_vector(31 downto 0) := (5 | 2 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_MASTER_INTR  : std_logic_vector(31 downto 0) := (5 | 4 | 2 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_SLAVE        : std_logic_vector(31 downto 0) := (5 | 2 | 0 => '1', others => '0');
+--  constant c_CTRL_I2C_EN_SLAVE_10_BIT : std_logic_vector(31 downto 0) := (5 | 3 | 2 | 0 => '1', others => '0');
 
 end package register_pkg;

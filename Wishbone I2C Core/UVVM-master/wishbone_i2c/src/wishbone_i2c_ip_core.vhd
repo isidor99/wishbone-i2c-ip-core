@@ -330,7 +330,7 @@ begin
 
   int_gen : interrupt_generator
     port map
-	 (
+    (
       clk_i        => clk_i,
       arlo_i       => arb_lost_int,
       int_ack_i    => ack,

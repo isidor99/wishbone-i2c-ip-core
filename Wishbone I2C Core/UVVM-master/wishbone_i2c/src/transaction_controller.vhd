@@ -75,6 +75,8 @@ architecture arch of transaction_controller is
   signal data_clk_prev : std_logic;
   signal data_sda      : std_logic;
   signal data_sda_prev : std_logic;
+  signal rep_strt      : std_logic;
+  signal rep_strt_prev : std_logic;
   signal low_delay     : std_logic;
   signal busy          : std_logic;
   signal ack           : std_logic := '0';
@@ -84,6 +86,7 @@ architecture arch of transaction_controller is
   signal write_done    : std_logic := '0';
   signal read_done     : std_logic := '0';
   signal addr_check    : std_logic := '0';
+  signal det_rep_st    : std_logic := '0';
 
   signal sysclk_val    : integer := 1;
   signal sig_mult      : integer := c_HZ_MULT;
@@ -102,6 +105,8 @@ architecture arch of transaction_controller is
   signal shift_reg, shift_next           : std_logic_vector(7 downto 0) := (others => '0');
   signal ten_bit_reg, ten_bit_next       : std_logic := '0';
   signal rw_reg, rw_next                 : std_logic := '0';
+  signal rep_st_reg, rep_st_next         : std_logic := '0';
+  signal rep_st_ld_reg, rep_st_ld_next   : std_logic := '0';
 
 begin
 
@@ -118,6 +123,8 @@ begin
       data_clk <= scl_i;
       data_sda_prev <= data_sda;
       data_sda <= sda_b;
+      rep_strt_prev <= rep_strt;
+      rep_strt <= rep_strt_i;
 
       if rst_count = '1' then
         count <= 0;
@@ -138,8 +145,8 @@ begin
   -- control path: next-state
   process(state_reg, data_clk, data_clk_prev, enbl_i,
           rep_strt_i, read_done, i2c_start_i, tx_buff_e_i,
-          msl_sel_i, byte_count, arb_lost, low_delay,
-          ack, rw_reg, write_done, addr_check,
+          msl_sel_i, byte_count, arb_lost, low_delay, det_rep_st,
+          ack, rw_reg, write_done, addr_check, rep_st_ld_reg, rep_st_reg,
           data_sda_prev, data_sda, slv_addr_len_i, ten_bit_reg)
   begin
     case state_reg is
@@ -167,7 +174,8 @@ begin
         state_next <= load_tx_size;
 
       when load_tx_size =>
-        if rep_strt_i = '1' then
+        -- if rep_strt_i = '1' then
+        if rep_st_ld_reg = '1' then
           state_next <= enbl_tx_addr;
         else
           state_next <= ready;
@@ -224,7 +232,7 @@ begin
 
       when wait_ack_addr =>
         if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
-          if data_sda = '1' then
+          if data_sda = '1' or data_sda = 'H' then
             state_next <= ack_intr;
           else
             if rw_reg = '0' then
@@ -263,11 +271,12 @@ begin
 
       when wait_ack_data =>
         if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
-          if data_sda = '1' then
+          if data_sda = '1' or data_sda = 'H' then
             state_next <= ack_intr;
           elsif byte_count /= 0 then
             state_next <= enbl_tx_data;
-          elsif rep_strt_i = '1' then
+          -- elsif rep_strt_i = '1' then
+          elsif rep_st_reg = '1' then
             state_next <= wait_rep;
           else
             state_next <= wait_stop;
@@ -317,7 +326,8 @@ begin
       when store =>
         if byte_count /= 0 then
           state_next <= read_op;
-        elsif rep_strt_i = '1' then
+        -- elsif rep_strt_i = '1' then
+        elsif rep_st_reg = '1' then
           state_next <= wait_rep;
         else
           state_next <= wait_stop;
@@ -365,7 +375,11 @@ begin
             end if;
           else
             if ten_bit_reg = '0' then
-              state_next <= shift_addr_slave;
+              if rw_reg = '0' then
+                state_next <= shift_addr_slave;
+              else
+                state_next <= enbl_tx_slave;
+              end if;
             else
               if rw_reg = '0' then
                 state_next <= write_slave;
@@ -389,6 +403,8 @@ begin
       when write_slave =>
         if read_done = '1' then
           state_next <= send_ack_slave;
+        elsif det_rep_st = '1' then
+          state_next <= shift_addr_slave;
         else
           state_next <= write_slave;
         end if;
@@ -481,7 +497,7 @@ begin
 
     if rst_i = '1' then
 
-      sda_reg        <= '1';
+      sda_reg        <= 'H';
       busy_reg       <= '0';
       byte_count_reg <= 0;
       bit_count_reg  <= 8;
@@ -489,6 +505,8 @@ begin
       shift_reg      <= (others => '0');
       ten_bit_reg    <= '0';
       rw_reg         <= '0';
+      rep_st_reg     <= '0';
+      rep_st_ld_reg  <= '0';
 
     elsif rising_edge(clk_i) then
 
@@ -500,14 +518,16 @@ begin
       shift_reg      <= shift_next;
       ten_bit_reg    <= ten_bit_next;
       rw_reg         <= rw_next;
+      rep_st_reg     <= rep_st_next;
+      rep_st_ld_reg  <= rep_st_ld_next;
 
     end if;
   end process;
 
   -- datapath: routing multipexer
-  process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg,
+  process(state_reg, sda_reg, byte_count_reg, bit_count_reg, busy_reg, shift_reg, rep_st_reg, rep_st_ld_reg,
           rst_count_reg, data_clk_prev, data_clk, tx_data_i, sda_b, slv_addr_i, ten_bit_reg,
-          slv_addr_len_i, rw_reg)
+          slv_addr_len_i, rw_reg, rep_strt_prev, rep_strt)
   begin
 
     sda_next        <= 'H';
@@ -523,6 +543,13 @@ begin
     ten_bit_next    <= ten_bit_reg;
     rw_next         <= rw_reg;
     arb_lost        <= '0';
+    rep_st_next     <= rep_st_reg;
+    rep_st_ld_next  <= rep_st_ld_reg;
+    det_rep_st      <= '0';
+
+    if rep_strt_prev = '0' and rep_strt = '1' then
+      rep_st_next <= '1';
+    end if;
 
     -- logic
     case state_reg is
@@ -536,8 +563,8 @@ begin
 --      when ready =>
 --        sda_next <= '1';
 --
---      when enbl_tx_addr =>
---        sda_next <= '1';
+      when enbl_tx_addr =>
+        rep_st_ld_next <= '0';
 --
 --      when wait_tx_addr =>
 --        sda_next <= '1';
@@ -564,11 +591,19 @@ begin
             write_done <= '1';
           else
             bit_count_next <= bit_count_reg - 1;
-            sda_next <= shift_reg(bit_count_reg - 1);
+            -- sda_next <= 'H' when shift_reg(bit_count_reg - 1) = '1' else '0';
+            if shift_reg(bit_count_reg - 1) = '1' then
+              sda_next <= 'H';
+            else
+              sda_next <= '0';
+            end if;
           end if;
         elsif data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
-          if sda_b /= shift_reg(bit_count_reg) then
-            arb_lost <= '1';
+          -- if sda_b /= shift_reg(bit_count_reg) then
+          if sda_b = '0' then
+            if sda_b /= shift_reg(bit_count_reg) then
+              arb_lost <= '1';
+            end if;
           end if;
         end if;
 
@@ -595,7 +630,12 @@ begin
             sda_next <= 'H';
           else
             bit_count_next <= bit_count_reg - 1;
-            sda_next <= shift_reg(bit_count_reg - 1);
+            -- sda_next <= 'H' when shift_reg(bit_count_reg - 1) = '1' else '0';
+            if shift_reg(bit_count_reg - 1) = '1' then
+              sda_next <= 'H';
+            else
+              sda_next <= '0';
+            end if;
           end if;
         else
           bit_count_next <= bit_count_reg;
@@ -608,6 +648,8 @@ begin
 
       when wait_rep =>
         sda_next <= '0';
+        rep_st_next <= '0';
+        rep_st_ld_next <= '1';
 
       when wait_stop =>
         sda_next <= '0';
@@ -618,7 +660,8 @@ begin
         sda_next       <= '0';
 
       when sda_high_stop =>
-        sda_next <= '1';
+        -- sda_next <= '1';
+        sda_next <= 'H';
 
       when read_op =>
         if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
@@ -644,21 +687,24 @@ begin
 
       when send_ack =>
         if byte_count_reg = 0 then
-          sda_next <= '1';
+          -- sda_next <= '1';
+          sda_next <= 'H';
         else
           sda_next <= '0';
         end if;
 
       when sda_high_rep =>
         if sda_b /= '0' then
-          sda_next       <= '1';
+          -- sda_next       <= '1';
+          sda_next       <= 'H';
           rst_count_next <= '0';
         else
           rst_count_next <= '1';
         end if;
 
       when scl_high_rep =>
-        sda_next       <= '1';
+        -- sda_next       <= '1';
+        sda_next       <= 'H';
         rst_count_next <= '0';
 
       -- slave part
@@ -670,7 +716,12 @@ begin
       when shift_addr_slave =>
         if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
           bit_count_next <= bit_count_reg - 1;
-          shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+          -- shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+          if sda_b = '0' then
+            shift_next(bit_count_reg - 1) <= '0';
+          else
+            shift_next(bit_count_reg - 1) <= '1';
+          end if;
         elsif (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
@@ -714,7 +765,8 @@ begin
         end if;
 
       when generate_ack_slave_nok =>
-        sda_next <= '1';
+        -- sda_next <= '1';
+        sda_next <= 'H';
 
       when write_slave =>
         if data_clk_prev = '0' and (data_clk = '1' or data_clk = 'H') then
@@ -726,13 +778,22 @@ begin
 --            shift_next(bit_count_reg - 1) <= sda_b;
 --          end if;
           -- end code change
-          shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+          -- shift_next(bit_count_reg - 1) <= '0' when sda_b = '0' else '1';
+          if sda_b = '0' then
+            shift_next(bit_count_reg - 1) <= '0';
+          else
+            shift_next(bit_count_reg - 1) <= '1';
+          end if;
         elsif (data_clk_prev = '1' or data_clk_prev = 'H') and data_clk = '0' then
           if bit_count_reg = 0 then
             read_done <= '1';
             byte_count_next <= byte_count_reg - 1;
           else
             bit_count_next <= bit_count_reg;
+          end if;
+          if bit_count_reg = 7 and shift_reg(7) = '1' and sda_b = '0' then
+            det_rep_st <= '1';
+            bit_count_next <= 8;
           end if;
         else
           bit_count_next <= bit_count_reg;
@@ -761,7 +822,12 @@ begin
             sda_next <= 'H';
           else
             bit_count_next <= bit_count_reg - 1;
-            sda_next <= shift_reg(bit_count_reg - 1);
+            -- sda_next <= 'H' when shift_reg(bit_count_reg - 1) = '1' else '0';
+            if shift_reg(bit_count_reg - 1) = '1' then
+              sda_next <= 'H';
+            else
+              sda_next <= '0';
+            end if;
           end if;
         else
           bit_count_next <= bit_count_reg;

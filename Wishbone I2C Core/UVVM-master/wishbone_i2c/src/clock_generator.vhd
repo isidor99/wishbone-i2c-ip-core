@@ -68,7 +68,11 @@ begin
         tmp <= tmp;
       else
         count := 0;
-        tmp <= not tmp;
+        if tmp = '0' then
+          tmp <= 'H';
+        else
+          tmp <= '0';
+        end if;
       end if;
     end if;
   end process;
@@ -89,6 +93,6 @@ begin
   col <= (clk_val * sig_mult) / (2 * freq);
 
   clk_o <= tmp when enb_i = '1' else
-           '1';
+           'H';
 
 end arch;
