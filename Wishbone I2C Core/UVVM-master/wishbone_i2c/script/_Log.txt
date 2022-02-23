@@ -1,0 +1,1443 @@
+UVVM: ID_CONSTRUCTOR                     0.0 ns  CLOCK_GENERATOR_VVC,1          VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  CLOCK_GENERATOR_VVC,1          Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  CLOCK_GENERATOR_VVC,1          Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  I2C_VVC,4                      VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,4                      Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,4                      Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  I2C_VVC,3                      VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,3                      Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,3                      Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  I2C_VVC,2                      VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,2                      Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,2                      Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  I2C_VVC,1                      VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,1                      Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  I2C_VVC,1                      Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  WISHBONE_VVC,1                 VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  WISHBONE_VVC,1                 Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  WISHBONE_VVC,1                 Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  CLOCK_GENERATOR_VVC,1            ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  I2C_VVC,4                        ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  I2C_VVC,3                        ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  I2C_VVC,2                        ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,4                   enable() => SB enabled. 'I2C VVC SB Enabled'
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,4                   config() => config applied to SB. 
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,4                   enable_log_msg() => message id id_data enabled.
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,3                   enable() => SB enabled. 'I2C VVC SB Enabled'
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,3                   config() => config applied to SB. 
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,3                   enable_log_msg() => message id id_data enabled.
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,2                   enable() => SB enabled. 'I2C VVC SB Enabled'
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,2                   config() => config applied to SB. 
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,2                   enable_log_msg() => message id id_data enabled.
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,1                   enable() => SB enabled. 'I2C VVC SB Enabled'
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,1                   config() => config applied to SB. 
+UVVM: ID_CTRL                            0.0 ns  I2C_VVC_SB,1                   enable_log_msg() => message id id_data enabled.
+UVVM: ID_CTRL                            0.0 ns  WISHBONE_VVC_SB,1              enable() => SB enabled. 'WISHBONE VVC SB Enabled'
+UVVM: ID_CTRL                            0.0 ns  WISHBONE_VVC_SB,1              config() => config applied to SB. 
+UVVM: ID_CTRL                            0.0 ns  WISHBONE_VVC_SB,1              enable_log_msg() => message id id_data enabled.
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  CLOCK_GENERATOR_VVC,1            ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                   0.0 ns  TB seq.(uvvm)                  ->start_clock(CLOCK_GENERATOR_VVC,1): 'Start clock generator'. [1]
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  I2C_VVC,4                        ..Executor: Waiting for command
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  I2C_VVC,3                        ..Executor: Waiting for command
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  I2C_VVC,2                        ..Executor: Waiting for command
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER                 0.0 ns  CLOCK_GENERATOR_VVC,1            start_clock(CLOCK_GENERATOR_VVC,1). Command received  [1]
+UVVM: ID_UVVM_CMD_ACK                    0.0 ns  TB seq.(uvvm)                      ACK received.   [1]
+UVVM: ID_CMD_EXECUTOR                    0.0 ns  CLOCK_GENERATOR_VVC,1            start_clock(CLOCK_GENERATOR_VVC,1) - Will be executed  [1]
+UVVM:      
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      ***  REPORT OF GLOBAL CTRL ***
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:                                IGNORE    STOP_LIMIT
+UVVM:                NOTE         :  REGARD         0
+UVVM:                TB_NOTE      :  REGARD         0
+UVVM:                WARNING      :  REGARD         0
+UVVM:                TB_WARNING   :  REGARD         0
+UVVM:                MANUAL_CHECK :  REGARD         0
+UVVM:                ERROR        :  REGARD         1
+UVVM:                TB_ERROR     :  REGARD         1
+UVVM:                FAILURE      :  REGARD         1
+UVVM:                TB_FAILURE   :  REGARD         1
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      
+UVVM:      
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      ***  REPORT OF MSG ID PANEL ***
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:                ID                             Status
+UVVM:                ------------------------       ------
+UVVM:                ID_UTIL_BURIED               : DISABLED
+UVVM:                ID_BITVIS_DEBUG              : DISABLED
+UVVM:                ID_UTIL_SETUP                : ENABLED
+UVVM:                ID_LOG_MSG_CTRL              : ENABLED
+UVVM:                ID_ALERT_CTRL                : ENABLED
+UVVM:                ID_FINISH_OR_STOP            : ENABLED
+UVVM:                ID_CLOCK_GEN                 : ENABLED
+UVVM:                ID_GEN_PULSE                 : ENABLED
+UVVM:                ID_BLOCKING                  : ENABLED
+UVVM:                ID_WATCHDOG                  : ENABLED
+UVVM:                ID_RAND_GEN                  : DISABLED
+UVVM:                ID_RAND_CONF                 : DISABLED
+UVVM:                ID_FUNC_COV_BINS             : DISABLED
+UVVM:                ID_FUNC_COV_BINS_INFO        : DISABLED
+UVVM:                ID_FUNC_COV_RAND             : DISABLED
+UVVM:                ID_FUNC_COV_SAMPLE           : DISABLED
+UVVM:                ID_FUNC_COV_CONFIG           : DISABLED
+UVVM:                ID_POS_ACK                   : ENABLED
+UVVM:                ID_LOG_HDR                   : ENABLED
+UVVM:                ID_LOG_HDR_LARGE             : ENABLED
+UVVM:                ID_LOG_HDR_XL                : ENABLED
+UVVM:                ID_SEQUENCER                 : ENABLED
+UVVM:                ID_SEQUENCER_SUB             : ENABLED
+UVVM:                ID_BFM                       : ENABLED
+UVVM:                ID_BFM_WAIT                  : ENABLED
+UVVM:                ID_BFM_POLL                  : ENABLED
+UVVM:                ID_BFM_POLL_SUMMARY          : ENABLED
+UVVM:                ID_CHANNEL_BFM               : ENABLED
+UVVM:                ID_TERMINATE_CMD             : ENABLED
+UVVM:                ID_SEGMENT_INITIATE          : ENABLED
+UVVM:                ID_SEGMENT_COMPLETE          : ENABLED
+UVVM:                ID_SEGMENT_HDR               : ENABLED
+UVVM:                ID_SEGMENT_DATA              : ENABLED
+UVVM:                ID_PACKET_INITIATE           : ENABLED
+UVVM:                ID_PACKET_PREAMBLE           : ENABLED
+UVVM:                ID_PACKET_COMPLETE           : ENABLED
+UVVM:                ID_PACKET_HDR                : ENABLED
+UVVM:                ID_PACKET_DATA               : ENABLED
+UVVM:                ID_PACKET_CHECKSUM           : ENABLED
+UVVM:                ID_PACKET_GAP                : ENABLED
+UVVM:                ID_PACKET_PAYLOAD            : ENABLED
+UVVM:                ID_FRAME_INITIATE            : ENABLED
+UVVM:                ID_FRAME_COMPLETE            : ENABLED
+UVVM:                ID_FRAME_HDR                 : ENABLED
+UVVM:                ID_FRAME_DATA                : ENABLED
+UVVM:                ID_COVERAGE_MAKEBIN          : DISABLED
+UVVM:                ID_COVERAGE_ADDBIN           : DISABLED
+UVVM:                ID_COVERAGE_ICOVER           : DISABLED
+UVVM:                ID_COVERAGE_CONFIG           : ENABLED
+UVVM:                ID_COVERAGE_SUMMARY          : ENABLED
+UVVM:                ID_COVERAGE_HOLES            : ENABLED
+UVVM:                ID_UVVM_SEND_CMD             : ENABLED
+UVVM:                ID_UVVM_CMD_ACK              : ENABLED
+UVVM:                ID_UVVM_CMD_RESULT           : ENABLED
+UVVM:                ID_CMD_INTERPRETER           : ENABLED
+UVVM:                ID_CMD_INTERPRETER_WAIT      : ENABLED
+UVVM:                ID_IMMEDIATE_CMD             : ENABLED
+UVVM:                ID_IMMEDIATE_CMD_WAIT        : ENABLED
+UVVM:                ID_CMD_EXECUTOR              : ENABLED
+UVVM:                ID_CMD_EXECUTOR_WAIT         : ENABLED
+UVVM:                ID_CHANNEL_EXECUTOR          : ENABLED
+UVVM:                ID_CHANNEL_EXECUTOR_WAIT     : ENABLED
+UVVM:                ID_NEW_HVVC_CMD_SEQ          : ENABLED
+UVVM:                ID_INSERTED_DELAY            : ENABLED
+UVVM:                ID_OLD_AWAIT_COMPLETION      : ENABLED
+UVVM:                ID_AWAIT_COMPLETION          : ENABLED
+UVVM:                ID_AWAIT_COMPLETION_LIST     : ENABLED
+UVVM:                ID_AWAIT_COMPLETION_WAIT     : ENABLED
+UVVM:                ID_AWAIT_COMPLETION_END      : ENABLED
+UVVM:                ID_UVVM_DATA_QUEUE           : ENABLED
+UVVM:                ID_CONSTRUCTOR               : ENABLED
+UVVM:                ID_CONSTRUCTOR_SUB           : ENABLED
+UVVM:                ID_VVC_ACTIVITY              : ENABLED
+UVVM:                ID_MONITOR                   : ENABLED
+UVVM:                ID_MONITOR_ERROR             : ENABLED
+UVVM:                ID_DATA                      : ENABLED
+UVVM:                ID_CTRL                      : ENABLED
+UVVM:                ID_FILE_OPEN_CLOSE           : ENABLED
+UVVM:                ID_FILE_PARSER               : ENABLED
+UVVM:                ID_SPEC_COV                  : ENABLED
+UVVM:      --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM:      
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        disable_log_msg(ALL_MESSAGES). 
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_LOG_HDR). 
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_SEQUENCER). 
+UVVM: ID_LOG_MSG_CTRL                    0.0 ns  TB seq.                        enable_log_msg(ID_UVVM_SEND_CMD). 
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                         0.0 ns  WISHBONE I2C IP CORE           Starting simulation of TB for Wishbone-I2C using VVCs
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_SEQUENCER                       0.0 ns  TB seq.                        Wait 10 clock period for reset to be turned off
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  CLOCK_GENERATOR_VVC,1            ..Interpreter: Waiting for command
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  CLOCK_GENERATOR_VVC,1            ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"2", x"00000020"): 'Control register - ENABLE I2C MASTER'.
+UVVM:                                                                             [2]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000020"). Command received  [2]
+UVVM: ID_CMD_EXECUTOR                  200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000020") - Will be executed  [2]
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       200.0 ns  WISHBONE I2C IP CORE           Test transmit two bytes - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"): 'Tx register - TX DATA'. [3]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"). Command received  [3]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'. [4]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [4]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [5]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [5]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2"): 'Tx register - TX DATA'. [6]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2"). Command received  [6]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'. [7]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [7]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [8]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [8]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000019"): 'Tx register - TX DATA'. [9]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000019"). Command received  [9]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [10]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [10]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [11]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [11]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7"): 'Tx register - TX DATA'. [12]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7"). Command received  [12]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [13]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [13]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [14]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [14]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [15]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [15]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [16]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [16]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->i2c_slave_check(I2C_VVC,1): 'I2C Slave - CHECK'. [17]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1). Command received  [17]
+UVVM: ID_CMD_EXECUTOR                  200.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1) - Will be executed  [17]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                           241.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"2", x"00000020") completed. 'Control register - ENABLE I2C MASTER'  [2]
+UVVM: ID_CMD_EXECUTOR                  241.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002") - Will be executed  [3]
+UVVM: ID_BFM                           261.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000002") completed. 'Tx register - TX DATA'  [3]
+UVVM: ID_CMD_EXECUTOR                  261.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [4]
+UVVM: ID_BFM                           281.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [4]
+UVVM: ID_CMD_EXECUTOR                  281.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [5]
+UVVM: ID_BFM                           301.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [5]
+UVVM: ID_CMD_EXECUTOR                  301.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2") - Will be executed  [6]
+UVVM: ID_BFM                           321.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000E2") completed. 'Tx register - TX DATA'  [6]
+UVVM: ID_CMD_EXECUTOR                  321.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [7]
+UVVM: ID_BFM                           341.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [7]
+UVVM: ID_CMD_EXECUTOR                  341.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [8]
+UVVM: ID_BFM                           361.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [8]
+UVVM: ID_CMD_EXECUTOR                  361.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000019") - Will be executed  [9]
+UVVM: ID_BFM                           381.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000019") completed. 'Tx register - TX DATA'  [9]
+UVVM: ID_CMD_EXECUTOR                  381.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [10]
+UVVM: ID_BFM                           401.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [10]
+UVVM: ID_CMD_EXECUTOR                  401.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [11]
+UVVM: ID_BFM                           421.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [11]
+UVVM: ID_CMD_EXECUTOR                  421.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7") - Will be executed  [12]
+UVVM: ID_BFM                           441.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000C7") completed. 'Tx register - TX DATA'  [12]
+UVVM: ID_CMD_EXECUTOR                  441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [13]
+UVVM: ID_BFM                           461.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [13]
+UVVM: ID_CMD_EXECUTOR                  461.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [14]
+UVVM: ID_BFM                           481.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [14]
+UVVM: ID_CMD_EXECUTOR                  481.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [15]
+UVVM: ID_BFM                           501.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [15]
+UVVM: ID_CMD_EXECUTOR                  501.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [16]
+UVVM: ID_BFM                           521.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [16]
+UVVM: ID_CMD_EXECUTOR_WAIT             521.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                        277640.0 ns  I2C_VVC,1                      i2c_slave_check((x"19", x"C7"))=> OK, read data = (x"19", x"C7"). 'I2C Slave - CHECK'  [17]
+UVVM: ID_CMD_EXECUTOR_WAIT          277640.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                    327640.0 ns  WISHBONE I2C IP CORE           Test read two bytes - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"): 'Tx register - TX DATA'. [19]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"). Command received  [19]
+UVVM: ID_CMD_EXECUTOR               327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002") - Will be executed  [19]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [20]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [20]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [21]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [21]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"): 'Tx register - TX DATA'. [22]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"). Command received  [22]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [23]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [23]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [24]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [24]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [25]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [25]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [26]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [26]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              327640.0 ns  TB seq.(uvvm)                  ->i2c_slave_transmit(I2C_VVC,1): 'I2C Slave - TRANSMIT'. [27]
+UVVM: ID_CMD_INTERPRETER            327640.0 ns  I2C_VVC,1                        i2c_slave_transmit(I2C_VVC,1). Command received  [27]
+UVVM: ID_CMD_EXECUTOR               327640.0 ns  I2C_VVC,1                        i2c_slave_transmit(I2C_VVC,1) - Will be executed  [27]
+UVVM: ID_CMD_INTERPRETER_WAIT       327640.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                        327681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000002") completed. 'Tx register - TX DATA'  [19]
+UVVM: ID_CMD_EXECUTOR               327681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [20]
+UVVM: ID_BFM                        327701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [20]
+UVVM: ID_CMD_EXECUTOR               327701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [21]
+UVVM: ID_BFM                        327721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [21]
+UVVM: ID_CMD_EXECUTOR               327721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3") - Will be executed  [22]
+UVVM: ID_BFM                        327741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000E3") completed. 'Tx register - TX DATA'  [22]
+UVVM: ID_CMD_EXECUTOR               327741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [23]
+UVVM: ID_BFM                        327761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [23]
+UVVM: ID_CMD_EXECUTOR               327761.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [24]
+UVVM: ID_BFM                        327781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [24]
+UVVM: ID_CMD_EXECUTOR               327781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [25]
+UVVM: ID_BFM                        327801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [25]
+UVVM: ID_CMD_EXECUTOR               327801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [26]
+UVVM: ID_BFM                        327821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [26]
+UVVM: ID_CMD_EXECUTOR_WAIT          327821.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                        607640.0 ns  I2C_VVC,1                      i2c_slave_transmit((x"19", x"C7"))=> (x"19", x"C7"). 'I2C Slave - TRANSMIT'  [27]
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [29]
+UVVM: ID_CMD_EXECUTOR_WAIT          607640.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [29]
+UVVM: ID_CMD_EXECUTOR               607640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [29]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [30]
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [30]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000019"): 'Rx register - RX DATA'. [31]
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000019"). Command received  [31]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [32]
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [32]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [33]
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [33]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              607640.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7"): 'Rx register - RX DATA'. [34]
+UVVM: ID_CMD_INTERPRETER            607640.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7"). Command received  [34]
+UVVM: ID_CMD_INTERPRETER_WAIT       607640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                        607681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [29]
+UVVM: ID_CMD_EXECUTOR               607681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [30]
+UVVM: ID_BFM                        607701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [30]
+UVVM: ID_CMD_EXECUTOR               607701.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000019") - Will be executed  [31]
+UVVM: ID_BFM                        607721.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000019")=> OK, received data = x"19". 'Rx register - RX DATA'  [31]
+UVVM: ID_CMD_EXECUTOR               607721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [32]
+UVVM: ID_BFM                        607741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [32]
+UVVM: ID_CMD_EXECUTOR               607741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [33]
+UVVM: ID_BFM                        607761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [33]
+UVVM: ID_CMD_EXECUTOR               607761.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7") - Will be executed  [34]
+UVVM: ID_BFM                        607781.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"000000C7")=> OK, received data = x"C7". 'Rx register - RX DATA'  [34]
+UVVM: ID_CMD_EXECUTOR_WAIT          607781.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                    657640.0 ns  WISHBONE I2C IP CORE           Test repeated start - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"): 'Tx register - TX DATA'. [35]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"). Command received  [35]
+UVVM: ID_CMD_EXECUTOR               657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003") - Will be executed  [35]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [36]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [36]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [37]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [37]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2"): 'Tx register - TX DATA'. [38]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2"). Command received  [38]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [39]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [39]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [40]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [40]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000A7"): 'Tx register - TX DATA'. [41]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000A7"). Command received  [41]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [42]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [42]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [43]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [43]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"0000000B"): 'Tx register - TX DATA'. [44]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000000B"). Command received  [44]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [45]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [45]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [46]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [46]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"0000006F"): 'Tx register - TX DATA'. [47]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000006F"). Command received  [47]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [48]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [48]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [49]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [49]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [50]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [50]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [51]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [51]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->i2c_slave_check(I2C_VVC,1): 'I2C Slave - CHECK'. [52]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1). Command received  [52]
+UVVM: ID_CMD_EXECUTOR               657640.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1) - Will be executed  [52]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"): 'Tx register - TX DATA'. [53]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"). Command received  [53]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [54]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [54]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [55]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [55]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"): 'Tx register - TX DATA'. [56]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"). Command received  [56]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [57]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [57]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [58]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [58]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000001"): 'Command register - REPEATED START'. [59]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000001"). Command received  [59]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD              657640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [60]
+UVVM: ID_CMD_INTERPRETER            657640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [60]
+UVVM: ID_CMD_INTERPRETER_WAIT       657640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                        657681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000003") completed. 'Tx register - TX DATA'  [35]
+UVVM: ID_CMD_EXECUTOR               657681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [36]
+UVVM: ID_BFM                        657701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [36]
+UVVM: ID_CMD_EXECUTOR               657701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [37]
+UVVM: ID_BFM                        657721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [37]
+UVVM: ID_CMD_EXECUTOR               657721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E2") - Will be executed  [38]
+UVVM: ID_BFM                        657741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000E2") completed. 'Tx register - TX DATA'  [38]
+UVVM: ID_CMD_EXECUTOR               657741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [39]
+UVVM: ID_BFM                        657761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [39]
+UVVM: ID_CMD_EXECUTOR               657761.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [40]
+UVVM: ID_BFM                        657781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [40]
+UVVM: ID_CMD_EXECUTOR               657781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000A7") - Will be executed  [41]
+UVVM: ID_BFM                        657801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000A7") completed. 'Tx register - TX DATA'  [41]
+UVVM: ID_CMD_EXECUTOR               657801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [42]
+UVVM: ID_BFM                        657821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [42]
+UVVM: ID_CMD_EXECUTOR               657821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [43]
+UVVM: ID_BFM                        657841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [43]
+UVVM: ID_CMD_EXECUTOR               657841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000000B") - Will be executed  [44]
+UVVM: ID_BFM                        657861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"0000000B") completed. 'Tx register - TX DATA'  [44]
+UVVM: ID_CMD_EXECUTOR               657861.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [45]
+UVVM: ID_BFM                        657881.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [45]
+UVVM: ID_CMD_EXECUTOR               657881.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [46]
+UVVM: ID_BFM                        657901.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [46]
+UVVM: ID_CMD_EXECUTOR               657901.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000006F") - Will be executed  [47]
+UVVM: ID_BFM                        657921.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"0000006F") completed. 'Tx register - TX DATA'  [47]
+UVVM: ID_CMD_EXECUTOR               657921.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [48]
+UVVM: ID_BFM                        657941.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [48]
+UVVM: ID_CMD_EXECUTOR               657941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [49]
+UVVM: ID_BFM                        657961.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [49]
+UVVM: ID_CMD_EXECUTOR               657961.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [50]
+UVVM: ID_BFM                        657981.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [50]
+UVVM: ID_CMD_EXECUTOR               657981.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [51]
+UVVM: ID_BFM                        658001.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [51]
+UVVM: ID_CMD_EXECUTOR               658001.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002") - Will be executed  [53]
+UVVM: ID_BFM                        658021.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000002") completed. 'Tx register - TX DATA'  [53]
+UVVM: ID_CMD_EXECUTOR               658021.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [54]
+UVVM: ID_BFM                        658041.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [54]
+UVVM: ID_CMD_EXECUTOR               658041.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [55]
+UVVM: ID_BFM                        658061.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [55]
+UVVM: ID_CMD_EXECUTOR               658061.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3") - Will be executed  [56]
+UVVM: ID_BFM                        658081.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000E3") completed. 'Tx register - TX DATA'  [56]
+UVVM: ID_CMD_EXECUTOR               658081.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [57]
+UVVM: ID_BFM                        658101.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [57]
+UVVM: ID_CMD_EXECUTOR               658101.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [58]
+UVVM: ID_BFM                        658121.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [58]
+UVVM: ID_CMD_EXECUTOR               658121.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000001") - Will be executed  [59]
+UVVM: ID_BFM                        658141.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000001") completed. 'Command register - REPEATED START'  [59]
+UVVM: ID_CMD_EXECUTOR               658141.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [60]
+UVVM: ID_BFM                        658161.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [60]
+UVVM: ID_CMD_EXECUTOR_WAIT          658161.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                       1025080.0 ns  I2C_VVC,1                      i2c_slave_check((x"A7", x"0B", x"6F"))=> OK, read data = (x"A7", x"B", x"6F"). 'I2C Slave -
+UVVM:                                                                           CHECK'  [52]
+UVVM: ID_UVVM_SEND_CMD             1025080.0 ns  TB seq.(uvvm)                  ->i2c_slave_transmit(I2C_VVC,1): 'I2C Slave - TRANSMIT'. [62]
+UVVM: ID_CMD_EXECUTOR_WAIT         1025080.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER           1025080.0 ns  I2C_VVC,1                        i2c_slave_transmit(I2C_VVC,1). Command received  [62]
+UVVM: ID_CMD_EXECUTOR              1025080.0 ns  I2C_VVC,1                        i2c_slave_transmit(I2C_VVC,1) - Will be executed  [62]
+UVVM: ID_CMD_INTERPRETER_WAIT      1025080.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       1307640.0 ns  I2C_VVC,1                      i2c_slave_transmit((x"19", x"C7"))=> (x"19", x"C7"). 'I2C Slave - TRANSMIT'  [62]
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [64]
+UVVM: ID_CMD_EXECUTOR_WAIT         1307640.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [64]
+UVVM: ID_CMD_EXECUTOR              1307640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [64]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [65]
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [65]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000019"): 'Rx register - RX DATA'. [66]
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000019"). Command received  [66]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [67]
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [67]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [68]
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [68]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1307640.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7"): 'Rx register - RX DATA'. [69]
+UVVM: ID_CMD_INTERPRETER           1307640.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7"). Command received  [69]
+UVVM: ID_CMD_INTERPRETER_WAIT      1307640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       1307681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [64]
+UVVM: ID_CMD_EXECUTOR              1307681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [65]
+UVVM: ID_BFM                       1307701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [65]
+UVVM: ID_CMD_EXECUTOR              1307701.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000019") - Will be executed  [66]
+UVVM: ID_BFM                       1307721.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000019")=> OK, received data = x"19". 'Rx register - RX DATA'  [66]
+UVVM: ID_CMD_EXECUTOR              1307721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [67]
+UVVM: ID_BFM                       1307741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [67]
+UVVM: ID_CMD_EXECUTOR              1307741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [68]
+UVVM: ID_BFM                       1307761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [68]
+UVVM: ID_CMD_EXECUTOR              1307761.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"000000C7") - Will be executed  [69]
+UVVM: ID_BFM                       1307781.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"000000C7")=> OK, received data = x"C7". 'Rx register - RX DATA'  [69]
+UVVM: ID_CMD_EXECUTOR_WAIT         1307781.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   1357640.0 ns  WISHBONE I2C IP CORE           Test transmit two bytes to 10-bit address slave - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"): 'Tx register - TX DATA'. [70]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"). Command received  [70]
+UVVM: ID_CMD_EXECUTOR              1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003") - Will be executed  [70]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [71]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [71]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [72]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [72]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6"): 'Tx register - TX DATA'. [73]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6"). Command received  [73]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [74]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [74]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [75]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [75]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000026"): 'Tx register - TX DATA'. [76]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000026"). Command received  [76]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [77]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [77]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [78]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [78]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000019"): 'Tx register - TX DATA'. [79]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000019"). Command received  [79]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [80]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [80]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [81]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [81]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7"): 'Tx register - TX DATA'. [82]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7"). Command received  [82]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [83]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [83]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [84]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [84]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [85]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [85]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [86]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [86]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1357640.0 ns  TB seq.(uvvm)                  ->i2c_slave_check(I2C_VVC,2): 'I2C Slave - CHECK'. [87]
+UVVM: ID_CMD_INTERPRETER           1357640.0 ns  I2C_VVC,2                        i2c_slave_check(I2C_VVC,2). Command received  [87]
+UVVM: ID_CMD_EXECUTOR              1357640.0 ns  I2C_VVC,2                        i2c_slave_check(I2C_VVC,2) - Will be executed  [87]
+UVVM: ID_CMD_INTERPRETER_WAIT      1357640.0 ns  I2C_VVC,2                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       1357681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000003") completed. 'Tx register - TX DATA'  [70]
+UVVM: ID_CMD_EXECUTOR              1357681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [71]
+UVVM: ID_BFM                       1357701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [71]
+UVVM: ID_CMD_EXECUTOR              1357701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [72]
+UVVM: ID_BFM                       1357721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [72]
+UVVM: ID_CMD_EXECUTOR              1357721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6") - Will be executed  [73]
+UVVM: ID_BFM                       1357741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000F6") completed. 'Tx register - TX DATA'  [73]
+UVVM: ID_CMD_EXECUTOR              1357741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [74]
+UVVM: ID_BFM                       1357761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [74]
+UVVM: ID_CMD_EXECUTOR              1357761.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [75]
+UVVM: ID_BFM                       1357781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [75]
+UVVM: ID_CMD_EXECUTOR              1357781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000026") - Will be executed  [76]
+UVVM: ID_BFM                       1357801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000026") completed. 'Tx register - TX DATA'  [76]
+UVVM: ID_CMD_EXECUTOR              1357801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [77]
+UVVM: ID_BFM                       1357821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [77]
+UVVM: ID_CMD_EXECUTOR              1357821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [78]
+UVVM: ID_BFM                       1357841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [78]
+UVVM: ID_CMD_EXECUTOR              1357841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000019") - Will be executed  [79]
+UVVM: ID_BFM                       1357861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000019") completed. 'Tx register - TX DATA'  [79]
+UVVM: ID_CMD_EXECUTOR              1357861.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [80]
+UVVM: ID_BFM                       1357881.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [80]
+UVVM: ID_CMD_EXECUTOR              1357881.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [81]
+UVVM: ID_BFM                       1357901.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [81]
+UVVM: ID_CMD_EXECUTOR              1357901.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000C7") - Will be executed  [82]
+UVVM: ID_BFM                       1357921.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000C7") completed. 'Tx register - TX DATA'  [82]
+UVVM: ID_CMD_EXECUTOR              1357921.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [83]
+UVVM: ID_BFM                       1357941.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [83]
+UVVM: ID_CMD_EXECUTOR              1357941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [84]
+UVVM: ID_BFM                       1357961.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [84]
+UVVM: ID_CMD_EXECUTOR              1357961.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [85]
+UVVM: ID_BFM                       1357981.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [85]
+UVVM: ID_CMD_EXECUTOR              1357981.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [86]
+UVVM: ID_BFM                       1358001.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [86]
+UVVM: ID_CMD_EXECUTOR_WAIT         1358001.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                       1727640.0 ns  I2C_VVC,2                      i2c_slave_check((x"19", x"C7"))=> OK, read data = (x"19", x"C7"). 'I2C Slave - CHECK'  [87]
+UVVM: ID_CMD_EXECUTOR_WAIT         1727640.0 ns  I2C_VVC,2                        ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   1777640.0 ns  WISHBONE I2C IP CORE           Test read three bytes from 10-bit address slave - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000001"): 'Tx register - TX DATA'. [89]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000001"). Command received  [89]
+UVVM: ID_CMD_EXECUTOR              1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000001") - Will be executed  [89]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [90]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [90]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [91]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [91]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6"): 'Tx register - TX DATA'. [92]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6"). Command received  [92]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [93]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [93]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [94]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [94]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000026"): 'Tx register - TX DATA'. [95]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000026"). Command received  [95]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [96]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [96]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [97]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [97]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [98]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [98]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [99]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [99]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"): 'Tx register - TX DATA'. [100]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"). Command received  [100]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [101]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [101]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [102]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [102]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000F7"): 'Tx register - TX DATA'. [103]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F7"). Command received  [103]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [104]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [104]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [105]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [105]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000001"): 'Command register - REPEATED START'. [106]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000001"). Command received  [106]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [107]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [107]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             1777640.0 ns  TB seq.(uvvm)                  ->i2c_slave_transmit(I2C_VVC,2): 'I2C Slave - TRANSMIT'. [108]
+UVVM: ID_CMD_INTERPRETER           1777640.0 ns  I2C_VVC,2                        i2c_slave_transmit(I2C_VVC,2). Command received  [108]
+UVVM: ID_CMD_EXECUTOR              1777640.0 ns  I2C_VVC,2                        i2c_slave_transmit(I2C_VVC,2) - Will be executed  [108]
+UVVM: ID_CMD_INTERPRETER_WAIT      1777640.0 ns  I2C_VVC,2                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       1777681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000001") completed. 'Tx register - TX DATA'  [89]
+UVVM: ID_CMD_EXECUTOR              1777681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [90]
+UVVM: ID_BFM                       1777701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [90]
+UVVM: ID_CMD_EXECUTOR              1777701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [91]
+UVVM: ID_BFM                       1777721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [91]
+UVVM: ID_CMD_EXECUTOR              1777721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F6") - Will be executed  [92]
+UVVM: ID_BFM                       1777741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000F6") completed. 'Tx register - TX DATA'  [92]
+UVVM: ID_CMD_EXECUTOR              1777741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [93]
+UVVM: ID_BFM                       1777761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [93]
+UVVM: ID_CMD_EXECUTOR              1777761.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [94]
+UVVM: ID_BFM                       1777781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [94]
+UVVM: ID_CMD_EXECUTOR              1777781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000026") - Will be executed  [95]
+UVVM: ID_BFM                       1777801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000026") completed. 'Tx register - TX DATA'  [95]
+UVVM: ID_CMD_EXECUTOR              1777801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [96]
+UVVM: ID_BFM                       1777821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [96]
+UVVM: ID_CMD_EXECUTOR              1777821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [97]
+UVVM: ID_BFM                       1777841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [97]
+UVVM: ID_CMD_EXECUTOR              1777841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [98]
+UVVM: ID_BFM                       1777861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [98]
+UVVM: ID_CMD_EXECUTOR              1777861.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [99]
+UVVM: ID_BFM                       1777881.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [99]
+UVVM: ID_CMD_EXECUTOR              1777881.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003") - Will be executed  [100]
+UVVM: ID_BFM                       1777901.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000003") completed. 'Tx register - TX DATA'  [100]
+UVVM: ID_CMD_EXECUTOR              1777901.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [101]
+UVVM: ID_BFM                       1777921.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [101]
+UVVM: ID_CMD_EXECUTOR              1777921.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [102]
+UVVM: ID_BFM                       1777941.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [102]
+UVVM: ID_CMD_EXECUTOR              1777941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000F7") - Will be executed  [103]
+UVVM: ID_BFM                       1777961.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000F7") completed. 'Tx register - TX DATA'  [103]
+UVVM: ID_CMD_EXECUTOR              1777961.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [104]
+UVVM: ID_BFM                       1777981.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [104]
+UVVM: ID_CMD_EXECUTOR              1777981.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [105]
+UVVM: ID_BFM                       1778001.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [105]
+UVVM: ID_CMD_EXECUTOR              1778001.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000001") - Will be executed  [106]
+UVVM: ID_BFM                       1778021.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000001") completed. 'Command register - REPEATED START'  [106]
+UVVM: ID_CMD_EXECUTOR              1778021.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [107]
+UVVM: ID_BFM                       1778041.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [107]
+UVVM: ID_CMD_EXECUTOR_WAIT         1778041.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                       2337640.0 ns  I2C_VVC,2                      i2c_slave_transmit((x"7E", x"96", x"34"))=> (x"7E", x"96", x"34"). 'I2C Slave - TRANSMIT' 
+UVVM:                                                                           [108]
+UVVM: ID_CMD_EXECUTOR_WAIT         2337640.0 ns  I2C_VVC,2                        ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [110]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [110]
+UVVM: ID_CMD_EXECUTOR              2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [110]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [111]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [111]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"): 'Rx register - RX DATA'. [112]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"). Command received  [112]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [113]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [113]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [114]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [114]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"): 'Rx register - RX DATA'. [115]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"). Command received  [115]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [116]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [116]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [117]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [117]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2337740.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"): 'Rx register - RX DATA'. [118]
+UVVM: ID_CMD_INTERPRETER           2337740.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"). Command received  [118]
+UVVM: ID_CMD_INTERPRETER_WAIT      2337740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2337781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [110]
+UVVM: ID_CMD_EXECUTOR              2337781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [111]
+UVVM: ID_BFM                       2337801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [111]
+UVVM: ID_CMD_EXECUTOR              2337801.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E") - Will be executed  [112]
+UVVM: ID_BFM                       2337821.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"0000007E")=> OK, received data = x"7E". 'Rx register - RX DATA'  [112]
+UVVM: ID_CMD_EXECUTOR              2337821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [113]
+UVVM: ID_BFM                       2337841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [113]
+UVVM: ID_CMD_EXECUTOR              2337841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [114]
+UVVM: ID_BFM                       2337861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [114]
+UVVM: ID_CMD_EXECUTOR              2337861.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096") - Will be executed  [115]
+UVVM: ID_BFM                       2337881.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000096")=> OK, received data = x"96". 'Rx register - RX DATA'  [115]
+UVVM: ID_CMD_EXECUTOR              2337881.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [116]
+UVVM: ID_BFM                       2337901.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [116]
+UVVM: ID_CMD_EXECUTOR              2337901.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [117]
+UVVM: ID_BFM                       2337921.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [117]
+UVVM: ID_CMD_EXECUTOR              2337921.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034") - Will be executed  [118]
+UVVM: ID_BFM                       2337941.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000034")=> OK, received data = x"34". 'Rx register - RX DATA'  [118]
+UVVM: ID_CMD_EXECUTOR_WAIT         2337941.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   2387740.0 ns  WISHBONE I2C IP CORE           TEST SLAVE MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             2387740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"5", x"0000001E"): 'Slave address register - SLAVE ADDRESS'.
+UVVM:                                                                             [119]
+UVVM: ID_CMD_INTERPRETER           2387740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"5", x"0000001E"). Command received  [119]
+UVVM: ID_CMD_EXECUTOR              2387740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"5", x"0000001E") - Will be executed  [119]
+UVVM: ID_CMD_INTERPRETER_WAIT      2387740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2387740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"2", x"00000021"): 'Control register - ENABLE I2C SLAVE'.
+UVVM:                                                                             [120]
+UVVM: ID_CMD_INTERPRETER           2387740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000021"). Command received  [120]
+UVVM: ID_CMD_INTERPRETER_WAIT      2387740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2387781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"5", x"0000001E") completed. 'Slave address register - SLAVE ADDRESS'  [119]
+UVVM: ID_CMD_EXECUTOR              2387781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000021") - Will be executed  [120]
+UVVM: ID_BFM                       2387801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"2", x"00000021") completed. 'Control register - ENABLE I2C SLAVE'  [120]
+UVVM: ID_CMD_EXECUTOR_WAIT         2387801.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   2407740.0 ns  WISHBONE I2C IP CORE           Test write to slave - SLAVE MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             2407740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"): 'Tx register - TX DATA'. [121]
+UVVM: ID_CMD_INTERPRETER           2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"). Command received  [121]
+UVVM: ID_CMD_EXECUTOR              2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003") - Will be executed  [121]
+UVVM: ID_CMD_INTERPRETER_WAIT      2407740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2407740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [122]
+UVVM: ID_CMD_INTERPRETER           2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [122]
+UVVM: ID_CMD_INTERPRETER_WAIT      2407740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2407740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [123]
+UVVM: ID_CMD_INTERPRETER           2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [123]
+UVVM: ID_CMD_INTERPRETER_WAIT      2407740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2407740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [124]
+UVVM: ID_CMD_INTERPRETER           2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [124]
+UVVM: ID_CMD_INTERPRETER_WAIT      2407740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2407740.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [125]
+UVVM: ID_CMD_INTERPRETER           2407740.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [125]
+UVVM: ID_CMD_INTERPRETER_WAIT      2407740.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2407781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000003") completed. 'Tx register - TX DATA'  [121]
+UVVM: ID_CMD_EXECUTOR              2407781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [122]
+UVVM: ID_BFM                       2407801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [122]
+UVVM: ID_CMD_EXECUTOR              2407801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [123]
+UVVM: ID_BFM                       2407821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [123]
+UVVM: ID_CMD_EXECUTOR              2407821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [124]
+UVVM: ID_BFM                       2407841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [124]
+UVVM: ID_CMD_EXECUTOR              2407841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [125]
+UVVM: ID_BFM                       2407861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [125]
+UVVM: ID_CMD_EXECUTOR_WAIT         2407861.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2412740.0 ns  TB seq.(uvvm)                  ->i2c_master_transmit(I2C_VVC,3): 'I2C Master - TRANSMIT'. [127]
+UVVM: ID_CMD_INTERPRETER           2412740.0 ns  I2C_VVC,3                        i2c_master_transmit(I2C_VVC,3). Command received  [127]
+UVVM: ID_CMD_EXECUTOR              2412740.0 ns  I2C_VVC,3                        i2c_master_transmit(I2C_VVC,3) - Will be executed  [127]
+UVVM: ID_CMD_INTERPRETER_WAIT      2412740.0 ns  I2C_VVC,3                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2782240.0 ns  I2C_VVC,3                      i2c_master_transmit(A:x"01E", (x"7E", x"96", x"34"))=> (x"7E", x"96", x"34"). 'I2C Master -
+UVVM:                                                                           TRANSMIT'  [127]
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [129]
+UVVM: ID_CMD_EXECUTOR_WAIT         2782240.0 ns  I2C_VVC,3                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [129]
+UVVM: ID_CMD_EXECUTOR              2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [129]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [130]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [130]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"): 'Rx register - RX DATA'. [131]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"). Command received  [131]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [132]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [132]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [133]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [133]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"): 'Rx register - RX DATA'. [134]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"). Command received  [134]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [135]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [135]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [136]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [136]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2782240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"): 'Rx register - RX DATA'. [137]
+UVVM: ID_CMD_INTERPRETER           2782240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"). Command received  [137]
+UVVM: ID_CMD_INTERPRETER_WAIT      2782240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2782281.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [129]
+UVVM: ID_CMD_EXECUTOR              2782281.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [130]
+UVVM: ID_BFM                       2782301.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [130]
+UVVM: ID_CMD_EXECUTOR              2782301.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E") - Will be executed  [131]
+UVVM: ID_BFM                       2782321.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"0000007E")=> OK, received data = x"7E". 'Rx register - RX DATA'  [131]
+UVVM: ID_CMD_EXECUTOR              2782321.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [132]
+UVVM: ID_BFM                       2782341.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [132]
+UVVM: ID_CMD_EXECUTOR              2782341.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [133]
+UVVM: ID_BFM                       2782361.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [133]
+UVVM: ID_CMD_EXECUTOR              2782361.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096") - Will be executed  [134]
+UVVM: ID_BFM                       2782381.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000096")=> OK, received data = x"96". 'Rx register - RX DATA'  [134]
+UVVM: ID_CMD_EXECUTOR              2782381.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [135]
+UVVM: ID_BFM                       2782401.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [135]
+UVVM: ID_CMD_EXECUTOR              2782401.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [136]
+UVVM: ID_BFM                       2782421.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [136]
+UVVM: ID_CMD_EXECUTOR              2782421.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034") - Will be executed  [137]
+UVVM: ID_BFM                       2782441.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000034")=> OK, received data = x"34". 'Rx register - RX DATA'  [137]
+UVVM: ID_CMD_EXECUTOR_WAIT         2782441.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   2832240.0 ns  WISHBONE I2C IP CORE           Test read from slave - SLAVE MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000006"): 'Tx register - TX DATA'. [138]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000006"). Command received  [138]
+UVVM: ID_CMD_EXECUTOR              2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000006") - Will be executed  [138]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [139]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [139]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [140]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [140]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000032"): 'Tx register - TX DATA'. [141]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000032"). Command received  [141]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [142]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [142]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [143]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [143]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000007"): 'Tx register - TX DATA'. [144]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000007"). Command received  [144]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [145]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [145]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [146]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [146]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1"): 'Tx register - TX DATA'. [147]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1"). Command received  [147]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [148]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [148]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [149]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [149]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F"): 'Tx register - TX DATA'. [150]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F"). Command received  [150]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [151]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [151]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [152]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [152]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5"): 'Tx register - TX DATA'. [153]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5"). Command received  [153]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [154]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [154]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [155]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [155]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC"): 'Tx register - TX DATA'. [156]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC"). Command received  [156]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [157]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [157]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [158]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [158]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [159]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [159]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2832240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [160]
+UVVM: ID_CMD_INTERPRETER           2832240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [160]
+UVVM: ID_CMD_INTERPRETER_WAIT      2832240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       2832281.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000006") completed. 'Tx register - TX DATA'  [138]
+UVVM: ID_CMD_EXECUTOR              2832281.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [139]
+UVVM: ID_BFM                       2832301.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [139]
+UVVM: ID_CMD_EXECUTOR              2832301.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [140]
+UVVM: ID_BFM                       2832321.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [140]
+UVVM: ID_CMD_EXECUTOR              2832321.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000032") - Will be executed  [141]
+UVVM: ID_BFM                       2832341.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000032") completed. 'Tx register - TX DATA'  [141]
+UVVM: ID_CMD_EXECUTOR              2832341.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [142]
+UVVM: ID_BFM                       2832361.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [142]
+UVVM: ID_CMD_EXECUTOR              2832361.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [143]
+UVVM: ID_BFM                       2832381.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [143]
+UVVM: ID_CMD_EXECUTOR              2832381.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000007") - Will be executed  [144]
+UVVM: ID_BFM                       2832401.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000007") completed. 'Tx register - TX DATA'  [144]
+UVVM: ID_CMD_EXECUTOR              2832401.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [145]
+UVVM: ID_BFM                       2832421.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [145]
+UVVM: ID_CMD_EXECUTOR              2832421.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [146]
+UVVM: ID_BFM                       2832441.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [146]
+UVVM: ID_CMD_EXECUTOR              2832441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1") - Will be executed  [147]
+UVVM: ID_BFM                       2832461.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000B1") completed. 'Tx register - TX DATA'  [147]
+UVVM: ID_CMD_EXECUTOR              2832461.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [148]
+UVVM: ID_BFM                       2832481.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [148]
+UVVM: ID_CMD_EXECUTOR              2832481.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [149]
+UVVM: ID_BFM                       2832501.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [149]
+UVVM: ID_CMD_EXECUTOR              2832501.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F") - Will be executed  [150]
+UVVM: ID_BFM                       2832521.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"0000004F") completed. 'Tx register - TX DATA'  [150]
+UVVM: ID_CMD_EXECUTOR              2832521.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [151]
+UVVM: ID_BFM                       2832541.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [151]
+UVVM: ID_CMD_EXECUTOR              2832541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [152]
+UVVM: ID_BFM                       2832561.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [152]
+UVVM: ID_CMD_EXECUTOR              2832561.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5") - Will be executed  [153]
+UVVM: ID_BFM                       2832581.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000D5") completed. 'Tx register - TX DATA'  [153]
+UVVM: ID_CMD_EXECUTOR              2832581.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [154]
+UVVM: ID_BFM                       2832601.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [154]
+UVVM: ID_CMD_EXECUTOR              2832601.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [155]
+UVVM: ID_BFM                       2832621.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [155]
+UVVM: ID_CMD_EXECUTOR              2832621.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC") - Will be executed  [156]
+UVVM: ID_BFM                       2832641.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000AC") completed. 'Tx register - TX DATA'  [156]
+UVVM: ID_CMD_EXECUTOR              2832641.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [157]
+UVVM: ID_BFM                       2832661.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [157]
+UVVM: ID_CMD_EXECUTOR              2832661.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [158]
+UVVM: ID_BFM                       2832681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [158]
+UVVM: ID_CMD_EXECUTOR              2832681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [159]
+UVVM: ID_BFM                       2832701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [159]
+UVVM: ID_CMD_EXECUTOR              2832701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [160]
+UVVM: ID_BFM                       2832721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [160]
+UVVM: ID_CMD_EXECUTOR_WAIT         2832721.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             2837240.0 ns  TB seq.(uvvm)                  ->i2c_master_check(I2C_VVC,3): 'I2C Master - CHECK'. [162]
+UVVM: ID_CMD_INTERPRETER           2837240.0 ns  I2C_VVC,3                        i2c_master_check(I2C_VVC,3). Command received  [162]
+UVVM: ID_CMD_EXECUTOR              2837240.0 ns  I2C_VVC,3                        i2c_master_check(I2C_VVC,3) - Will be executed  [162]
+UVVM: ID_CMD_INTERPRETER_WAIT      2837240.0 ns  I2C_VVC,3                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       3489240.0 ns  I2C_VVC,3                      i2c_master_check(A:x"01E", (x"32", x"07", x"B1", x"4F", x"D5", x"AC"))=> OK, read data =
+UVVM:                                                                           (x"32", x"7", x"B1", x"4F", x"D5", x"AC"). 'I2C Master - CHECK'  [162]
+UVVM: ID_CMD_EXECUTOR_WAIT         3489240.0 ns  I2C_VVC,3                        ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"5", x"0000029A"): 'Slave address register - SLAVE ADDRESS'.
+UVVM:                                                                             [164]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"5", x"0000029A"). Command received  [164]
+UVVM: ID_CMD_EXECUTOR              3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"5", x"0000029A") - Will be executed  [164]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"2", x"00000029"): 'Control register - ENABLE I2C SLAVE 10
+UVVM:                                                                             BIT'. [165]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000029"). Command received  [165]
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   3539240.0 ns  WISHBONE I2C IP CORE           Test write to 10-bit slave - SLAVE MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"): 'Tx register - TX DATA'. [166]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003"). Command received  [166]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [167]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [167]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [168]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [168]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [169]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [169]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3539240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [170]
+UVVM: ID_CMD_INTERPRETER           3539240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [170]
+UVVM: ID_CMD_INTERPRETER_WAIT      3539240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       3539281.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"5", x"0000029A") completed. 'Slave address register - SLAVE ADDRESS'  [164]
+UVVM: ID_CMD_EXECUTOR              3539281.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000029") - Will be executed  [165]
+UVVM: ID_BFM                       3539301.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"2", x"00000029") completed. 'Control register - ENABLE I2C SLAVE 10 BIT' 
+UVVM:                                                                           [165]
+UVVM: ID_CMD_EXECUTOR              3539301.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000003") - Will be executed  [166]
+UVVM: ID_BFM                       3539321.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000003") completed. 'Tx register - TX DATA'  [166]
+UVVM: ID_CMD_EXECUTOR              3539321.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [167]
+UVVM: ID_BFM                       3539341.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [167]
+UVVM: ID_CMD_EXECUTOR              3539341.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [168]
+UVVM: ID_BFM                       3539361.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [168]
+UVVM: ID_CMD_EXECUTOR              3539361.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [169]
+UVVM: ID_BFM                       3539381.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [169]
+UVVM: ID_CMD_EXECUTOR              3539381.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [170]
+UVVM: ID_BFM                       3539401.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [170]
+UVVM: ID_CMD_EXECUTOR_WAIT         3539401.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             3544240.0 ns  TB seq.(uvvm)                  ->i2c_master_transmit(I2C_VVC,4): 'I2C Master - TRANSMIT'. [172]
+UVVM: ID_CMD_INTERPRETER           3544240.0 ns  I2C_VVC,4                        i2c_master_transmit(I2C_VVC,4). Command received  [172]
+UVVM: ID_CMD_EXECUTOR              3544240.0 ns  I2C_VVC,4                        i2c_master_transmit(I2C_VVC,4) - Will be executed  [172]
+UVVM: ID_CMD_INTERPRETER_WAIT      3544240.0 ns  I2C_VVC,4                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       4002240.0 ns  I2C_VVC,4                      i2c_master_transmit(A:x"29A", (x"7E", x"96", x"34"))=> (x"7E", x"96", x"34"). 'I2C Master -
+UVVM:                                                                           TRANSMIT'  [172]
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [174]
+UVVM: ID_CMD_EXECUTOR_WAIT         4002240.0 ns  I2C_VVC,4                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [174]
+UVVM: ID_CMD_EXECUTOR              4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [174]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [175]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [175]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"): 'Rx register - RX DATA'. [176]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E"). Command received  [176]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [177]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [177]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [178]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [178]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"): 'Rx register - RX DATA'. [179]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096"). Command received  [179]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"): 'Command register - ENABLE RX BUFFER'.
+UVVM:                                                                             [180]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008"). Command received  [180]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [181]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [181]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4002240.0 ns  TB seq.(uvvm)                  ->wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"): 'Rx register - RX DATA'. [182]
+UVVM: ID_CMD_INTERPRETER           4002240.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034"). Command received  [182]
+UVVM: ID_CMD_INTERPRETER_WAIT      4002240.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       4002281.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [174]
+UVVM: ID_CMD_EXECUTOR              4002281.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [175]
+UVVM: ID_BFM                       4002301.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [175]
+UVVM: ID_CMD_EXECUTOR              4002301.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"0000007E") - Will be executed  [176]
+UVVM: ID_BFM                       4002321.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"0000007E")=> OK, received data = x"7E". 'Rx register - RX DATA'  [176]
+UVVM: ID_CMD_EXECUTOR              4002321.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [177]
+UVVM: ID_BFM                       4002341.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [177]
+UVVM: ID_CMD_EXECUTOR              4002341.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [178]
+UVVM: ID_BFM                       4002361.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [178]
+UVVM: ID_CMD_EXECUTOR              4002361.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000096") - Will be executed  [179]
+UVVM: ID_BFM                       4002381.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000096")=> OK, received data = x"96". 'Rx register - RX DATA'  [179]
+UVVM: ID_CMD_EXECUTOR              4002381.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000008") - Will be executed  [180]
+UVVM: ID_BFM                       4002401.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000008") completed. 'Command register - ENABLE RX BUFFER'  [180]
+UVVM: ID_CMD_EXECUTOR              4002401.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [181]
+UVVM: ID_BFM                       4002421.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [181]
+UVVM: ID_CMD_EXECUTOR              4002421.0 ns  WISHBONE_VVC,1                   wishbone_check(WISHBONE_VVC,1, x"1", x"00000034") - Will be executed  [182]
+UVVM: ID_BFM                       4002441.0 ns  WISHBONE_VVC,1                 wishbone_check(A:x"1", x"00000034")=> OK, received data = x"34". 'Rx register - RX DATA'  [182]
+UVVM: ID_CMD_EXECUTOR_WAIT         4002441.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   4052441.0 ns  WISHBONE I2C IP CORE           Test read from 10-bit slave SLAVE MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000006"): 'Tx register - TX DATA'. [184]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000006"). Command received  [184]
+UVVM: ID_CMD_EXECUTOR              4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000006") - Will be executed  [184]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [185]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [185]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [186]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [186]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000032"): 'Tx register - TX DATA'. [187]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000032"). Command received  [187]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [188]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [188]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [189]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [189]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000007"): 'Tx register - TX DATA'. [190]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000007"). Command received  [190]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [191]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [191]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [192]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [192]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1"): 'Tx register - TX DATA'. [193]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1"). Command received  [193]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [194]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [194]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [195]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [195]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F"): 'Tx register - TX DATA'. [196]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F"). Command received  [196]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [197]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [197]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [198]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [198]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5"): 'Tx register - TX DATA'. [199]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5"). Command received  [199]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [200]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [200]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [201]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [201]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC"): 'Tx register - TX DATA'. [202]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC"). Command received  [202]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [203]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [203]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [204]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [204]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [205]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [205]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4052441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [206]
+UVVM: ID_CMD_INTERPRETER           4052441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [206]
+UVVM: ID_CMD_INTERPRETER_WAIT      4052441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       4052481.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000006") completed. 'Tx register - TX DATA'  [184]
+UVVM: ID_CMD_EXECUTOR              4052481.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [185]
+UVVM: ID_BFM                       4052501.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [185]
+UVVM: ID_CMD_EXECUTOR              4052501.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [186]
+UVVM: ID_BFM                       4052521.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [186]
+UVVM: ID_CMD_EXECUTOR              4052521.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000032") - Will be executed  [187]
+UVVM: ID_BFM                       4052541.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000032") completed. 'Tx register - TX DATA'  [187]
+UVVM: ID_CMD_EXECUTOR              4052541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [188]
+UVVM: ID_BFM                       4052561.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [188]
+UVVM: ID_CMD_EXECUTOR              4052561.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [189]
+UVVM: ID_BFM                       4052581.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [189]
+UVVM: ID_CMD_EXECUTOR              4052581.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000007") - Will be executed  [190]
+UVVM: ID_BFM                       4052601.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000007") completed. 'Tx register - TX DATA'  [190]
+UVVM: ID_CMD_EXECUTOR              4052601.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [191]
+UVVM: ID_BFM                       4052621.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [191]
+UVVM: ID_CMD_EXECUTOR              4052621.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [192]
+UVVM: ID_BFM                       4052641.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [192]
+UVVM: ID_CMD_EXECUTOR              4052641.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000B1") - Will be executed  [193]
+UVVM: ID_BFM                       4052661.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000B1") completed. 'Tx register - TX DATA'  [193]
+UVVM: ID_CMD_EXECUTOR              4052661.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [194]
+UVVM: ID_BFM                       4052681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [194]
+UVVM: ID_CMD_EXECUTOR              4052681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [195]
+UVVM: ID_BFM                       4052701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [195]
+UVVM: ID_CMD_EXECUTOR              4052701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"0000004F") - Will be executed  [196]
+UVVM: ID_BFM                       4052721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"0000004F") completed. 'Tx register - TX DATA'  [196]
+UVVM: ID_CMD_EXECUTOR              4052721.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [197]
+UVVM: ID_BFM                       4052741.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [197]
+UVVM: ID_CMD_EXECUTOR              4052741.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [198]
+UVVM: ID_BFM                       4052761.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [198]
+UVVM: ID_CMD_EXECUTOR              4052761.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000D5") - Will be executed  [199]
+UVVM: ID_BFM                       4052781.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000D5") completed. 'Tx register - TX DATA'  [199]
+UVVM: ID_CMD_EXECUTOR              4052781.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [200]
+UVVM: ID_BFM                       4052801.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [200]
+UVVM: ID_CMD_EXECUTOR              4052801.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [201]
+UVVM: ID_BFM                       4052821.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [201]
+UVVM: ID_CMD_EXECUTOR              4052821.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000AC") - Will be executed  [202]
+UVVM: ID_BFM                       4052841.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000AC") completed. 'Tx register - TX DATA'  [202]
+UVVM: ID_CMD_EXECUTOR              4052841.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [203]
+UVVM: ID_BFM                       4052861.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [203]
+UVVM: ID_CMD_EXECUTOR              4052861.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [204]
+UVVM: ID_BFM                       4052881.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [204]
+UVVM: ID_CMD_EXECUTOR              4052881.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [205]
+UVVM: ID_BFM                       4052901.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [205]
+UVVM: ID_CMD_EXECUTOR              4052901.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [206]
+UVVM: ID_BFM                       4052921.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [206]
+UVVM: ID_CMD_EXECUTOR_WAIT         4052921.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             4152441.0 ns  TB seq.(uvvm)                  ->i2c_master_check(I2C_VVC,4): 'I2C Master - CHECK'. [208]
+UVVM: ID_CMD_INTERPRETER           4152441.0 ns  I2C_VVC,4                        i2c_master_check(I2C_VVC,4). Command received  [208]
+UVVM: ID_CMD_EXECUTOR              4152441.0 ns  I2C_VVC,4                        i2c_master_check(I2C_VVC,4) - Will be executed  [208]
+UVVM: ID_CMD_INTERPRETER_WAIT      4152441.0 ns  I2C_VVC,4                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       4989941.0 ns  I2C_VVC,4                      i2c_master_check(A:x"29A", (x"32", x"07", x"B1", x"4F", x"D5", x"AC"))=> OK, read data =
+UVVM:                                                                           (x"32", x"7", x"B1", x"4F", x"D5", x"AC"). 'I2C Master - CHECK'  [208]
+UVVM: ID_CMD_EXECUTOR_WAIT         4989941.0 ns  I2C_VVC,4                        ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   5039941.0 ns  WISHBONE I2C IP CORE           TEST MASTER MODE WITH INTERRUPT
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             5039941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"2", x"00000030"): 'Control register - ENABLE I2C MASTER WITH
+UVVM:                                                                             INTERRUPT'. [210]
+UVVM: ID_CMD_INTERPRETER           5039941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000030"). Command received  [210]
+UVVM: ID_CMD_EXECUTOR              5039941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"2", x"00000030") - Will be executed  [210]
+UVVM: ID_CMD_INTERPRETER_WAIT      5039941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5039981.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"2", x"00000030") completed. 'Control register - ENABLE I2C MASTER WITH
+UVVM:                                                                           INTERRUPT'  [210]
+UVVM: ID_CMD_EXECUTOR_WAIT         5039981.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   5089941.0 ns  WISHBONE I2C IP CORE           Test transmit two bytes (interrupt) - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"): 'Tx register - TX DATA'. [211]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"). Command received  [211]
+UVVM: ID_CMD_EXECUTOR              5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002") - Will be executed  [211]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [212]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [212]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [213]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [213]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000EC"): 'Tx register - TX DATA'. [214]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000EC"). Command received  [214]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [215]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [215]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [216]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [216]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [217]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [217]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5089941.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [218]
+UVVM: ID_CMD_INTERPRETER           5089941.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [218]
+UVVM: ID_CMD_INTERPRETER_WAIT      5089941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5089981.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000002") completed. 'Tx register - TX DATA'  [211]
+UVVM: ID_CMD_EXECUTOR              5089981.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [212]
+UVVM: ID_BFM                       5090001.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [212]
+UVVM: ID_CMD_EXECUTOR              5090001.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [213]
+UVVM: ID_BFM                       5090021.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [213]
+UVVM: ID_CMD_EXECUTOR              5090021.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000EC") - Will be executed  [214]
+UVVM: ID_BFM                       5090041.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000EC") completed. 'Tx register - TX DATA'  [214]
+UVVM: ID_CMD_EXECUTOR              5090041.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [215]
+UVVM: ID_BFM                       5090061.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [215]
+UVVM: ID_CMD_EXECUTOR              5090061.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [216]
+UVVM: ID_BFM                       5090081.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [216]
+UVVM: ID_CMD_EXECUTOR              5090081.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [217]
+UVVM: ID_BFM                       5090101.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [217]
+UVVM: ID_CMD_EXECUTOR              5090101.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [218]
+UVVM: ID_BFM                       5090121.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [218]
+UVVM: ID_CMD_EXECUTOR_WAIT         5090121.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5189941.0 ns  TB seq.(uvvm)                  ->wishbone_read(WISHBONE_VVC,1, x"3"): 'Status register - READ INTERRUPT BIT'. [219]
+UVVM: ID_CMD_INTERPRETER           5189941.0 ns  WISHBONE_VVC,1                   wishbone_read(WISHBONE_VVC,1, x"3"). Command received  [219]
+UVVM: ID_CMD_EXECUTOR              5189941.0 ns  WISHBONE_VVC,1                   wishbone_read(WISHBONE_VVC,1, x"3") - Will be executed  [219]
+UVVM: ID_CMD_INTERPRETER_WAIT      5189941.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5189981.0 ns  WISHBONE_VVC,1                 wishbone_read(A:x"3")=> x"AC". 'Status register - READ INTERRUPT BIT'  [219]
+UVVM: ID_CMD_EXECUTOR_WAIT         5189981.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5190441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000002"): 'Command register - CLEAR INTERRUPT'.
+UVVM:                                                                             [220]
+UVVM: ID_CMD_INTERPRETER           5190441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000002"). Command received  [220]
+UVVM: ID_CMD_EXECUTOR              5190441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000002") - Will be executed  [220]
+UVVM: ID_CMD_INTERPRETER_WAIT      5190441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5190441.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [221]
+UVVM: ID_CMD_INTERPRETER           5190441.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [221]
+UVVM: ID_CMD_INTERPRETER_WAIT      5190441.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5190481.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000002") completed. 'Command register - CLEAR INTERRUPT'  [220]
+UVVM: ID_CMD_EXECUTOR              5190481.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [221]
+UVVM: ID_BFM                       5190501.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [221]
+UVVM: ID_CMD_EXECUTOR_WAIT         5190501.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   5240541.0 ns  WISHBONE I2C IP CORE           Test transmit two bytes (arbitration lost) - MASTER MODE
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"): 'Tx register - TX DATA'. [222]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002"). Command received  [222]
+UVVM: ID_CMD_EXECUTOR              5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"00000002") - Will be executed  [222]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [223]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [223]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [224]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [224]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"): 'Tx register - TX DATA'. [225]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3"). Command received  [225]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"): 'Command register - ENABLE TX BUFFER'.
+UVVM:                                                                             [226]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004"). Command received  [226]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [227]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [227]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"): 'Command register - I2C START'. [228]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010"). Command received  [228]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [229]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [229]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->i2c_slave_check(I2C_VVC,1): 'I2C Slave - CHECK'. [230]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1). Command received  [230]
+UVVM: ID_CMD_EXECUTOR              5240541.0 ns  I2C_VVC,1                        i2c_slave_check(I2C_VVC,1) - Will be executed  [230]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  I2C_VVC,1                        ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5240541.0 ns  TB seq.(uvvm)                  ->i2c_master_transmit(I2C_VVC,3): 'I2C Master - TRANSMIT'. [231]
+UVVM: ID_CMD_INTERPRETER           5240541.0 ns  I2C_VVC,3                        i2c_master_transmit(I2C_VVC,3). Command received  [231]
+UVVM: ID_CMD_EXECUTOR              5240541.0 ns  I2C_VVC,3                        i2c_master_transmit(I2C_VVC,3) - Will be executed  [231]
+UVVM: ID_CMD_INTERPRETER_WAIT      5240541.0 ns  I2C_VVC,3                        ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5240581.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"00000002") completed. 'Tx register - TX DATA'  [222]
+UVVM: ID_CMD_EXECUTOR              5240581.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [223]
+UVVM: ID_BFM                       5240601.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [223]
+UVVM: ID_CMD_EXECUTOR              5240601.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [224]
+UVVM: ID_BFM                       5240621.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [224]
+UVVM: ID_CMD_EXECUTOR              5240621.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"0", x"000000E3") - Will be executed  [225]
+UVVM: ID_BFM                       5240641.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"0", x"000000E3") completed. 'Tx register - TX DATA'  [225]
+UVVM: ID_CMD_EXECUTOR              5240641.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000004") - Will be executed  [226]
+UVVM: ID_BFM                       5240661.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000004") completed. 'Command register - ENABLE TX BUFFER'  [226]
+UVVM: ID_CMD_EXECUTOR              5240661.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [227]
+UVVM: ID_BFM                       5240681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [227]
+UVVM: ID_CMD_EXECUTOR              5240681.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000010") - Will be executed  [228]
+UVVM: ID_BFM                       5240701.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000010") completed. 'Command register - I2C START'  [228]
+UVVM: ID_CMD_EXECUTOR              5240701.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [229]
+UVVM: ID_BFM                       5240721.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [229]
+UVVM: ID_CMD_EXECUTOR_WAIT         5240721.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_BFM                       5519041.0 ns  I2C_VVC,1                      i2c_slave_check((x"19", x"C7"))=> OK, read data = (x"19", x"C7"). 'I2C Slave - CHECK'  [230]
+UVVM: ID_CMD_EXECUTOR_WAIT         5519041.0 ns  I2C_VVC,1                        ..Executor: Waiting for command
+UVVM: ID_BFM                       5520041.0 ns  I2C_VVC,3                      i2c_master_transmit(A:x"071", (x"19", x"C7"))=> (x"19", x"C7"). 'I2C Master - TRANSMIT'  [231]
+UVVM: ID_UVVM_SEND_CMD             5520041.0 ns  TB seq.(uvvm)                  ->wishbone_read(WISHBONE_VVC,1, x"3"): 'Status register - READ INTERRUPT BIT'. [233]
+UVVM: ID_CMD_EXECUTOR_WAIT         5520041.0 ns  I2C_VVC,3                        ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER           5520041.0 ns  WISHBONE_VVC,1                   wishbone_read(WISHBONE_VVC,1, x"3"). Command received  [233]
+UVVM: ID_CMD_EXECUTOR              5520041.0 ns  WISHBONE_VVC,1                   wishbone_read(WISHBONE_VVC,1, x"3") - Will be executed  [233]
+UVVM: ID_CMD_INTERPRETER_WAIT      5520041.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5520081.0 ns  WISHBONE_VVC,1                 wishbone_read(A:x"3")=> x"AC". 'Status register - READ INTERRUPT BIT'  [233]
+UVVM: ID_CMD_EXECUTOR_WAIT         5520081.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5520541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000002"): 'Command register - CLEAR INTERRUPT'.
+UVVM:                                                                             [234]
+UVVM: ID_CMD_INTERPRETER           5520541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000002"). Command received  [234]
+UVVM: ID_CMD_EXECUTOR              5520541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000002") - Will be executed  [234]
+UVVM: ID_CMD_INTERPRETER_WAIT      5520541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD             5520541.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"): 'Command register - DISABLE'. [235]
+UVVM: ID_CMD_INTERPRETER           5520541.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000"). Command received  [235]
+UVVM: ID_CMD_INTERPRETER_WAIT      5520541.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5520581.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000002") completed. 'Command register - CLEAR INTERRUPT'  [234]
+UVVM: ID_CMD_EXECUTOR              5520581.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"4", x"00000000") - Will be executed  [235]
+UVVM: ID_BFM                       5520601.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"4", x"00000000") completed. 'Command register - DISABLE'  [235]
+UVVM: ID_CMD_EXECUTOR_WAIT         5520601.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   5570641.0 ns  WISHBONE I2C IP CORE           Test GPO register
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_UVVM_SEND_CMD             5570641.0 ns  TB seq.(uvvm)                  ->wishbone_write(WISHBONE_VVC,1, x"6", x"000000D9"): 'GPO register - WRITE DATA'. [236]
+UVVM: ID_CMD_INTERPRETER           5570641.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"6", x"000000D9"). Command received  [236]
+UVVM: ID_CMD_EXECUTOR              5570641.0 ns  WISHBONE_VVC,1                   wishbone_write(WISHBONE_VVC,1, x"6", x"000000D9") - Will be executed  [236]
+UVVM: ID_CMD_INTERPRETER_WAIT      5570641.0 ns  WISHBONE_VVC,1                   ..Interpreter: Waiting for command
+UVVM: ID_BFM                       5570681.0 ns  WISHBONE_VVC,1                 wishbone_write(A:x"6", x"000000D9") completed. 'GPO register - WRITE DATA'  [236]
+UVVM: ID_CMD_EXECUTOR_WAIT         5570681.0 ns  WISHBONE_VVC,1                   ..Executor: Waiting for command
+UVVM:      
+UVVM:      ====================================================================================================================================================================
+UVVM:      *** FINAL SUMMARY OF ALL ALERTS ***
+UVVM:      ====================================================================================================================================================================
+UVVM:                                REGARDED   EXPECTED  IGNORED      Comment?
+UVVM:                NOTE         :      0         0         0         ok
+UVVM:                TB_NOTE      :      0         0         0         ok
+UVVM:                WARNING      :      0         0         0         ok
+UVVM:                TB_WARNING   :      0         0         0         ok
+UVVM:                MANUAL_CHECK :      0         0         0         ok
+UVVM:                ERROR        :      0         0         0         ok
+UVVM:                TB_ERROR     :      0         0         0         ok
+UVVM:                FAILURE      :      0         0         0         ok
+UVVM:                TB_FAILURE   :      0         0         0         ok
+UVVM:      ====================================================================================================================================================================
+UVVM:      >> Simulation SUCCESS: No mismatch between counted and expected serious alerts
+UVVM:      ====================================================================================================================================================================
+UVVM:      
+UVVM:      
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                   6070641.0 ns  WISHBONE I2C IP CORE           SIMULATION COMPLETED
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
